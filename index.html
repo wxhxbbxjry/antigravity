@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TELERING | Spek & Harga HP</title>
+  <title>TELERING | Cheat Sheet Spek & Harga HP Host Live</title>
   
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <!-- Gun.js for Zero-Config Decentralized Realtime Sync -->
-  <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <!-- MQTT.js for Instant 24/7 Multi-Device Cloud Realtime Sync -->
+  <script src="https://unpkg.com/mqtt@5.3.5/dist/mqtt.min.js"></script>
 
   <!-- Firebase App & Database (compat) for dedicated store cloud realtime database -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -780,6 +781,20 @@
                 Setiap kali Admin mengedit harga/spek, semua HP Host Live yang membuka link ini akan <b>otomatis terupdate secara realtime</b> tanpa refresh!
               </div>
             </div>
+          </div>
+
+          <!-- Tombol Paksa Sync untuk Admin -->
+          <div v-if="isAdmin" class="p-3 bg-indigo-50 border border-indigo-200 rounded-2xl flex items-center justify-between gap-2">
+            <div>
+              <div class="text-[11px] font-black text-indigo-950">Broadcast Pembaruan</div>
+              <div class="text-[10px] text-indigo-700">Kirim data harga terbaru dari laptop ke semua HP Host Live</div>
+            </div>
+            <button 
+              @click="broadcastToCloud"
+              class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-extrabold text-xs rounded-xl shadow-xs shrink-0"
+            >
+              ⚡ Kirim ke Cloud
+            </button>
           </div>
 
           <!-- Share Link Box -->
@@ -4232,15 +4247,14 @@
         const scrapeStatus = ref('');
 
         // ==========================================
-        // REALTIME CLOUD SHARING & SYNC (GUN.JS & URL)
+        // REALTIME CLOUD SHARING & SYNC (MQTT WEBSOCKET)
         // ==========================================
         const shareModalOpen = ref(false);
         const copiedShareLink = ref(false);
         const cloudConnected = ref(false);
         const cloudRoomId = ref('telering-live');
         const tempRoomId = ref('telering-live');
-        let gunInstance = null;
-        let gunSyncNode = null;
+        let mqttClient = null;
         let lastRemoteSyncTimestamp = 0;
         let isLocallyBroadcasting = false;
 
@@ -4254,21 +4268,21 @@
         });
 
         const shareUrl = computed(() => {
+          const liveBase = 'https://wxhxbbxjry.github.io/antigravity/';
           if (isLocalFile.value) {
-            return `https://telering-katalog.netlify.app/?room=${cloudRoomId.value}`;
+            return `${liveBase}?room=${encodeURIComponent(cloudRoomId.value)}`;
           }
-          const base = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
+          const base = `${window.location.origin}${window.location.pathname}`;
           return `${base}?room=${encodeURIComponent(cloudRoomId.value)}`;
         });
 
-        // Initialize Gun.js Realtime Cloud Sync
+        // Initialize MQTT Cloud Sync (HiveMQ Public SSL Broker)
         const initRealtimeCloud = () => {
-          // Read room from URL query param if present
           const urlParams = new URLSearchParams(window.location.search);
           const roomParam = urlParams.get('room');
           if (roomParam && roomParam.trim()) {
-            cloudRoomId.value = roomParam.trim();
-            tempRoomId.value = roomParam.trim();
+            cloudRoomId.value = roomParam.trim().toLowerCase().replace(/[^a-z0-9\-_]/g, '-');
+            tempRoomId.value = cloudRoomId.value;
           } else {
             const savedRoom = localStorage.getItem('telering_room_id');
             if (savedRoom) {
@@ -4277,50 +4291,70 @@
             }
           }
 
-          try {
-            // Gun.js connected to public relay mesh
-            gunInstance = Gun([
-              'https://gun-manhattan.herokuapp.com/gun',
-              'https://peer.waller.asia/gun'
-            ]);
-
-            connectToRoom(cloudRoomId.value);
-            cloudConnected.value = true;
-          } catch (e) {
-            console.warn('Gun init error:', e);
-            cloudConnected.value = false;
-          }
+          connectToRoom(cloudRoomId.value);
         };
 
         const connectToRoom = (roomId) => {
-          if (!gunInstance) return;
-          if (gunSyncNode) {
-            gunSyncNode.off();
+          const topic = `telering/katalog/v4/${roomId}`;
+
+          if (mqttClient) {
+            try { mqttClient.end(true); } catch(e) {}
           }
 
-          gunSyncNode = gunInstance.get('telering_katalog_v2').get(roomId);
+          try {
+            mqttClient = mqtt.connect('wss://broker.hivemq.com:8884/mqtt', {
+              clientId: 'telering_' + Math.random().toString(16).substring(2, 10),
+              clean: true,
+              reconnectPeriod: 3000,
+              connectTimeout: 9000
+            });
 
-          gunSyncNode.on((data) => {
-            if (!data || !data.payload || isLocallyBroadcasting) return;
+            mqttClient.on('connect', () => {
+              cloudConnected.value = true;
+              console.log('Connected to Realtime Cloud Broker! Subscribing to:', topic);
+              mqttClient.subscribe(topic, { qos: 1 }, (err) => {
+                if (err) console.warn('Subscribe error:', err);
+              });
+            });
 
-            try {
-              const remoteProducts = JSON.parse(data.payload);
-              if (Array.isArray(remoteProducts) && remoteProducts.length > 0) {
-                const ts = Number(data.timestamp || 0);
-                if (ts > lastRemoteSyncTimestamp) {
-                  lastRemoteSyncTimestamp = ts;
-                  
-                  // Detect updated items to trigger glowing pulse on Host Live screen
+            mqttClient.on('error', (err) => {
+              console.warn('MQTT error:', err);
+            });
+
+            mqttClient.on('close', () => {
+              cloudConnected.value = false;
+            });
+
+            mqttClient.on('reconnect', () => {
+              cloudConnected.value = true;
+            });
+
+            mqttClient.on('message', (t, msgBuffer) => {
+              if (isLocallyBroadcasting) return;
+
+              try {
+                const messageStr = msgBuffer.toString();
+                const packet = JSON.parse(messageStr);
+                const remoteProducts = packet.products || (Array.isArray(packet) ? packet : null);
+
+                if (Array.isArray(remoteProducts) && remoteProducts.length > 0) {
+                  const ts = Number(packet.timestamp || 0);
+                  if (ts && ts <= lastRemoteSyncTimestamp) return;
+                  if (ts) lastRemoteSyncTimestamp = ts;
+
                   const currentMap = new Map(products.value.map(p => [p.id || p.Nama_Produk, p]));
-                  
+                  let anyChanged = false;
+
                   products.value = remoteProducts.map(rp => {
                     const existing = currentMap.get(rp.id || rp.Nama_Produk);
                     const isChanged = existing && (
-                      existing.Harga !== rp.Harga || 
+                      Number(existing.Harga) !== Number(rp.Harga) ||
                       JSON.stringify(existing.variants) !== JSON.stringify(rp.variants) ||
-                      existing.Nama_Produk !== rp.Nama_Produk
+                      existing.Nama_Produk !== rp.Nama_Produk ||
+                      existing.RAM_ROM !== rp.RAM_ROM
                     );
-                    
+                    if (isChanged) anyChanged = true;
+
                     return {
                       ...rp,
                       _justUpdated: isChanged,
@@ -4329,52 +4363,76 @@
                   });
 
                   localStorage.setItem('telering_live_products', JSON.stringify(remoteProducts));
-                  showToast('🔄 Live Update: Data produk baru saja diperbarui oleh Admin!');
+                  localStorage.setItem('telering_last_sync_ts', String(ts || Date.now()));
 
-                  // Clear glow after 3 seconds
-                  setTimeout(() => {
-                    products.value.forEach(p => { p._justUpdated = false; });
-                  }, 3000);
+                  if (anyChanged) {
+                    showToast('⚡ Live Update: Data harga produk berhasil diperbarui oleh Admin!');
+                    setTimeout(() => {
+                      products.value.forEach(p => { p._justUpdated = false; });
+                    }, 3500);
+                  }
                 }
+              } catch (err) {
+                console.warn('Error applying remote update:', err);
               }
-            } catch (err) {
-              console.warn('Error applying remote update:', err);
-            }
-          });
+            });
+          } catch (e) {
+            console.warn('MQTT init error:', e);
+            cloudConnected.value = false;
+          }
         };
 
-        // Broadcast local changes to all other connected clients
+        // Broadcast local changes to all other connected clients with retain flag
         const broadcastToCloud = () => {
-          if (!gunSyncNode) return;
+          if (!mqttClient) return;
           isLocallyBroadcasting = true;
           const now = Date.now();
           lastRemoteSyncTimestamp = now;
 
-          const payload = JSON.stringify(products.value.map(p => ({
-            id: p.id,
-            Brand: p.Brand,
-            Nama_Produk: p.Nama_Produk,
-            Gambar_URL: p.Gambar_URL || '',
-            Harga: Number(p.Harga),
-            Harga_Normal: Number(p.Harga),
-            Harga_Promo: Number(p.Harga),
-            RAM_ROM: p.RAM_ROM,
-            variants: p.variants || [],
-            Chipset: p.Chipset || '-',
-            Baterai: p.Baterai || '-',
-            Kamera: p.Kamera || '-',
-            Layar: p.Layar || ''
-          })));
-
-          gunSyncNode.put({
-            payload: payload,
+          const payload = JSON.stringify({
             timestamp: now,
-            updatedBy: 'Admin'
+            updatedBy: 'Admin',
+            products: products.value.map(p => ({
+              id: p.id,
+              Brand: p.Brand,
+              Nama_Produk: p.Nama_Produk,
+              Gambar_URL: p.Gambar_URL || '',
+              Harga: Number(p.Harga),
+              Harga_Normal: Number(p.Harga),
+              Harga_Promo: Number(p.Harga),
+              RAM_ROM: p.RAM_ROM,
+              variants: p.variants || [],
+              Chipset: p.Chipset || '-',
+              Baterai: p.Baterai || '-',
+              Kamera: p.Kamera || '-',
+              Layar: p.Layar || ''
+            }))
           });
+
+          const topic = `telering/katalog/v4/${cloudRoomId.value}`;
+
+          const send = () => {
+            if (mqttClient && mqttClient.connected) {
+              mqttClient.publish(topic, payload, { qos: 1, retain: true }, (err) => {
+                if (!err) {
+                  showToast('⚡ Perubahan berhasil dikirim ke Cloud Realtime!');
+                }
+              });
+            } else {
+              // Retry shortly if connecting
+              setTimeout(() => {
+                if (mqttClient && mqttClient.connected) {
+                  mqttClient.publish(topic, payload, { qos: 1, retain: true });
+                }
+              }, 1200);
+            }
+          };
+
+          send();
 
           setTimeout(() => {
             isLocallyBroadcasting = false;
-          }, 800);
+          }, 600);
         };
 
         // Open Share Dialog & Render QR Code
@@ -4418,14 +4476,13 @@
             localStorage.setItem('telering_room_id', cloudRoomId.value);
             connectToRoom(cloudRoomId.value);
             showToast(`Channel realtime dialihkan ke: #${cloudRoomId.value}`);
-            // Re-render QR
             openShareModal();
           }
         };
 
         onMounted(() => {
           // Catalog version control (Ensures 146 Canva products are loaded immediately)
-          const CURRENT_VERSION = 'v6_simple_ram_logo';
+          const CURRENT_VERSION = 'v7_mqtt_realtime';
           const savedVersion = localStorage.getItem('telering_catalog_version');
           const saved = localStorage.getItem('telering_live_products');
 
