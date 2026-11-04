@@ -1,4 +1,4 @@
-# TELERING - Cheat Sheet Spek & Harga HP (Host Live & Admin Realtime)
+# TELERING - Sheet Spek & Harga HP
 
 Aplikasi web modern, responsif, dan realtime yang dirancang khusus untuk **Host Live Streaming (TikTok Live, Shopee Live, IG Live)** toko **TELERING** untuk mengecek harga & spesifikasi smartphone secara instan, serta dilengkapi **Panel Admin**, **Auto-Fill Spek dari Link Web**, dan **Sinkronisasi Cloud Realtime Antar-Perangkat**.
 
