@@ -1,0 +1,227 @@
+import { LatLng, ElevationPoint } from './types';
+
+const EARTH_RADIUS_KM = 6371;
+
+/**
+ * Calculates haversine distance between two points in kilometers.
+ */
+export function haversineDistance(p1: LatLng, p2: LatLng): number {
+  const dLat = ((p2.lat - p1.lat) * Math.PI) / 180;
+  const dLng = ((p2.lng - p1.lng) * Math.PI) / 180;
+  const lat1 = (p1.lat * Math.PI) / 180;
+  const lat2 = (p2.lat * Math.PI) / 180;
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.sin(dLng / 2) * Math.sin(dLng / 2) * Math.cos(lat1) * Math.cos(lat2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return EARTH_RADIUS_KM * c;
+}
+
+/**
+ * Calculates total distance of a polyline in kilometers.
+ */
+export function calculatePolylineDistance(points: LatLng[]): number {
+  if (points.length < 2) return 0;
+  let total = 0;
+  for (let i = 0; i < points.length - 1; i++) {
+    total += haversineDistance(points[i], points[i + 1]);
+  }
+  return total;
+}
+
+/**
+ * Transforms normalized 2D shape points [-0.5, 0.5] to real geographic coordinates.
+ * Sized in kilometers and rotated by rotationDeg.
+ */
+export function transformShapePoints(
+  shapePoints: [number, number][],
+  center: LatLng,
+  sizeKm: number,
+  rotationDeg: number = 0
+): LatLng[] {
+  const rad = (rotationDeg * Math.PI) / 180;
+  const cosRot = Math.cos(rad);
+  const sinRot = Math.sin(rad);
+
+  // 1 degree latitude ~ 111.139 km
+  const kmPerLat = 111.139;
+  // 1 degree longitude ~ 111.139 * cos(lat)
+  const centerLatRad = (center.lat * Math.PI) / 180;
+  const kmPerLng = kmPerLat * Math.cos(centerLatRad);
+
+  return shapePoints.map(([u, v]) => {
+    // Rotate point in 2D plane
+    const rotX = u * cosRot - v * sinRot;
+    const rotY = u * sinRot + v * cosRot;
+
+    // Convert to kilometer offset
+    const dxKm = rotX * sizeKm;
+    const dyKm = rotY * sizeKm;
+
+    // Convert to lat/lng offset
+    const dLat = dyKm / kmPerLat;
+    const dLng = dxKm / (kmPerLng || 1);
+
+    return {
+      lat: center.lat + dLat,
+      lng: center.lng + dLng,
+    };
+  });
+}
+
+/**
+ * Generates an intelligent closed-loop set of waypoints around a start location.
+ * Uses a street tortuosity factor (~1.28) so the routed road distance matches targetKm.
+ */
+export function generateLoopWaypoints(
+  start: LatLng,
+  targetKm: number,
+  options: {
+    headingOffsetDeg?: number;
+    numVertices?: number;
+    jitterFactor?: number;
+  } = {}
+): LatLng[] {
+  const {
+    headingOffsetDeg = Math.random() * 360,
+    numVertices = 7,
+    jitterFactor = 0.12,
+  } = options;
+
+  // Road circuit winding factor: real roads add ~25-30% extra distance over geometric perimeter
+  const tortuosityFactor = 1.28;
+  const effectivePerimeter = targetKm / tortuosityFactor;
+  // Radius of the circle
+  const loopRadiusKm = effectivePerimeter / (2 * Math.PI);
+
+  const kmPerLat = 111.139;
+  const centerLatRad = (start.lat * Math.PI) / 180;
+  const kmPerLng = kmPerLat * Math.cos(centerLatRad);
+
+  const headingRad = (headingOffsetDeg * Math.PI) / 180;
+
+  // Offset loop center from start point so start point is on the circle boundary
+  const loopCenterLat = start.lat + (loopRadiusKm * Math.cos(headingRad)) / kmPerLat;
+  const loopCenterLng = start.lng + (loopRadiusKm * Math.sin(headingRad)) / (kmPerLng || 1);
+
+  const waypoints: LatLng[] = [start];
+
+  // Distribute points along the circle starting from opposite angle and returning to start
+  const baseAngle = headingRad + Math.PI; // angle pointing back to start
+
+  for (let i = 1; i < numVertices; i++) {
+    const fraction = i / numVertices;
+    const angle = baseAngle + fraction * 2 * Math.PI;
+
+    // Random jitter in radial distance to conform to natural street layouts
+    const jitter = 1 + (Math.sin(i * 3.7 + headingOffsetDeg) * jitterFactor);
+    const currentRadius = loopRadiusKm * jitter;
+
+    const latOffset = (currentRadius * Math.cos(angle)) / kmPerLat;
+    const lngOffset = (currentRadius * Math.sin(angle)) / (kmPerLng || 1);
+
+    waypoints.push({
+      lat: loopCenterLat + latOffset,
+      lng: loopCenterLng + lngOffset,
+    });
+  }
+
+  // Close the loop back at the exact start point
+  waypoints.push(start);
+
+  return waypoints;
+}
+
+/**
+ * Generates a realistic simulated elevation profile for the route.
+ * Employs multi-frequency harmonic synthesis based on coordinates to produce natural terrain hills.
+ */
+export function generateRealisticElevation(
+  coordinates: LatLng[],
+  totalDistanceKm: number
+): {
+  elevationGainM: number;
+  elevationLossM: number;
+  elevationProfile: ElevationPoint[];
+} {
+  if (coordinates.length === 0) {
+    return { elevationGainM: 0, elevationLossM: 0, elevationProfile: [] };
+  }
+
+  const profile: ElevationPoint[] = [];
+  let cumulativeDist = 0;
+  let gain = 0;
+  let loss = 0;
+
+  // Base elevation seed from first coord
+  const baseElevation = 25 + Math.abs(Math.sin(coordinates[0].lat * 100) * 45);
+
+  let prevEle = baseElevation;
+  profile.push({ distanceKm: 0, elevationM: Math.round(prevEle) });
+
+  for (let i = 1; i < coordinates.length; i++) {
+    const segmentDist = haversineDistance(coordinates[i - 1], coordinates[i]);
+    cumulativeDist += segmentDist;
+
+    // Multi-frequency hill wave
+    const wave1 = Math.sin((cumulativeDist / (totalDistanceKm || 1)) * Math.PI * 4) * 12;
+    const wave2 = Math.cos(cumulativeDist * 2.5) * 6;
+    const wave3 = Math.sin(coordinates[i].lat * 500 + coordinates[i].lng * 500) * 4;
+
+    const currentEle = Math.max(5, Math.round(baseElevation + wave1 + wave2 + wave3));
+
+    const diff = currentEle - prevEle;
+    if (diff > 0) gain += diff;
+    else loss += Math.abs(diff);
+
+    prevEle = currentEle;
+    profile.push({
+      distanceKm: Number(cumulativeDist.toFixed(2)),
+      elevationM: currentEle,
+    });
+  }
+
+  return {
+    elevationGainM: Math.round(gain),
+    elevationLossM: Math.round(loss),
+    elevationProfile: profile,
+  };
+}
+
+/**
+ * Calculates estimated running time given distance and pace (seconds per km).
+ */
+export function calculatePaceTime(
+  distanceKm: number,
+  paceSecondsPerKm: number
+): { hours: number; minutes: number; seconds: number; formatted: string } {
+  const totalSeconds = Math.round(distanceKm * paceSecondsPerKm);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  let formatted = '';
+  if (hours > 0) {
+    formatted = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  } else {
+    formatted = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+  return { hours, minutes, seconds, formatted };
+}
+
+/**
+ * Calculates estimated calorie expenditure during the run.
+ */
+export function calculateCalories(
+  distanceKm: number,
+  paceSecondsPerKm: number,
+  weightKg: number = 65
+): number {
+  // Running calorie formula: ~1.036 kcal / kg / km
+  // Adjusted slightly by pace speed
+  const speedKmh = 3600 / paceSecondsPerKm;
+  const intensity = speedKmh > 12 ? 1.08 : speedKmh > 9 ? 1.02 : 0.98;
+  return Math.round(distanceKm * weightKg * intensity);
+}

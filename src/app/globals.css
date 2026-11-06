@@ -1,0 +1,178 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #080c14;
+  --foreground: #f3f4f6;
+  --neon-lime: #a3e635;
+  --neon-orange: #ff5500;
+  --neon-cyan: #06b6d4;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+/* Leaflet dark theme customizations & smooth transitions */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background-color: #0b111e !important;
+  font-family: inherit;
+  outline: none;
+}
+
+/* Remove default Leaflet focus outline */
+.leaflet-container:focus {
+  outline: none;
+}
+
+/* Hide default leaflet attribution flags if desired or style nicely */
+.leaflet-control-attribution {
+  background: rgba(10, 15, 26, 0.75) !important;
+  color: #94a3b8 !important;
+  font-size: 10px !important;
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  margin: 6px !important;
+  padding: 2px 8px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #38bdf8 !important;
+}
+
+/* Custom Leaflet Marker Icons */
+.custom-pin-start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #000;
+  font-weight: 800;
+  font-size: 13px;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6);
+  border: 2.5px solid #ffffff;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.custom-pin-start:hover {
+  transform: scale(1.2);
+}
+
+.custom-pin-finish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f43f5e;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  box-shadow: 0 0 16px rgba(244, 63, 94, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6);
+  border: 2.5px solid #ffffff;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.custom-pin-finish:hover {
+  transform: scale(1.2);
+}
+
+.custom-pin-waypoint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0ea5e9;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.7);
+  border: 2px solid #ffffff;
+  transition: transform 0.15s ease;
+}
+
+.custom-pin-waypoint:hover {
+  transform: scale(1.25);
+  background: #38bdf8;
+}
+
+.custom-pin-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f59e0b;
+  color: #000;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.85);
+  border: 2px solid #ffffff;
+  animation: pulse-ring 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+/* Glassmorphism utility classes */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-pill {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Neon glow polyline styles */
+.neon-glow-filter {
+  filter: drop-shadow(0 0 6px rgba(163, 230, 53, 0.65));
+}
+
+.neon-orange-filter {
+  filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.7));
+}
