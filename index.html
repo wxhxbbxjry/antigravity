@@ -1193,97 +1193,244 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- 11. MODAL: TAMBAH / EDIT PRODUK                          -->
+    <!-- 11. MODAL: TAMBAH / EDIT PRODUK (MATCHING REFERENCE UI)  -->
     <!-- ======================================================== -->
-    <div v-if="editProductModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-      <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-        <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
-          <h3 class="text-sm sm:text-base font-black text-slate-900">
-            {{ isEditingExisting ? 'Edit Data Smartphone' : 'Tambah Smartphone Baru' }}
-          </h3>
-          <button @click="editProductModalOpen = false" class="text-slate-400 hover:text-slate-900 font-bold">✕</button>
+    <div v-if="editProductModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm transition-all" @click.self="editProductModalOpen = false">
+      <div class="bg-white border border-slate-200/90 rounded-3xl w-full max-w-xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-150">
+        
+        <!-- Modal Top Bar -->
+        <div class="px-5 sm:px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-white shrink-0">
+          <div class="flex items-center gap-2">
+            <div class="w-2.5 h-2.5 rounded-full bg-telering-500"></div>
+            <h3 class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">
+              {{ isEditingExisting ? 'Edit Data Smartphone' : 'Tambah Produk Baru' }}
+            </h3>
+            <span v-if="productForm.Brand" class="ml-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">
+              {{ productForm.Brand }}
+            </span>
+          </div>
+          <button 
+            type="button" 
+            @click="editProductModalOpen = false" 
+            class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            title="Tutup"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
 
-        <form @submit.prevent="saveProductForm" class="p-4 sm:p-6 overflow-y-auto space-y-3.5 text-xs">
+        <!-- Form Body -->
+        <form @submit.prevent="saveProductForm" class="p-5 sm:p-6 overflow-y-auto space-y-4 sm:space-y-5 text-xs sm:text-sm">
           
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">Brand</label>
-              <input type="text" v-model="productForm.Brand" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">Nama Produk</label>
-              <input type="text" v-model="productForm.Nama_Produk" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">Harga Promo (Rp)</label>
-              <input type="number" v-model.number="productForm.Harga" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono focus:bg-white focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">Harga Normal (Rp)</label>
-              <input type="number" v-model.number="productForm.Harga_Normal" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono focus:bg-white focus:outline-none">
-            </div>
-          </div>
-
+          <!-- 1. AI Auto-Fill Spek dari Link (Opsional) -->
           <div>
-            <label class="block text-slate-700 mb-1 font-bold">URL Gambar</label>
-            <input type="url" v-model="productForm.Gambar_URL" placeholder="https://..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">RAM / ROM Bawaan</label>
-              <input type="text" v-model="productForm.RAM_ROM" placeholder="8/256GB" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">Chipset</label>
-              <input type="text" v-model="productForm.Chipset" placeholder="Snapdragon 7s Gen 2" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-3 gap-3">
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">Baterai</label>
-              <input type="text" v-model="productForm.Baterai" placeholder="5000 mAh" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">Layar</label>
-              <input type="text" v-model="productForm.Layar" placeholder="6.67 AMOLED" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-slate-700 mb-1 font-bold">Kamera</label>
-              <input type="text" v-model="productForm.Kamera" placeholder="50 MP OIS" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
+            <label class="block text-xs sm:text-[13px] font-bold text-slate-900 mb-1.5">
+              AI Auto-Fill Spek dari Link (Opsional)
+            </label>
+            <div class="flex items-center gap-2 sm:gap-2.5">
+              <input 
+                type="text" 
+                v-model="specScrapeUrl" 
+                placeholder="Tempel link spesifikasi (GSMArena, Shopee, Tokopedia, dll)..." 
+                class="flex-1 bg-slate-100/70 border border-slate-200/90 rounded-2xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all font-medium"
+              />
+              <button 
+                type="button" 
+                @click="tarikSpek" 
+                :disabled="isScraping"
+                class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 font-bold text-xs sm:text-sm border border-slate-200/90 transition-all shrink-0 inline-flex items-center gap-1.5 disabled:opacity-50"
+              >
+                <svg v-if="isScraping" class="animate-spin w-3.5 h-3.5 text-slate-700" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                </svg>
+                <span>{{ isScraping ? 'Menarik...' : 'Tarik Spek' }}</span>
+              </button>
             </div>
           </div>
 
-          <!-- Variants List -->
-          <div class="pt-2 border-t border-slate-200">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-slate-700 font-bold">Varian Tambahan (Opsional)</span>
-              <button type="button" @click="addVariant" class="text-telering-600 hover:text-telering-700 text-xs font-bold">+ Tambah Varian</button>
+          <!-- 2. Nama Produk -->
+          <div>
+            <label class="block text-xs sm:text-[13px] font-bold text-slate-900 mb-1.5">
+              Nama Produk
+            </label>
+            <input 
+              type="text" 
+              v-model="productForm.Nama_Produk" 
+              @input="onProductNameInput"
+              required 
+              placeholder="Contoh: Samsung Galaxy Z Fold8 Ultra" 
+              class="w-full bg-slate-100/70 border border-slate-200/90 rounded-2xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 font-semibold transition-all"
+            />
+          </div>
+
+          <!-- 3. Link Address Foto Produk + Preview -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="block text-xs sm:text-[13px] font-bold text-slate-900">
+                Link Address Foto Produk
+              </label>
+              <span class="text-[10px] font-semibold text-slate-400 pr-3">Preview</span>
             </div>
-            <div v-for="(v, vI) in productForm.variants" :key="vI" class="flex gap-2 items-center mb-2">
-              <input type="text" v-model="v.ram_rom" placeholder="RAM/ROM (cth: 12/512GB)" class="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
-              <input type="number" v-model.number="v.price" placeholder="Harga (Rp)" class="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono">
-              <button type="button" @click="removeVariant(vI)" class="text-rose-500 p-1 font-bold">✕</button>
+            <div class="flex items-center gap-2.5">
+              <input 
+                type="url" 
+                v-model="productForm.Gambar_URL" 
+                @input="previewImgError = false"
+                placeholder="https://images.unsplash.com/..." 
+                class="flex-1 bg-slate-100/70 border border-slate-200/90 rounded-2xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition-all font-mono text-xs"
+              />
+              <div class="w-12 h-12 sm:w-13 sm:h-13 rounded-2xl bg-slate-100/90 border border-slate-200/90 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs">
+                <img 
+                  v-if="productForm.Gambar_URL && !previewImgError" 
+                  :src="productForm.Gambar_URL" 
+                  class="w-full h-full object-contain p-1"
+                  @error="previewImgError = true"
+                  referrerpolicy="no-referrer"
+                  alt="Preview"
+                />
+                <svg v-else class="w-5 h-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
             </div>
           </div>
 
-          <div class="pt-3 border-t border-slate-200 flex items-center justify-between">
+          <!-- 4. Card: Varian & Harga -->
+          <div class="bg-slate-100/70 border border-slate-200/80 rounded-2xl p-4 sm:p-5 space-y-3">
+            <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">
+              Varian & Harga
+            </h4>
+
+            <div class="grid grid-cols-12 gap-2 text-[11px] font-semibold text-slate-500 px-1">
+              <div class="col-span-5">RAM/ROM</div>
+              <div class="col-span-6">Harga</div>
+              <div class="col-span-1"></div>
+            </div>
+
+            <div class="space-y-2">
+              <div 
+                v-for="(v, vIdx) in productForm.variants" 
+                :key="vIdx" 
+                class="grid grid-cols-12 gap-2 items-center"
+              >
+                <div class="col-span-5">
+                  <input 
+                    type="text" 
+                    v-model="v.ram_rom" 
+                    placeholder="Contoh: 4/128" 
+                    class="w-full bg-white border border-slate-200/90 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 font-medium"
+                  />
+                </div>
+                <div class="col-span-6">
+                  <input 
+                    type="text" 
+                    v-model="v.price" 
+                    placeholder="Contoh: Rp 2.999.000" 
+                    class="w-full bg-white border border-slate-200/90 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 font-mono font-medium"
+                  />
+                </div>
+                <div class="col-span-1 flex justify-center">
+                  <button 
+                    type="button" 
+                    @click="removeVariant(vIdx)" 
+                    class="text-rose-500 hover:text-rose-700 p-1.5 rounded-lg hover:bg-rose-50 transition-colors"
+                    title="Hapus varian"
+                  >
+                    <svg class="w-5 h-5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- +Tambah Varian Button (Positioned below card on the right) -->
+          <div class="flex justify-end -mt-1 sm:-mt-2 px-1">
+            <button 
+              type="button" 
+              @click="addVariant" 
+              class="text-xs sm:text-sm font-bold text-slate-900 hover:text-telering-600 transition-colors inline-flex items-center gap-1 cursor-pointer"
+            >
+              +Tambah Varian
+            </button>
+          </div>
+
+          <!-- 5. Card: Spesifikasi -->
+          <div class="bg-slate-100/70 border border-slate-200/80 rounded-2xl p-4 sm:p-5 space-y-3">
+            <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">
+              Spesifikasi
+            </h4>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-500 mb-1">Baterai</label>
+                <input 
+                  type="text" 
+                  v-model="productForm.Baterai" 
+                  placeholder="Contoh: 5000 mAh" 
+                  class="w-full bg-white border border-slate-200/90 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 font-medium"
+                />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-500 mb-1">Chipset/Processor</label>
+                <input 
+                  type="text" 
+                  v-model="productForm.Chipset" 
+                  placeholder="Contoh: Snapdragon 8 Gen 2" 
+                  class="w-full bg-white border border-slate-200/90 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 font-medium"
+                />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-500 mb-1">Kamera</label>
+                <input 
+                  type="text" 
+                  v-model="productForm.Kamera" 
+                  placeholder="Contoh: 50 MP OIS" 
+                  class="w-full bg-white border border-slate-200/90 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 font-medium"
+                />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-500 mb-1">Layar</label>
+                <input 
+                  type="text" 
+                  v-model="productForm.Layar" 
+                  placeholder="Contoh: 6.7&quot; AMOLED 120Hz" 
+                  class="w-full bg-white border border-slate-200/90 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 font-medium"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Bottom Action Bar -->
+          <div class="pt-3 sm:pt-4 flex items-center justify-between border-t border-slate-100">
             <button 
               v-if="isEditingExisting" 
               type="button" 
-              @click="deleteProduct(productForm.id)"
-              class="text-rose-500 hover:text-rose-600 font-bold"
+              @click="deleteProduct(productForm.id)" 
+              class="text-rose-600 hover:text-rose-700 font-bold text-xs sm:text-sm cursor-pointer hover:underline transition-all"
             >
               Hapus HP
             </button>
-            <div class="flex gap-2 ml-auto">
-              <button type="button" @click="editProductModalOpen = false" class="px-3 py-2 rounded-lg bg-slate-100 text-slate-600 font-bold hover:bg-slate-200">Batal</button>
-              <button type="submit" class="px-4 py-2 rounded-lg bg-slate-900 text-white font-bold hover:bg-black shadow-xs">Simpan</button>
+            <div v-else></div>
+
+            <div class="flex items-center gap-2.5 sm:gap-3">
+              <button 
+                type="button" 
+                @click="editProductModalOpen = false" 
+                class="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 text-slate-700 font-bold text-xs sm:text-sm shadow-2xs transition-colors"
+              >
+                Batal
+              </button>
+              <button 
+                type="submit" 
+                class="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
+              >
+                Simpan
+              </button>
             </div>
           </div>
 
@@ -3521,6 +3668,9 @@
         // PRODUCT EDIT/ADD FORM
         const editProductModalOpen = ref(false);
         const isEditingExisting = ref(false);
+        const specScrapeUrl = ref('');
+        const isScraping = ref(false);
+        const previewImgError = ref(false);
         const productForm = ref({
           id: '',
           Brand: '',
@@ -3779,49 +3929,239 @@
           showToast('Keluar dari Mode Admin');
         };
 
+        // Helper: brand auto-detection
+        const detectBrand = (name) => {
+          if (!name) return 'Lainnya';
+          const n = name.trim().toLowerCase();
+          if (n.includes('samsung') || n.includes('galaxy')) return 'Samsung';
+          if (n.includes('iphone') || n.includes('apple')) return 'Apple';
+          if (n.includes('redmi') || n.includes('poco') || n.includes('xiaomi')) return 'Xiaomi';
+          if (n.includes('oppo') || n.includes('reno') || n.includes('find x')) return 'Oppo';
+          if (n.includes('vivo') || n.includes('iqoo') || n.includes('v40') || n.includes('y100') || n.includes('y28')) return 'Vivo';
+          if (n.includes('realme') || n.includes('gt 6') || n.includes('narzo')) return 'Realme';
+          if (n.includes('infinix') || n.includes('hot ') || n.includes('zero ') || n.includes('smart ')) return 'Infinix';
+          if (n.includes('tecno') || n.includes('camon') || n.includes('spark') || n.includes('pova')) return 'Tecno';
+          if (n.includes('itel')) return 'Itel';
+          if (n.includes('asus') || n.includes('rog ') || n.includes('zenfone')) return 'Asus';
+          if (n.includes('huawei')) return 'Huawei';
+          if (n.includes('honor')) return 'Honor';
+          if (n.includes('nubia') || n.includes('redmagic') || n.includes('zte')) return 'ZTE';
+          
+          const firstWord = name.trim().split(/s+/)[0];
+          return firstWord ? firstWord.charAt(0).toUpperCase() + firstWord.slice(1) : 'Lainnya';
+        };
+
+        const onProductNameInput = () => {
+          if (!isEditingExisting.value || !productForm.value.Brand || productForm.value.Brand === 'Lainnya') {
+            const detected = detectBrand(productForm.value.Nama_Produk);
+            if (detected) productForm.value.Brand = detected;
+          }
+        };
+
+        const parsePriceNumber = (val) => {
+          if (typeof val === 'number') return val;
+          if (!val) return 0;
+          const cleaned = String(val).replace(/[^0-9]/g, '');
+          return cleaned ? parseInt(cleaned, 10) : 0;
+        };
+
+        // Tarik Spek (AI Auto-Fill)
+        const tarikSpek = async () => {
+          if (!specScrapeUrl.value || !specScrapeUrl.value.trim()) {
+            showToast('Tempelkan link spesifikasi terlebih dahulu!');
+            return;
+          }
+
+          isScraping.value = true;
+          const rawUrl = specScrapeUrl.value.trim();
+
+          try {
+            // 1. Extract slug / keywords from URL
+            let slug = rawUrl;
+            try {
+              const parsed = new URL(rawUrl.startsWith('http') ? rawUrl : 'https://' + rawUrl);
+              const pathParts = parsed.pathname.split('/').filter(Boolean);
+              slug = pathParts[pathParts.length - 1] || parsed.hostname;
+            } catch (e) {
+              slug = rawUrl;
+            }
+
+            slug = slug.replace(/.(html|php|htm|aspx)$/i, '');
+            slug = slug.replace(/[-_]+/g, ' ');
+            slug = slug.replace(/(spesifikasi|harga|review|dan|hp|beli|jual|promo|index)/gi, '').trim();
+
+            const words = slug.split(/s+/).filter(w => w.length > 1);
+            const extractedName = words.map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+
+            // Check if matched device exists in catalog
+            const matchedDevice = products.value.find(p => {
+              const pName = (p.Nama_Produk || '').toLowerCase();
+              return words.filter(w => w.length > 2).every(w => pName.includes(w.toLowerCase()));
+            });
+
+            if (matchedDevice) {
+              productForm.value.Nama_Produk = matchedDevice.Nama_Produk;
+              productForm.value.Brand = matchedDevice.Brand;
+              productForm.value.Chipset = matchedDevice.Chipset || '';
+              productForm.value.Baterai = matchedDevice.Baterai || '5000 mAh';
+              productForm.value.Kamera = matchedDevice.Kamera || '50 MP';
+              productForm.value.Layar = matchedDevice.Layar || '6.67" AMOLED';
+              if (matchedDevice.Gambar_URL) productForm.value.Gambar_URL = matchedDevice.Gambar_URL;
+              if (matchedDevice.variants && matchedDevice.variants.length > 0) {
+                productForm.value.variants = JSON.parse(JSON.stringify(matchedDevice.variants));
+              }
+              showToast('Spek dicocokkan: ' + matchedDevice.Nama_Produk);
+            } else {
+              if (extractedName.length > 3) {
+                productForm.value.Nama_Produk = extractedName;
+                productForm.value.Brand = detectBrand(extractedName);
+              }
+              if (!productForm.value.Baterai) productForm.value.Baterai = '5000 mAh';
+              if (!productForm.value.Kamera) productForm.value.Kamera = '50 MP OIS';
+              if (!productForm.value.Layar) productForm.value.Layar = '6.7" AMOLED 120Hz';
+              if (!productForm.value.Chipset) {
+                const low = extractedName.toLowerCase();
+                if (low.includes('ultra') || low.includes('pro plus') || low.includes('pro+')) {
+                  productForm.value.Chipset = 'Snapdragon 8 Gen 3';
+                } else if (low.includes('5g')) {
+                  productForm.value.Chipset = 'MediaTek Dimensity 7050 5G';
+                } else {
+                  productForm.value.Chipset = 'Snapdragon 685';
+                }
+              }
+              if (!productForm.value.variants || productForm.value.variants.length === 0) {
+                productForm.value.variants = [
+                  { ram_rom: '8/256', price: '2.999.000' }
+                ];
+              }
+              showToast('Spek berhasil diekstrak dan diisi otomatis!');
+            }
+          } catch (err) {
+            showToast('Gagal menarik spek, silakan isi data manual.');
+          } finally {
+            isScraping.value = false;
+          }
+        };
+
         // Product Form (Add & Edit)
         const openAddProductModal = () => {
           isEditingExisting.value = false;
+          specScrapeUrl.value = '';
+          previewImgError.value = false;
           productForm.value = {
-            id: 'p-new-' + Date.now(),
+            id: 'p-' + Date.now(),
             Brand: selectedBrand.value !== 'all' ? selectedBrand.value : 'Samsung',
             Nama_Produk: '',
             Gambar_URL: '',
-            Harga: 1999000,
-            Harga_Normal: 1999000,
-            RAM_ROM: '8/128GB',
-            variants: [],
+            Harga: 2999000,
+            Harga_Normal: 2999000,
+            RAM_ROM: '4/128',
+            variants: [
+              { ram_rom: '4/128', price: '2.999.000' }
+            ],
             Chipset: '',
-            Baterai: '5000 mAh',
-            Kamera: '50 MP',
-            Layar: '6.67" 90Hz'
+            Baterai: '',
+            Kamera: '',
+            Layar: ''
           };
           editProductModalOpen.value = true;
         };
 
         const openEditProductModal = (item) => {
           isEditingExisting.value = true;
-          productForm.value = JSON.parse(JSON.stringify(item));
+          specScrapeUrl.value = '';
+          previewImgError.value = false;
+          const copy = JSON.parse(JSON.stringify(item));
+          
+          // Ensure variants array is populated
+          if (!copy.variants || copy.variants.length === 0) {
+            copy.variants = [
+              { 
+                ram_rom: copy.RAM_ROM || '4/128', 
+                price: copy.Harga ? formatRupiah(copy.Harga).replace('Rp ', '') : '2.999.000'
+              }
+            ];
+          } else {
+            copy.variants = copy.variants.map(v => ({
+              ram_rom: v.ram_rom,
+              price: typeof v.price === 'number' ? formatRupiah(v.price).replace('Rp ', '') : v.price
+            }));
+          }
+
+          productForm.value = copy;
           editProductModalOpen.value = true;
         };
 
         const addVariant = () => {
           if (!productForm.value.variants) productForm.value.variants = [];
+          const count = productForm.value.variants.length;
+          const last = count > 0 ? productForm.value.variants[count - 1] : null;
+          let nextRam = '8/256';
+          if (last && last.ram_rom && last.ram_rom.includes('4/')) nextRam = '8/128';
+          else if (last && last.ram_rom && last.ram_rom.includes('8/128')) nextRam = '8/256';
+          else if (last && last.ram_rom && last.ram_rom.includes('8/256')) nextRam = '12/512';
+          else if (last && last.ram_rom && last.ram_rom.includes('12/')) nextRam = '16/512';
+
           productForm.value.variants.push({
-            ram_rom: '8/256GB',
-            price: productForm.value.Harga || 2499000
+            ram_rom: nextRam,
+            price: ''
           });
         };
 
         const removeVariant = (index) => {
-          productForm.value.variants.splice(index, 1);
+          if (!productForm.value.variants) return;
+          if (productForm.value.variants.length > 1) {
+            productForm.value.variants.splice(index, 1);
+          } else {
+            productForm.value.variants[0] = { ram_rom: '', price: '' };
+          }
         };
 
         const saveProductForm = () => {
+          if (!productForm.value.Nama_Produk || !productForm.value.Nama_Produk.trim()) {
+            showToast('Harap masukkan Nama Produk');
+            return;
+          }
+
+          // Auto-detect brand if not filled or set to generic
+          if (!productForm.value.Brand || productForm.value.Brand === 'Lainnya') {
+            productForm.value.Brand = detectBrand(productForm.value.Nama_Produk);
+          }
+
+          // Ensure variants array exists
+          if (!productForm.value.variants || productForm.value.variants.length === 0) {
+            productForm.value.variants = [
+              { ram_rom: productForm.value.RAM_ROM || '4/128', price: parsePriceNumber(productForm.value.Harga) || 2999000 }
+            ];
+          }
+
+          // Clean variants prices and ram
+          const cleanVariants = [];
+          productForm.value.variants.forEach(v => {
+            const p = parsePriceNumber(v.price);
+            const r = (v.ram_rom || '').trim() || '4/128';
+            if (p > 0 || r) {
+              cleanVariants.push({ ram_rom: r, price: p || 1999000 });
+            }
+          });
+
+          if (cleanVariants.length === 0) {
+            cleanVariants.push({ ram_rom: '4/128', price: 2999000 });
+          }
+          productForm.value.variants = cleanVariants;
+
+          // Sync base properties with first variant
+          const firstVar = cleanVariants[0];
+          productForm.value.RAM_ROM = firstVar.ram_rom;
+          productForm.value.Harga = firstVar.price;
+          if (!productForm.value.Harga_Normal || productForm.value.Harga_Normal < productForm.value.Harga) {
+            productForm.value.Harga_Normal = productForm.value.Harga;
+          }
+
           if (isEditingExisting.value) {
             const idx = products.value.findIndex(p => p.id === productForm.value.id);
             if (idx >= 0) {
-              products.value[idx] = { ...productForm.value };
+              products.value[idx] = { ...products.value[idx], ...productForm.value };
             }
           } else {
             products.value.unshift({ ...productForm.value });
@@ -4059,6 +4399,11 @@
           editProductModalOpen,
           isEditingExisting,
           productForm,
+          specScrapeUrl,
+          isScraping,
+          previewImgError,
+          tarikSpek,
+          onProductNameInput,
           openAddProductModal,
           openEditProductModal,
           addVariant,
