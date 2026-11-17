@@ -80,9 +80,8 @@
       scrollbar-width: none;
     }
 
-    /* Smooth Popover & Modal Animation */
     @keyframes popoverIn {
-      from { opacity: 0; transform: scale(0.95) translateY(4px); }
+      from { opacity: 0; transform: scale(0.96) translateY(4px); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
     .animate-popover {
@@ -95,7 +94,7 @@
   <div id="app" v-cloak class="min-h-screen flex flex-col">
 
     <!-- ========================================== -->
-    <!-- TOP NAVIGATION HEADER (Dribbble Techory)   -->
+    <!-- TOP NAVIGATION HEADER                      -->
     <!-- ========================================== -->
     <header class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-xs">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3">
@@ -115,27 +114,24 @@
             </span>
           </div>
 
-          <!-- AI Search Bar (Capsule Style) -->
+          <!-- AI Search Bar -->
           <div class="flex-1 max-w-2xl mx-auto relative">
             <div class="relative flex items-center bg-[#F4F5F8] hover:bg-white focus-within:bg-white border border-transparent hover:border-gray-200 focus-within:border-[#0066FF] focus-within:ring-4 focus-within:ring-blue-50 rounded-full transition-all duration-200 px-3.5 sm:px-4 py-1.5 shadow-2xs">
               
-              <!-- Sparkle AI Icon -->
               <div class="flex items-center gap-1.5 text-[#0066FF] mr-2 shrink-0">
-                <svg class="w-4 h-4 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z" />
                 </svg>
               </div>
 
-              <!-- Input -->
               <input 
                 ref="searchInput"
                 type="text" 
                 v-model="searchQuery" 
-                placeholder="Cari tipe HP, chipset, kamera, baterai, atau tanya AI..."
+                placeholder="Cari tipe HP, chipset, kamera, baterai..."
                 class="w-full bg-transparent text-xs sm:text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none py-1"
               >
 
-              <!-- Clear search button -->
               <button 
                 v-if="searchQuery" 
                 @click="searchQuery = ''" 
@@ -145,7 +141,6 @@
                 ✕
               </button>
 
-              <!-- Search Circle Button -->
               <button 
                 class="w-8 h-8 rounded-full bg-[#0066FF] hover:bg-blue-600 active:scale-95 text-white flex items-center justify-center shrink-0 shadow-xs transition-transform"
                 title="Cari"
@@ -183,8 +178,10 @@
               <span class="hidden md:inline">Bagikan</span>
             </button>
 
-            <!-- Admin Settings Gear Button (Discrete, NO PIN in UI) -->
+            <!-- Admin Mode Controls (Seperti Versi Sebelumnya) -->
+            <!-- 1. Belum Login: Hanya Ikon Gear Setting -->
             <button 
+              v-if="!isAdmin"
               @click="openAdminLoginModal" 
               class="p-2 text-slate-500 hover:text-slate-900 hover:bg-gray-100 rounded-full transition-colors relative"
               title="Pengaturan Admin"
@@ -193,9 +190,33 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <!-- Green badge indicator if logged in as Admin -->
-              <span v-if="isAdmin" class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-white"></span>
             </button>
+
+            <!-- 2. Sudah Login Admin: Tombol Tambah HP, Excel & Keluar Langsung di Header -->
+            <div v-else class="flex items-center gap-1.5 sm:gap-2">
+              <button 
+                @click="openAddProductModal"
+                class="px-3 py-1.5 rounded-full text-xs font-bold bg-[#0066FF] hover:bg-blue-600 text-white flex items-center gap-1 shadow-2xs transition-transform active:scale-95"
+              >
+                <span>+ Tambah HP</span>
+              </button>
+
+              <button 
+                @click="openExcelModal = true"
+                class="px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1 shadow-2xs transition-transform active:scale-95"
+                title="Kelola Excel"
+              >
+                <span>📊 Excel</span>
+              </button>
+
+              <button 
+                @click="logoutAdmin"
+                class="px-2.5 py-1.5 rounded-full text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 transition-colors"
+                title="Keluar Mode Admin"
+              >
+                Keluar
+              </button>
+            </div>
 
           </div>
 
@@ -240,7 +261,7 @@
     <!-- ========================================== -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1">
 
-      <!-- Search Summary & Controls Bar (Techory Style) -->
+      <!-- Search Summary & Controls Bar -->
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-gray-200/80">
         <div>
           <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">
@@ -483,7 +504,7 @@
         </aside>
 
         <!-- ========================================== -->
-        <!-- RIGHT PRODUCTS GRID (Techory Cards)        -->
+        <!-- RIGHT PRODUCTS GRID                        -->
         <!-- ========================================== -->
         <div class="flex-1 min-w-0">
 
@@ -496,7 +517,7 @@
             </div>
             <h3 class="text-lg font-bold text-slate-900 mb-1">Tidak ada smartphone ditemukan</h3>
             <p class="text-xs text-slate-500 mb-4 max-w-sm mx-auto">
-              Tidak ada tipe HP yang cocok dengan filter atau kata kunci "{{ searchQuery }}". Coba gunakan kata kunci lain atau reset filter.
+              Tidak ada tipe HP yang cocok dengan filter atau kata kunci "{{ searchQuery }}".
             </p>
             <button 
               @click="resetAllFilters"
@@ -516,72 +537,21 @@
               class="bg-white rounded-[24px] p-4 border border-gray-100/90 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group relative"
             >
               
-              <!-- Card Image Container (Neutral #F4F5F8 Canvas) -->
+              <!-- Card Image Container -->
               <div class="bg-[#F4F5F8] rounded-2xl p-4 flex items-center justify-center relative aspect-[4/3] overflow-hidden mb-3.5">
                 
-                <!-- Top-Left AI Sparkle Popover Trigger -->
-                <div class="absolute top-3 left-3 z-10">
-                  <div class="relative group/ai">
-                    <button 
-                      @click="activeAiTooltipId = activeAiTooltipId === product.id ? null : product.id"
-                      class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-2xs border border-gray-100 flex items-center justify-center text-[#0066FF] hover:bg-blue-50 transition-colors"
-                      title="Lihat Rekomendasi AI"
-                    >
-                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z" />
-                      </svg>
-                    </button>
-
-                    <!-- AI Popover Tooltip (Matches Dribbble shot_detail2.png) -->
-                    <div 
-                      v-if="activeAiTooltipId === product.id"
-                      class="absolute left-0 top-10 w-64 bg-slate-900/95 backdrop-blur-md text-white text-xs rounded-2xl p-3 shadow-popover z-30 border border-slate-700/60 animate-popover"
-                    >
-                      <div class="flex items-center gap-1.5 text-blue-400 font-bold mb-1">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z" />
-                        </svg>
-                        <span>AI Live Pitch Insight</span>
-                      </div>
-                      <p class="text-[11px] leading-relaxed text-slate-300">
-                        {{ getProductAiInsight(product) }}
-                      </p>
-                      <button 
-                        @click.stop="activeAiTooltipId = null" 
-                        class="mt-2 text-[10px] text-slate-400 hover:text-white underline block"
-                      >
-                        Tutup
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Top-Right Actions: Quick Spill & Pin -->
-                <div class="absolute top-3 right-3 z-10 flex items-center gap-1.5">
-                  
-                  <!-- Quick Copy Pitch Button -->
-                  <button 
-                    @click="spillSpek(product)"
-                    class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-2xs border border-gray-100 flex items-center justify-center text-slate-600 hover:text-[#0066FF] hover:bg-blue-50 transition-colors"
-                    title="Salin Kalimat Spill Host Live"
-                  >
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  </button>
-
-                  <!-- Pin/Favorite Button -->
+                <!-- Top-Right Action: Pin Favorite -->
+                <div class="absolute top-3 right-3 z-10">
                   <button 
                     @click="togglePin(product.id)"
                     class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-md shadow-2xs border border-gray-100 flex items-center justify-center transition-colors"
                     :class="pinnedIds.includes(product.id) ? 'text-rose-500 bg-rose-50' : 'text-slate-400 hover:text-rose-500 hover:bg-rose-50'"
-                    title="Pin untuk Host Live"
+                    title="Pin HP"
                   >
                     <svg class="w-4 h-4" :fill="pinnedIds.includes(product.id) ? 'currentColor' : 'none'" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                   </button>
-
                 </div>
 
                 <!-- Product Image -->
@@ -594,7 +564,7 @@
                   onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80'"
                 >
 
-                <!-- Bottom Center Badge (Matches Dribbble shot_detail1.png) -->
+                <!-- Bottom Center Badge -->
                 <div class="absolute bottom-2.5 inset-x-0 flex justify-center px-2 pointer-events-none">
                   <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-md text-[#0066FF] border border-blue-100 shadow-2xs">
                     {{ getProductBadge(product) }}
@@ -607,16 +577,11 @@
               <div class="flex-1 flex flex-col justify-between">
                 
                 <div>
-                  <!-- Category & Rating Row -->
-                  <div class="flex items-center justify-between gap-2 mb-1">
+                  <!-- Category Row (Rating Bintang Dihapus) -->
+                  <div class="mb-1">
                     <span class="text-[11px] font-semibold text-slate-400">
                       Smartphone • {{ product.Brand }}
                     </span>
-                    <div class="flex items-center gap-1 text-[11px] font-bold text-amber-500">
-                      <span>★</span>
-                      <span>{{ getProductRating(product) }}</span>
-                      <span class="text-slate-400 font-medium">({{ getProductSales(product) }})</span>
-                    </div>
                   </div>
 
                   <!-- Product Name -->
@@ -628,8 +593,7 @@
                     {{ product.Nama_Produk }}
                   </h2>
 
-                  <!-- Pure Icon Specs Row (Battery, CPU, Camera, Display) -->
-                  <!-- Preserving User Request #4: Pure Iconography -->
+                  <!-- Pure Icon Specs Row -->
                   <div class="grid grid-cols-2 gap-1.5 p-2 rounded-xl bg-[#F8F9FB] border border-gray-100/90 mb-3 text-[11px] text-slate-600 font-medium">
                     <div class="flex items-center gap-1.5 truncate" :title="'Baterai: ' + product.Baterai">
                       <span class="shrink-0 text-xs">🔋</span>
@@ -650,7 +614,6 @@
                   </div>
 
                   <!-- Variant Selector Chips (RAM/ROM) -->
-                  <!-- Format: 4/128GB, clicking instantly updates displayed price -->
                   <div class="flex items-center gap-1.5 mb-3 overflow-x-auto no-scrollbar py-0.5">
                     <!-- Base Variant -->
                     <button 
@@ -674,38 +637,36 @@
                   </div>
                 </div>
 
-                <!-- Price & Action Buttons Row -->
+                <!-- Price & Action Buttons Row (Salin Spek Dihapus, Admin Edit Ditambahkan Langsung) -->
                 <div class="pt-2 border-t border-gray-100 flex items-center justify-between gap-2 mt-auto">
                   
                   <!-- Price Block -->
                   <div>
-                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-tight">Harga Live</div>
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-tight">Harga</div>
                     <div class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-tight">
                       {{ formatRupiah(getCurrentPrice(product)) }}
                     </div>
                   </div>
 
-                  <!-- Actions -->
+                  <!-- Actions: Detail Button (Plus Edit Button Jika Admin Aktif) -->
                   <div class="flex items-center gap-1.5">
                     
-                    <!-- Spill Spek Host Live Button -->
-                    <button 
-                      @click="spillSpek(product)"
-                      class="px-3 py-2 rounded-xl bg-[#0066FF] hover:bg-blue-600 active:scale-95 text-white font-bold text-xs flex items-center gap-1 shadow-xs transition-transform"
-                      title="Salin pitch host live"
-                    >
-                      <span>Spill Spek</span>
-                    </button>
-
-                    <!-- Detail & Edit Button -->
                     <button 
                       @click="openDetail(product)"
-                      class="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-slate-700 font-bold text-xs transition-colors"
-                      title="Detail Spesifikasi Lengkap"
+                      class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1 shadow-2xs transition-transform active:scale-95"
+                      title="Lihat Detail Spesifikasi"
                     >
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                      </svg>
+                      <span>Detail</span>
+                    </button>
+
+                    <!-- Tombol Edit Langsung di Kartu Produk (Hanya Muncul untuk Admin) -->
+                    <button 
+                      v-if="isAdmin"
+                      @click.stop="openEditProductModal(product)"
+                      class="px-3 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center gap-1 shadow-2xs transition-transform active:scale-95"
+                      title="Edit Produk Ini"
+                    >
+                      <span>✏️ Edit</span>
                     </button>
 
                   </div>
@@ -725,7 +686,8 @@
     </main>
 
     <!-- ========================================== -->
-    <!-- DETAIL MODAL (Host Live Sheet & Full Specs)-->
+    <!-- DETAIL MODAL                               -->
+    <!-- Script Pitch Host Live & Salin Dihapus     -->
     <!-- ========================================== -->
     <div 
       v-if="activeProduct" 
@@ -768,7 +730,7 @@
             </div>
 
             <div class="p-3 bg-[#F8F9FB] rounded-2xl border border-gray-100 mb-3">
-              <div class="text-[11px] font-bold text-slate-400">Harga Resmi / Live</div>
+              <div class="text-[11px] font-bold text-slate-400">Harga Resmi</div>
               <div class="text-2xl font-extrabold text-slate-900">
                 {{ formatRupiah(getCurrentPrice(activeProduct)) }}
               </div>
@@ -842,35 +804,14 @@
           </div>
         </div>
 
-        <!-- Host Live Spill Pitch Script Box -->
-        <div class="mt-5 p-4 rounded-2xl bg-blue-50/70 border border-blue-100">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-xs font-bold text-blue-900 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z" />
-              </svg>
-              Script Pitch Host Live
-            </span>
-            <button 
-              @click="spillSpek(activeProduct)" 
-              class="text-xs font-bold text-[#0066FF] hover:underline"
-            >
-              Salin Script
-            </button>
-          </div>
-          <p class="text-xs text-blue-950 leading-relaxed font-medium">
-            "Halo kak! Untuk <strong class="font-bold">{{ activeProduct.Nama_Produk }}</strong> varian {{ getCurrentRam(activeProduct) }} harganya cuma {{ formatRupiah(getCurrentPrice(activeProduct)) }}. Layarnya sudah {{ activeProduct.Layar || 'mewah jernih' }}, ditenagai prosesor {{ activeProduct.Chipset || 'kencang' }}, baterai {{ activeProduct.Baterai || 'awet seharian' }}, dan kamera {{ activeProduct.Kamera || 'jernih' }}! Langsung check out sekarang kak!"
-          </p>
-        </div>
-
-        <!-- Modal Footer Actions -->
+        <!-- Modal Footer Actions (Edit Button Jika Admin Aktif) -->
         <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
           <button 
             v-if="isAdmin"
             @click="openEditProductModal(activeProduct); activeProduct = null"
             class="px-4 py-2 rounded-xl text-xs font-bold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-colors flex items-center gap-1.5"
           >
-            ✏️ Edit Data Produk
+            ✏️ Edit Data Produk Ini
           </button>
           <div v-else></div>
 
@@ -900,7 +841,7 @@
           </svg>
         </div>
         <h3 class="text-base font-extrabold text-slate-900 mb-1">Akses Panel Admin</h3>
-        <p class="text-xs text-slate-500 mb-4">Masukkan PIN Admin untuk mengedit produk, upload Excel, atau konfigurasi sync.</p>
+        <p class="text-xs text-slate-500 mb-4">Masukkan PIN Admin untuk mengaktifkan mode edit produk dan kelola Excel.</p>
 
         <form @submit.prevent="verifyAdminLogin">
           <input 
@@ -933,122 +874,32 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- ADMIN SETTINGS & MANAGEMENT MODAL          -->
+    <!-- DEDICATED EXCEL MODAL (Seperti Versi Dulu) -->
     <!-- ========================================== -->
     <div 
-      v-if="openAdminSettingsModal" 
+      v-if="openExcelModal" 
       class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
-      @click.self="openAdminSettingsModal = false"
+      @click.self="openExcelModal = false"
     >
-      <div class="bg-white rounded-3xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl border border-gray-100 relative my-8 max-h-[90vh] overflow-y-auto animate-popover">
-        
-        <div class="flex items-center justify-between pb-4 border-b border-gray-100">
+      <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-gray-100 relative my-8 animate-popover">
+        <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-4">
           <div class="flex items-center gap-2">
-            <span class="w-8 h-8 rounded-xl bg-blue-50 text-[#0066FF] flex items-center justify-center text-sm font-bold">⚙️</span>
+            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-base font-bold">📊</span>
             <div>
-              <h3 class="text-lg font-extrabold text-slate-900 leading-tight">Panel Pengaturan Admin</h3>
-              <p class="text-xs text-slate-500">Kelola katalog smartphone, Excel, dan Realtime Sync</p>
+              <h3 class="text-base font-extrabold text-slate-900">Kelola Katalog via Excel</h3>
+              <p class="text-xs text-slate-500">Download data atau upload untuk update harga massal</p>
             </div>
           </div>
-          <button @click="openAdminSettingsModal = false" class="text-slate-400 hover:text-slate-600 p-2">✕</button>
+          <button @click="openExcelModal = false" class="text-slate-400 hover:text-slate-600 p-2">✕</button>
         </div>
 
-        <!-- Admin Tabs -->
-        <div class="flex items-center gap-2 mt-4 pb-3 border-b border-gray-100 overflow-x-auto no-scrollbar text-xs">
+        <div class="space-y-4 text-xs font-semibold">
           <button 
-            @click="adminActiveTab = 'products'"
-            class="px-3.5 py-1.5 rounded-xl font-bold transition-all shrink-0"
-            :class="adminActiveTab === 'products' ? 'bg-[#0066FF] text-white shadow-2xs' : 'bg-gray-50 text-slate-600 hover:bg-gray-100'"
+            @click="downloadTemplate" 
+            class="w-full py-3 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-all active:scale-95"
           >
-            📱 Kelola Produk
+            📥 Download Seluruh Katalog ke Excel (.xlsx)
           </button>
-          <button 
-            @click="adminActiveTab = 'excel'"
-            class="px-3.5 py-1.5 rounded-xl font-bold transition-all shrink-0"
-            :class="adminActiveTab === 'excel' ? 'bg-[#0066FF] text-white shadow-2xs' : 'bg-gray-50 text-slate-600 hover:bg-gray-100'"
-          >
-            📊 Excel Import/Export
-          </button>
-          <button 
-            @click="adminActiveTab = 'sync'"
-            class="px-3.5 py-1.5 rounded-xl font-bold transition-all shrink-0"
-            :class="adminActiveTab === 'sync' ? 'bg-[#0066FF] text-white shadow-2xs' : 'bg-gray-50 text-slate-600 hover:bg-gray-100'"
-          >
-            ⚡ Realtime Sync Cloud
-          </button>
-          <button 
-            @click="logoutAdmin"
-            class="ml-auto text-rose-600 hover:underline font-bold shrink-0"
-          >
-            Keluar Admin
-          </button>
-        </div>
-
-        <!-- TAB 1: KELOLA PRODUK -->
-        <div v-if="adminActiveTab === 'products'" class="py-4 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-600">Total: {{ products.length }} produk di sistem</span>
-            <button 
-              @click="openAddProductModal"
-              class="px-3.5 py-2 rounded-xl bg-[#0066FF] hover:bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs"
-            >
-              + Tambah Produk Baru
-            </button>
-          </div>
-
-          <!-- Quick List of Products with Edit/Delete -->
-          <div class="max-h-80 overflow-y-auto space-y-2 pr-1">
-            <div 
-              v-for="p in products" 
-              :key="p.id"
-              class="flex items-center justify-between p-3 rounded-2xl bg-gray-50 border border-gray-100 hover:bg-blue-50/40 transition-colors text-xs"
-            >
-              <div class="flex items-center gap-3">
-                <img :src="p.Gambar_URL" class="w-10 h-10 object-contain rounded-lg bg-white p-1" onerror="this.src='https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=100&q=80'">
-                <div>
-                  <div class="font-bold text-slate-900">{{ p.Nama_Produk }}</div>
-                  <div class="text-[11px] text-slate-500 font-medium">
-                    {{ formatRamRom(p.RAM_ROM) }} • {{ formatRupiah(p.Harga) }}
-                    <span v-if="(p.variants || []).length > 0" class="text-blue-600 font-bold ml-1">
-                      (+{{ p.variants.length }} varian)
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="flex items-center gap-2">
-                <button 
-                  @click="openEditProductModal(p)"
-                  class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 hover:border-blue-400 text-slate-700 font-bold"
-                >
-                  Edit
-                </button>
-                <button 
-                  @click="deleteProduct(p.id)"
-                  class="p-1.5 text-rose-500 hover:text-rose-700"
-                  title="Hapus"
-                >
-                  🗑️
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 2: EXCEL IMPORT/EXPORT -->
-        <div v-if="adminActiveTab === 'excel'" class="py-4 space-y-4">
-          <div class="p-4 rounded-2xl bg-blue-50 border border-blue-100 text-xs text-blue-950">
-            <div class="font-bold mb-1">Template Resmi Excel TELERING</div>
-            <p>Anda dapat mengunduh seluruh data HP dalam format Excel, mengedit harga/spek secara massal, lalu mengunggahnya kembali ke sini. Data otomatis tersinkronisasi ke seluruh layar!</p>
-          </div>
-
-          <div class="flex flex-col sm:flex-row gap-3">
-            <button 
-              @click="downloadTemplate" 
-              class="flex-1 py-3 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs"
-            >
-              📥 Download Katalog ke Excel (.xlsx)
-            </button>
-          </div>
 
           <!-- Drag and Drop Box -->
           <div 
@@ -1078,64 +929,25 @@
 
           <!-- Parsed Data Preview -->
           <div v-if="parsedData.length > 0" class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
-            <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-emerald-900">
-                ✅ Berhasil membaca {{ parsedData.length }} baris produk dari file
+                ✅ Berhasil membaca {{ parsedData.length }} baris produk
               </span>
               <button 
                 @click="applyParsedData" 
-                class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs"
+                class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs"
               >
-                Terapkan ke Katalog Sekarang
+                Terapkan ke Katalog
               </button>
             </div>
           </div>
         </div>
-
-        <!-- TAB 3: REALTIME SYNC CLOUD -->
-        <div v-if="adminActiveTab === 'sync'" class="py-4 space-y-4 text-xs">
-          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-100">
-            <div class="font-bold text-slate-900 mb-1">HiveMQ WebSocket Broker 24/7</div>
-            <p class="text-slate-500 mb-3">Semua perubahan harga & spek di-broadcast secara instan (< 100ms) menggunakan MQTT retain message sehingga perangkat baru langsung menerima data terbaru.</p>
-            
-            <div class="flex items-center gap-2 mb-3">
-              <span class="font-bold text-slate-700">Room ID:</span>
-              <input 
-                type="text" 
-                v-model="tempRoomId" 
-                class="px-3 py-1.5 rounded-xl bg-white border border-gray-200 font-mono font-bold text-xs"
-              >
-              <button 
-                @click="updateRoomId" 
-                class="px-3 py-1.5 rounded-xl bg-[#0066FF] text-white font-bold"
-              >
-                Ganti Room
-              </button>
-            </div>
-
-            <div class="flex items-center gap-2">
-              <button 
-                @click="broadcastToCloud(true)" 
-                class="px-3 py-1.5 rounded-xl bg-slate-900 text-white font-bold"
-              >
-                📡 Broadcast Data Sekarang
-              </button>
-              <button 
-                @click="resetToDefault" 
-                class="px-3 py-1.5 rounded-xl bg-rose-50 text-rose-600 border border-rose-200 hover:bg-rose-100 font-bold"
-              >
-                🔄 Reset ke 146 HP Bawaan
-              </button>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
     <!-- ========================================== -->
     <!-- EDIT & ADD PRODUCT MODAL                   -->
-    <!-- User Requests #3, #4, #5 Implemented       -->
+    <!-- Varian Utama & Tambahan Fleksibel & Hapus  -->
     <!-- ========================================== -->
     <div 
       v-if="editProductModalOpen" 
@@ -1149,23 +961,23 @@
             <h3 class="text-lg font-extrabold text-slate-900">
               {{ isEditingExisting ? 'Edit Spesifikasi Produk' : 'Tambah Produk Baru' }}
             </h3>
-            <p class="text-xs text-slate-500">Isi formulir di bawah ini atau tarik otomatis dari web</p>
+            <p class="text-xs text-slate-500">Isi formulir atau tarik otomatis dari web</p>
           </div>
           <button @click="editProductModalOpen = false" class="text-slate-400 hover:text-slate-600 p-2">✕</button>
         </div>
 
-        <form @submit.prevent="saveProductForm" class="py-4 space-y-4 text-xs">
+        <form @submit.prevent="saveProductForm" class="py-4 space-y-4 text-xs font-semibold">
           
-          <!-- AI Scrape Bar (User Request #2 & #3: Concise Specs) -->
+          <!-- AI Scrape Bar -->
           <div class="p-3.5 rounded-2xl bg-blue-50/70 border border-blue-100">
             <label class="block font-bold text-blue-900 mb-1.5 flex items-center justify-between">
               <span class="flex items-center gap-1.5">
                 <svg class="w-3.5 h-3.5 text-[#0066FF]" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z" />
                 </svg>
-                AI Auto-Fill Spek dari Link (Opsional)
+                Auto-Fill Spek dari Link (Opsional)
               </span>
-              <span class="text-[10px] text-blue-600 font-semibold">Tarik Baterai, Layar, Chipset & Kamera</span>
+              <span class="text-[10px] text-blue-600 font-semibold">Baterai, Layar, Chipset & Kamera</span>
             </label>
             <div class="flex gap-2">
               <input 
@@ -1190,7 +1002,7 @@
             </div>
           </div>
 
-          <!-- User Request #4: Nama brand dan tipe produk jadikan 1 -->
+          <!-- Nama Brand & Tipe HP (Satu Kesatuan) -->
           <div>
             <label class="block font-bold text-slate-700 mb-1">
               Nama Brand & Tipe HP (Jadikan Satu) *
@@ -1198,13 +1010,13 @@
             <input 
               type="text" 
               v-model="productForm.Nama_Produk" 
-              placeholder="Contoh: OPPO Reno 12 5G" 
+              placeholder="Contoh: OPPO Reno 12 5G, Samsung Galaxy A55 5G" 
               required
-              class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold text-slate-900 focus:outline-none focus:border-[#0066FF] focus:bg-white"
+              class="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:border-[#0066FF] focus:bg-white"
             >
           </div>
 
-          <!-- User Request #1: Link Address Foto Produk with Instant Preview -->
+          <!-- Link Address Foto Produk (URL Gambar) with Instant Preview -->
           <div>
             <label class="block font-bold text-slate-700 mb-1">
               Link Address Foto Produk (URL Gambar)
@@ -1226,100 +1038,89 @@
             </div>
           </div>
 
-          <!-- User Request #4: RAM dan ROM dipisah tapi bersebelahan di sebelah kiri Harga -->
-          <!-- Format: 4/128GB and Rupiah Rp 7.999.000 -->
-          <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200">
-            <div class="text-xs font-bold text-slate-800 mb-2">Varian Utama & Harga</div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              
-              <!-- RAM Input -->
-              <div>
-                <label class="block text-[11px] font-bold text-slate-600 mb-1">RAM (GB)</label>
-                <input 
-                  type="text" 
-                  v-model="productForm.ram_input" 
-                  placeholder="Misal: 4 atau 8" 
-                  required
-                  class="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:border-[#0066FF]"
-                >
-              </div>
-
-              <!-- ROM Input -->
-              <div>
-                <label class="block text-[11px] font-bold text-slate-600 mb-1">ROM / Storage</label>
-                <input 
-                  type="text" 
-                  v-model="productForm.rom_input" 
-                  placeholder="Misal: 128GB" 
-                  required
-                  class="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:border-[#0066FF]"
-                >
-              </div>
-
-              <!-- Harga Input -->
-              <div>
-                <label class="block text-[11px] font-bold text-slate-600 mb-1">Harga (Rupiah)</label>
-                <input 
-                  type="number" 
-                  v-model.number="productForm.Harga" 
-                  placeholder="Misal: 2999000" 
-                  required
-                  class="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-xs font-extrabold text-slate-900 focus:outline-none focus:border-[#0066FF]"
-                >
-              </div>
-
-            </div>
-
-            <!-- Live Formatted Preview -->
-            <div class="mt-2.5 pt-2 border-t border-gray-200 flex items-center justify-between text-[11px] font-bold">
-              <span class="text-slate-500">Format Varian: <span class="text-[#0066FF]">{{ computedFormRamRom }}</span></span>
-              <span class="text-slate-500">Format Harga: <span class="text-emerald-600">{{ formatRupiah(productForm.Harga) }}</span></span>
-            </div>
-          </div>
-
-          <!-- Multi-Variant Manager -->
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <label class="font-bold text-slate-700">Varian Tambahan Lainnya (Opsional)</label>
+          <!-- DAFTAR VARIAN MEMORI & HARGA (RAM & ROM DI SEBELAH KIRI HARGA) -->
+          <!-- Setiap baris varian bisa dihapus dengan tombol 🗑️ -->
+          <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-800">Daftar Varian Memori & Harga</span>
               <button 
                 type="button" 
-                @click="addVariant"
+                @click="addVariantRow"
                 class="text-[11px] font-bold text-[#0066FF] hover:underline"
               >
                 + Tambah Varian
               </button>
             </div>
 
-            <div v-for="(v, vIdx) in productForm.variants" :key="vIdx" class="flex gap-2 items-center mb-2">
-              <input 
-                type="text" 
-                v-model="v.ram_input" 
-                placeholder="RAM (misal: 6)" 
-                class="w-24 px-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-bold"
+            <!-- List of All Variants (Each has RAM, ROM, Harga, and Hapus Button) -->
+            <div class="space-y-2">
+              <div 
+                v-for="(v, vIdx) in formVariants" 
+                :key="vIdx" 
+                class="p-3 bg-white rounded-xl border border-gray-200 shadow-2xs space-y-2"
               >
-              <input 
-                type="text" 
-                v-model="v.rom_input" 
-                placeholder="ROM (misal: 256GB)" 
-                class="w-28 px-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-bold"
-              >
-              <input 
-                type="number" 
-                v-model.number="v.price" 
-                placeholder="Harga (Rp)" 
-                class="flex-1 px-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-bold"
-              >
-              <button 
-                type="button" 
-                @click="removeVariant(vIdx)" 
-                class="p-1.5 text-rose-500 hover:text-rose-700 text-xs"
-              >
-                ✕
-              </button>
+                <div class="flex items-end gap-2.5">
+                  
+                  <!-- RAM Input -->
+                  <div class="w-24">
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1">RAM (GB)</label>
+                    <input 
+                      type="text" 
+                      v-model="v.ram" 
+                      placeholder="Misal: 6" 
+                      required
+                      class="w-full px-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-bold text-slate-900 focus:outline-none focus:border-[#0066FF]"
+                    >
+                  </div>
+
+                  <!-- ROM Input -->
+                  <div class="w-28">
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1">ROM (GB)</label>
+                    <input 
+                      type="text" 
+                      v-model="v.rom" 
+                      placeholder="Misal: 128" 
+                      required
+                      class="w-full px-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-bold text-slate-900 focus:outline-none focus:border-[#0066FF]"
+                    >
+                  </div>
+
+                  <!-- Harga Input -->
+                  <div class="flex-1">
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1">Harga (Rp)</label>
+                    <input 
+                      type="number" 
+                      v-model.number="v.price" 
+                      placeholder="Misal: 2999000" 
+                      required
+                      class="w-full px-2.5 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs font-extrabold text-slate-900 focus:outline-none focus:border-[#0066FF]"
+                    >
+                  </div>
+
+                  <!-- Tombol Hapus Varian (Bisa Dihapus) -->
+                  <button 
+                    v-if="formVariants.length > 1"
+                    type="button" 
+                    @click="removeVariantRow(vIdx)" 
+                    class="p-2 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-colors shrink-0"
+                    title="Hapus Varian Ini"
+                  >
+                    🗑️
+                  </button>
+
+                </div>
+
+                <!-- Preview format otomatis -->
+                <div class="flex items-center justify-between text-[11px] pt-1 border-t border-gray-100 font-bold">
+                  <span class="text-slate-400">Varian: <span class="text-[#0066FF] font-mono">{{ formatRamRomStr(v.ram, v.rom) }}</span></span>
+                  <span class="text-emerald-600 font-mono">{{ formatRupiah(v.price) }}</span>
+                </div>
+              </div>
             </div>
+
           </div>
 
-          <!-- User Request #3: Concise Specs (Battery, Display, Chipset, Camera) -->
+          <!-- Spesifikasi Inti Ringkas -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
             <div>
               <label class="block font-bold text-slate-700 mb-1">🔋 Kapasitas Baterai</label>
@@ -1363,20 +1164,33 @@
           </div>
 
           <!-- Action Buttons -->
-          <div class="pt-4 border-t border-gray-100 flex items-center justify-end gap-2">
-            <button 
-              type="button" 
-              @click="editProductModalOpen = false" 
-              class="px-4 py-2.5 rounded-xl border border-gray-200 text-slate-600 font-bold hover:bg-gray-50"
-            >
-              Batal
-            </button>
-            <button 
-              type="submit" 
-              class="px-5 py-2.5 rounded-xl bg-[#0066FF] hover:bg-blue-600 text-white font-bold shadow-xs active:scale-95 transition-transform"
-            >
-              Simpan & Sinkronkan
-            </button>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <div>
+              <button 
+                v-if="isEditingExisting" 
+                type="button" 
+                @click="deleteProduct(productForm.id)"
+                class="px-3.5 py-2.5 rounded-xl border border-rose-200 text-rose-600 font-bold hover:bg-rose-50"
+              >
+                🗑️ Hapus HP Ini
+              </button>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button 
+                type="button" 
+                @click="editProductModalOpen = false" 
+                class="px-4 py-2.5 rounded-xl border border-gray-200 text-slate-600 font-bold hover:bg-gray-50"
+              >
+                Batal
+              </button>
+              <button 
+                type="submit" 
+                class="px-5 py-2.5 rounded-xl bg-[#0066FF] hover:bg-blue-600 text-white font-bold shadow-xs active:scale-95 transition-transform"
+              >
+                Simpan & Sinkronkan
+              </button>
+            </div>
           </div>
 
         </form>
@@ -1440,7 +1254,7 @@
     <!-- ========================================== -->
     <footer class="mt-auto bg-white border-t border-gray-100 py-6 px-4 text-center text-xs text-slate-400">
       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p class="font-medium">© 2026 TELERING — Cheat Sheet Harga & Spesifikasi Smartphone Host Live.</p>
+        <p class="font-medium">© 2026 TELERING — Cheat Sheet Harga & Spesifikasi Smartphone.</p>
         <div class="flex items-center gap-3">
           <span class="inline-flex items-center gap-1.5 text-emerald-600 font-bold">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -1483,7 +1297,6 @@
         // Active Variants map: { [productId]: variantIndex or null }
         const activeVariants = ref({});
         const activeProduct = ref(null);
-        const activeAiTooltipId = ref(null);
         const pinnedIds = ref([]);
         const mobileFilterOpen = ref(false);
 
@@ -1501,10 +1314,9 @@
         const adminLoginModalOpen = ref(false);
         const enteredAdminPin = ref('');
         const adminPinError = ref('');
-        const openAdminSettingsModal = ref(false);
-        const adminActiveTab = ref('products');
+        const openExcelModal = ref(false);
 
-        // Product Form (Edit & Add)
+        // Form Edit/Add Product
         const editProductModalOpen = ref(false);
         const isEditingExisting = ref(false);
         const productForm = ref({
@@ -1512,15 +1324,33 @@
           Brand: '',
           Nama_Produk: '',
           Gambar_URL: '',
-          ram_input: '4',
-          rom_input: '128GB',
-          Harga: 2999000,
-          variants: [],
           Chipset: '',
           Baterai: '',
           Kamera: '',
           Layar: ''
         });
+
+        // Form Variants List (All rows are editable & deletable)
+        const formVariants = ref([
+          { ram: '4', rom: '128', price: 2999000 }
+        ]);
+
+        const addVariantRow = () => {
+          const lastPrice = formVariants.value.length > 0 ? formVariants.value[formVariants.value.length - 1].price : 2000000;
+          formVariants.value.push({
+            ram: '6',
+            rom: '128',
+            price: lastPrice + 500000
+          });
+        };
+
+        const removeVariantRow = (idx) => {
+          if (formVariants.value.length > 1) {
+            formVariants.value.splice(idx, 1);
+          } else {
+            showToast('Produk harus memiliki minimal 1 varian!');
+          }
+        };
 
         // Web Scrape
         const specScrapeUrl = ref('');
@@ -1550,7 +1380,11 @@
         // Storage & Init
         const loadInitialData = () => {
           try {
-            // Read Room from URL query params
+            // Check session storage for admin state
+            if (sessionStorage.getItem('telering_admin_active') === 'true') {
+              isAdmin.value = true;
+            }
+
             const params = new URLSearchParams(window.location.search);
             if (params.has('room') && params.get('room').trim()) {
               cloudRoomId.value = params.get('room').trim();
@@ -1568,7 +1402,6 @@
           } catch (e) {
             console.warn('Cache read error:', e);
           }
-          // Fallback to default
           products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
         };
 
@@ -1597,7 +1430,7 @@
                 if (payload && payload.senderId !== clientId && Array.isArray(payload.data) && payload.data.length > 0) {
                   products.value = payload.data;
                   localStorage.setItem('telering_products_v4', JSON.stringify(payload.data));
-                  showToast('⚡ Data produk diperbarui secara realtime dari host lain!');
+                  showToast('⚡ Data produk diperbarui secara realtime dari perangkat lain!');
                 }
               } catch (err) {
                 console.error('MQTT payload error:', err);
@@ -1635,17 +1468,6 @@
           }
         };
 
-        const updateRoomId = () => {
-          if (!tempRoomId.value.trim()) return;
-          cloudRoomId.value = tempRoomId.value.trim();
-          showToast(`Room diganti ke: ${cloudRoomId.value}`);
-          if (mqttClient) {
-            mqttClient.end(true, () => {
-              initMqtt();
-            });
-          }
-        };
-
         // Brand Detection & Normalization
         const detectBrand = (name) => {
           const str = (name || '').toLowerCase();
@@ -1661,20 +1483,22 @@
         };
 
         const parseRamRom = (raw) => {
-          if (!raw) return { ram: '4', rom: '128GB' };
+          if (!raw) return { ram: '4', rom: '128' };
           const parts = String(raw).split('/');
-          let ram = parts[0] ? parts[0].trim() : '4';
-          let rom = parts[1] ? parts[1].trim() : '128GB';
-          ram = ram.replace(/[^0-9]/g, '') || '4';
-          if (!rom.toUpperCase().includes('GB') && !rom.toUpperCase().includes('TB')) {
-            rom = (rom.replace(/[^0-9]/g, '') || '128') + 'GB';
-          }
-          return { ram, rom };
+          let ram = parts[0] ? parts[0].trim().replace(/[^0-9]/g, '') : '4';
+          let rom = parts[1] ? parts[1].trim().replace(/[^0-9]/g, '') : '128';
+          return { ram: ram || '4', rom: rom || '128' };
         };
 
         const formatRamRom = (raw) => {
           const { ram, rom } = parseRamRom(raw);
-          return `${ram}/${rom}`;
+          return `${ram}/${rom}GB`;
+        };
+
+        const formatRamRomStr = (ram, rom) => {
+          const r = String(ram || '4').replace(/[^0-9]/g, '') || '4';
+          let m = String(rom || '128').replace(/[^0-9]/g, '') || '128';
+          return `${r}/${m}GB`;
         };
 
         const formatRupiah = (num) => {
@@ -1733,7 +1557,7 @@
           sortBy.value = 'populer';
         };
 
-        // Dynamic Product Highlights matching Dribbble shot_detail1.png
+        // Dynamic Badge
         const getProductBadge = (p) => {
           const name = (p.Nama_Produk || '').toLowerCase();
           const bat = (p.Baterai || '');
@@ -1748,31 +1572,10 @@
           if (chip.includes('snapdragon 8') || chip.includes('dimensity 9')) return '⚡ Flagship Performance';
           if (price < 2000000) return '🔥 Best Value Entry';
           if (price >= 2000000 && price <= 4000000) return '🔥 Best Seller Midrange';
-          return '👍 Rekomendasi Host';
+          return '👍 Pilihan Terbaik';
         };
 
-        const getProductRating = (p) => {
-          // Stable rating calculation
-          const hash = (p.id || p.Nama_Produk || '').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-          return (4.6 + (hash % 4) * 0.1).toFixed(1);
-        };
-
-        const getProductSales = (p) => {
-          const hash = (p.id || p.Nama_Produk || '').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-          return (120 + (hash % 850)) + '+';
-        };
-
-        // AI Insight Tooltip Generator matching Dribbble shot_detail2.png
-        const getProductAiInsight = (p) => {
-          const name = p.Nama_Produk || '';
-          const bat = p.Baterai || 'Baterai 5000 mAh';
-          const chip = p.Chipset || 'Chipset bertenaga';
-          const cam = p.Kamera || 'Kamera tajam';
-          const ram = formatRamRom(p.RAM_ROM);
-          return `AI Insight: Smartphone ${name} varian ${ram} dibekali ${chip} dengan ${bat}. Sangat stabil untuk streaming, gaming, dan kamera ${cam} menghasilkan foto memukau di kelas harganya.`;
-        };
-
-        // Variant Price Resolution
+        // Variant Resolution
         const getCurrentPrice = (product) => {
           const activeIdx = activeVariants.value[product.id];
           if (activeIdx !== undefined && activeIdx !== null && product.variants && product.variants[activeIdx]) {
@@ -1797,23 +1600,11 @@
           const idx = pinnedIds.value.indexOf(productId);
           if (idx >= 0) {
             pinnedIds.value.splice(idx, 1);
-            showToast('Dihapus dari pin host live');
+            showToast('Dihapus dari pin');
           } else {
             pinnedIds.value.push(productId);
-            showToast('Dipin ke bagian atas untuk Host Live!');
+            showToast('HP dipin ke bagian atas!');
           }
-        };
-
-        // Host Live Spill Spek Copy
-        const spillSpek = (p) => {
-          const ram = getCurrentRam(p);
-          const price = formatRupiah(getCurrentPrice(p));
-          const text = `Halo kak! Untuk ${p.Nama_Produk} varian ${ram} harganya cuma ${price}. Layarnya ${p.Layar || 'cakep'}, prosesor ${p.Chipset || 'kencang'}, baterai ${p.Baterai || 'awet'}, dan kamera ${p.Kamera || 'jernih'}! Buruan check out kak!`;
-          navigator.clipboard.writeText(text).then(() => {
-            showToast(`✨ Spek ${p.Nama_Produk} (${ram}) tersalin ke clipboard!`);
-          }).catch(() => {
-            showToast(`Spek: ${p.Nama_Produk} - ${price}`);
-          });
         };
 
         const openDetail = (p) => {
@@ -1888,7 +1679,6 @@
             if (aPinned && !bPinned) return -1;
             if (!aPinned && bPinned) return 1;
 
-            // Sorting
             if (sortBy.value === 'termurah') return getCurrentPrice(a) - getCurrentPrice(b);
             if (sortBy.value === 'termahal') return getCurrentPrice(b) - getCurrentPrice(a);
             if (sortBy.value === 'nama') return (a.Nama_Produk || '').localeCompare(b.Nama_Produk || '');
@@ -1905,22 +1695,19 @@
 
         // Admin Pin Verification
         const openAdminLoginModal = () => {
-          if (isAdmin.value) {
-            openAdminSettingsModal.value = true;
-          } else {
-            enteredAdminPin.value = '';
-            adminPinError.value = '';
-            adminLoginModalOpen.value = true;
-          }
+          if (isAdmin.value) return;
+          enteredAdminPin.value = '';
+          adminPinError.value = '';
+          adminLoginModalOpen.value = true;
         };
 
         const verifyAdminLogin = () => {
           const pin = enteredAdminPin.value.trim();
           if (pin === '8888') {
             isAdmin.value = true;
+            sessionStorage.setItem('telering_admin_active', 'true');
             adminLoginModalOpen.value = false;
-            openAdminSettingsModal.value = true;
-            showToast('✅ Login Admin Berhasil');
+            showToast('✅ Mode Admin Aktif! Anda dapat mengedit produk langsung.');
           } else {
             adminPinError.value = 'PIN salah. Silakan coba lagi.';
           }
@@ -1928,18 +1715,11 @@
 
         const logoutAdmin = () => {
           isAdmin.value = false;
-          openAdminSettingsModal.value = false;
-          showToast('Telah keluar dari mode admin');
+          sessionStorage.removeItem('telering_admin_active');
+          showToast('Keluar dari mode admin');
         };
 
-        // Form RAM/ROM Computed Preview
-        const computedFormRamRom = computed(() => {
-          const r = (productForm.value.ram_input || '4').trim();
-          let m = (productForm.value.rom_input || '128GB').trim().toUpperCase();
-          if (!m.includes('GB') && !m.includes('TB')) m += 'GB';
-          return `${r}/${m}`;
-        });
-
+        // Form Add & Edit Handlers
         const openAddProductModal = () => {
           isEditingExisting.value = false;
           productForm.value = {
@@ -1947,70 +1727,81 @@
             Brand: '',
             Nama_Produk: '',
             Gambar_URL: '',
-            ram_input: '4',
-            rom_input: '128GB',
-            Harga: 2999000,
-            variants: [],
             Chipset: '',
             Baterai: '',
             Kamera: '',
             Layar: ''
           };
+          formVariants.value = [
+            { ram: '4', rom: '128', price: 2999000 }
+          ];
           editProductModalOpen.value = true;
         };
 
         const openEditProductModal = (p) => {
           isEditingExisting.value = true;
-          const { ram, rom } = parseRamRom(p.RAM_ROM);
           productForm.value = {
             id: p.id,
             Brand: p.Brand || detectBrand(p.Nama_Produk),
             Nama_Produk: p.Nama_Produk,
             Gambar_URL: p.Gambar_URL || '',
-            ram_input: ram,
-            rom_input: rom,
-            Harga: p.Harga || 0,
-            variants: (p.variants || []).map(v => {
-              const pV = parseRamRom(v.ram_rom);
-              return { ram_input: pV.ram, rom_input: pV.rom, price: v.price };
-            }),
             Chipset: p.Chipset || '',
             Baterai: p.Baterai || '',
             Kamera: p.Kamera || '',
             Layar: p.Layar || ''
           };
+
+          // Rebuild variants list: first variant is base, following are additional variants
+          const list = [];
+          const mainParsed = parseRamRom(p.RAM_ROM);
+          list.push({
+            ram: mainParsed.ram,
+            rom: mainParsed.rom,
+            price: p.Harga || 0
+          });
+
+          if (p.variants && Array.isArray(p.variants)) {
+            p.variants.forEach(v => {
+              const parsed = parseRamRom(v.ram_rom);
+              list.push({
+                ram: parsed.ram,
+                rom: parsed.rom,
+                price: v.price || 0
+              });
+            });
+          }
+
+          formVariants.value = list;
           editProductModalOpen.value = true;
         };
 
-        const addVariant = () => {
-          productForm.value.variants.push({
-            ram_input: '6',
-            rom_input: '128GB',
-            price: productForm.value.Harga + 500000
-          });
-        };
-
-        const removeVariant = (idx) => {
-          productForm.value.variants.splice(idx, 1);
-        };
-
         const saveProductForm = () => {
-          const brand = detectBrand(productForm.value.Nama_Produk);
-          const formattedRamRom = computedFormRamRom.value;
+          if (formVariants.value.length === 0) {
+            showToast('Mohon masukkan minimal 1 varian RAM/ROM & Harga!');
+            return;
+          }
 
-          const newProduct = {
+          const brand = detectBrand(productForm.value.Nama_Produk);
+          const firstVar = formVariants.value[0];
+          const firstRamRom = formatRamRomStr(firstVar.ram, firstVar.rom);
+          const firstPrice = Number(firstVar.price) || 0;
+
+          // Additional variants (index 1+)
+          const additionalVariants = formVariants.value.slice(1).map(v => ({
+            ram_rom: formatRamRomStr(v.ram, v.rom),
+            price: Number(v.price) || 0
+          }));
+
+          const updatedProduct = {
             id: productForm.value.id || ('p-' + Date.now()),
             Brand: brand,
             Nama_Produk: productForm.value.Nama_Produk.trim(),
             Gambar_URL: productForm.value.Gambar_URL.trim() || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&q=80',
-            RAM_ROM: formattedRamRom,
-            Harga: Number(productForm.value.Harga) || 0,
-            Harga_Normal: Number(productForm.value.Harga) || 0,
-            Harga_Promo: Number(productForm.value.Harga) || 0,
-            variants: productForm.value.variants.map(v => ({
-              ram_rom: `${v.ram_input}/${v.rom_input.toUpperCase().includes('GB') ? v.rom_input.toUpperCase() : v.rom_input + 'GB'}`,
-              price: Number(v.price) || 0
-            })),
+            RAM_ROM: firstRamRom,
+            Harga: firstPrice,
+            Harga_Normal: firstPrice,
+            Harga_Promo: firstPrice,
+            variants: additionalVariants,
             Chipset: productForm.value.Chipset.trim(),
             Baterai: productForm.value.Baterai.trim(),
             Kamera: productForm.value.Kamera.trim(),
@@ -2018,30 +1809,31 @@
           };
 
           if (isEditingExisting.value) {
-            const idx = products.value.findIndex(p => p.id === newProduct.id);
+            const idx = products.value.findIndex(p => p.id === updatedProduct.id);
             if (idx >= 0) {
-              products.value[idx] = newProduct;
+              products.value[idx] = updatedProduct;
             } else {
-              products.value.unshift(newProduct);
+              products.value.unshift(updatedProduct);
             }
           } else {
-            products.value.unshift(newProduct);
+            products.value.unshift(updatedProduct);
           }
 
           editProductModalOpen.value = false;
           broadcastToCloud(true);
-          showToast(`✅ Produk ${newProduct.Nama_Produk} berhasil disimpan!`);
+          showToast(`✅ Produk ${updatedProduct.Nama_Produk} berhasil disimpan!`);
         };
 
         const deleteProduct = (id) => {
-          if (confirm('Yakin ingin menghapus produk ini?')) {
+          if (confirm('Yakin ingin menghapus smartphone ini dari katalog?')) {
             products.value = products.value.filter(p => p.id !== id);
+            editProductModalOpen.value = false;
             broadcastToCloud(true);
             showToast('Produk berhasil dihapus');
           }
         };
 
-        // AI Spec Auto-Fill from URL (Jina AI & Allorigins Proxy)
+        // AI Spec Auto-Fill from URL
         const scrapeProductSpecs = async () => {
           if (!specScrapeUrl.value.trim()) return;
           const targetUrl = specScrapeUrl.value.trim();
@@ -2051,17 +1843,15 @@
 
           try {
             let raw = '';
-            // Strategy 1: Jina Reader
             try {
               const jinaRes = await fetch(`https://r.jina.ai/${targetUrl}`, {
                 headers: { 'Accept': 'text/plain' }
               });
               if (jinaRes.ok) raw = await jinaRes.text();
             } catch (e1) {
-              console.warn('Jina proxy fail:', e1);
+              console.warn('Jina fail:', e1);
             }
 
-            // Strategy 2: Allorigins fallback
             if (!raw || raw.length < 150) {
               try {
                 const aoRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
@@ -2070,7 +1860,7 @@
                   raw = d.contents || '';
                 }
               } catch (e2) {
-                console.warn('Allorigins proxy fail:', e2);
+                console.warn('Allorigins fail:', e2);
               }
             }
 
@@ -2079,33 +1869,27 @@
             }
 
             // Extract concise specs (User Request #3)
-            // 1. Image
             const imgMatch = raw.match(/https?:\/\/[^\s"'<>]+\.(?:webp|png|jpe?g)/i);
             if (imgMatch && !productForm.value.Gambar_URL) {
               productForm.value.Gambar_URL = imgMatch[0];
             }
 
-            // 2. Battery
             const batMatch = raw.match(/(?:Battery|Baterai)[^\n\r:]{0,25}[:\-]?\s*([0-9]{3,5}\s*mAh[^\n\r]*)/i) ||
                              raw.match(/([0-9]{4,5}\s*mAh(?:\s*\([0-9]+W\))?)/i);
             if (batMatch) productForm.value.Baterai = batMatch[1].trim();
 
-            // 3. Display
             const screenMatch = raw.match(/(?:Display|Layar)[^\n\r:]{0,25}[:\-]?\s*([0-9]\.[0-9]+["\s][^\n\r]{0,60})/i) ||
                                 raw.match(/([0-9]\.[0-9]{1,2}\s*(?:inci|inch|")\s*(?:AMOLED|IPS|OLED|LCD)[^\n\r]{0,30})/i);
             if (screenMatch) productForm.value.Layar = screenMatch[1].trim();
 
-            // 4. Chipset
             const chipMatch = raw.match(/(?:Chipset|Prosesor|CPU)[^\n\r:]{0,25}[:\-]?\s*([A-Za-z0-9\s]{3,35}(?:Snapdragon|Helio|Dimensity|Bionic|Exynos|Unisoc)[A-Za-z0-9\s\-+]{0,25})/i) ||
                               raw.match(/((?:Snapdragon|Helio|Dimensity|Apple\s+A[0-9]+|Unisoc|Exynos)[A-Za-z0-9\s\-+]{2,25})/i);
             if (chipMatch) productForm.value.Chipset = chipMatch[1].trim();
 
-            // 5. Camera
             const camMatch = raw.match(/(?:Camera|Kamera)[^\n\r:]{0,25}[:\-]?\s*([0-9]{2,3}\s*MP[^\n\r]{0,50})/i) ||
                              raw.match(/([0-9]{2,3}\s*MP(?:\s*\+\s*[0-9]{1,3}\s*MP)*)/i);
             if (camMatch) productForm.value.Kamera = camMatch[1].trim();
 
-            // Title
             const titleMatch = raw.match(/#\s+([^\n\r]{3,60})/);
             if (titleMatch && !productForm.value.Nama_Produk) {
               productForm.value.Nama_Produk = titleMatch[1].trim();
@@ -2199,16 +1983,9 @@
 
           products.value = newProducts;
           parsedData.value = [];
+          openExcelModal.value = false;
           broadcastToCloud(true);
           showToast(`🎉 ${newProducts.length} produk berhasil diterapkan ke katalog!`);
-        };
-
-        const resetToDefault = () => {
-          if (confirm('Yakin ingin mereset seluruh katalog kembali ke 146 HP Canva bawaan?')) {
-            products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
-            broadcastToCloud(true);
-            showToast('🔄 Katalog berhasil direset ke 146 HP bawaan');
-          }
         };
 
         // Share Modal & QR Code
@@ -2259,7 +2036,6 @@
           sortBy,
           activeVariants,
           activeProduct,
-          activeAiTooltipId,
           pinnedIds,
           mobileFilterOpen,
           toastMessage,
@@ -2271,16 +2047,13 @@
           toggleRamFilter,
           resetAllFilters,
           getProductBadge,
-          getProductRating,
-          getProductSales,
-          getProductAiInsight,
           getCurrentPrice,
           getCurrentRam,
           selectVariant,
           togglePin,
-          spillSpek,
           openDetail,
           formatRamRom,
+          formatRamRomStr,
           formatRupiah,
           // Admin & Settings
           isAdmin,
@@ -2290,16 +2063,15 @@
           openAdminLoginModal,
           verifyAdminLogin,
           logoutAdmin,
-          openAdminSettingsModal,
-          adminActiveTab,
+          openExcelModal,
           editProductModalOpen,
           isEditingExisting,
           productForm,
-          computedFormRamRom,
+          formVariants,
+          addVariantRow,
+          removeVariantRow,
           openAddProductModal,
           openEditProductModal,
-          addVariant,
-          removeVariant,
           saveProductForm,
           deleteProduct,
           // Scrape
@@ -2315,12 +2087,9 @@
           handleFileSelect,
           handleFileDrop,
           applyParsedData,
-          resetToDefault,
           // Realtime & Share
           cloudConnected,
           cloudRoomId,
-          tempRoomId,
-          updateRoomId,
           broadcastToCloud,
           shareModalOpen,
           copiedShareLink,
