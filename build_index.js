@@ -687,24 +687,18 @@ const template = `<!DOCTYPE html>
               <!-- Variant Selector / RAM Display -->
               <div class="flex items-center gap-1.5 flex-wrap pt-0.5">
                 <span 
-                  v-if="!item.variants || item.variants.length === 0"
+                  v-if="getProductVariants(item).length <= 1"
                   class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200/80"
                 >
-                  {{ item.RAM_ROM }}
+                  {{ getProductVariants(item)[0] ? getProductVariants(item)[0].ram_rom : (item.RAM_ROM || '-') }}
                 </span>
                 <template v-else>
                   <button 
-                    @click.stop="selectVariant(item, -1)"
-                    class="pressable px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-all"
-                    :class="item._selectedVariantIndex === -1 ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
-                  >
-                    {{ item.RAM_ROM }}
-                  </button>
-                  <button 
-                    v-for="(v, vIdx) in item.variants" :key="vIdx"
+                    v-for="(v, vIdx) in getProductVariants(item)" 
+                    :key="vIdx"
                     @click.stop="selectVariant(item, vIdx)"
                     class="pressable px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-all"
-                    :class="item._selectedVariantIndex === vIdx ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
+                    :class="(item._selectedVariantIndex === vIdx || ((item._selectedVariantIndex === -1 || item._selectedVariantIndex === undefined) && vIdx === 0)) ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ v.ram_rom }}
                   </button>
@@ -963,21 +957,15 @@ const template = `<!DOCTYPE html>
               </div>
 
               <!-- Variant Selector inside Modal -->
-              <div v-if="activeProduct.variants && activeProduct.variants.length > 0">
+              <div v-if="getProductVariants(activeProduct).length > 1">
                 <div class="text-xs text-slate-600 mb-1.5 font-bold">Pilih Varian RAM / Storage:</div>
                 <div class="flex flex-wrap gap-1.5">
                   <button 
-                    @click="selectVariant(activeProduct, -1)"
-                    class="pressable px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-colors"
-                    :class="activeProduct._selectedVariantIndex === -1 ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
-                  >
-                    {{ activeProduct.RAM_ROM }}
-                  </button>
-                  <button 
-                    v-for="(v, vIdx) in activeProduct.variants" :key="vIdx"
+                    v-for="(v, vIdx) in getProductVariants(activeProduct)" 
+                    :key="vIdx"
                     @click="selectVariant(activeProduct, vIdx)"
                     class="pressable px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-colors"
-                    :class="activeProduct._selectedVariantIndex === vIdx ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
+                    :class="(activeProduct._selectedVariantIndex === vIdx || ((activeProduct._selectedVariantIndex === -1 || activeProduct._selectedVariantIndex === undefined) && vIdx === 0)) ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ v.ram_rom }}
                   </button>
@@ -1538,18 +1526,74 @@ const template = `<!DOCTYPE html>
           return 'Rp ' + Number(val).toLocaleString('id-ID');
         };
 
+        const parsePriceNumber = (val) => {
+          if (typeof val === 'number') return val;
+          if (!val) return 0;
+          const cleaned = String(val).replace(/[^0-9]/g, '');
+          return cleaned ? parseInt(cleaned, 10) : 0;
+        };
+
+        const getProductVariants = (item) => {
+          if (!item) return [];
+          const result = [];
+          const seen = new Set();
+          const norm = (str) => String(str || '').trim().toLowerCase().replace(/\\s+/g, '').replace(/gb$/i, '').replace(/ram|rom/gi, '');
+
+          const baseRam = (item.RAM_ROM || '').trim();
+          const basePrice = item.Harga || item.Harga_Promo || item.Harga_Normal || 0;
+
+          if (Array.isArray(item.variants) && item.variants.length > 0) {
+            const hasBaseInVariants = item.variants.some(v => v && norm(v.ram_rom) === norm(baseRam));
+            if (baseRam && !hasBaseInVariants) {
+              result.push({
+                ram_rom: baseRam,
+                price: basePrice
+              });
+              seen.add(norm(baseRam));
+            }
+            for (const v of item.variants) {
+              if (!v || !v.ram_rom) continue;
+              const r = String(v.ram_rom).trim();
+              const key = norm(r);
+              if (!seen.has(key)) {
+                seen.add(key);
+                const p = typeof v.price === 'number' ? v.price : (parsePriceNumber(v.price) || basePrice);
+                result.push({
+                  ram_rom: r,
+                  price: p
+                });
+              }
+            }
+          } else if (baseRam) {
+            result.push({
+              ram_rom: baseRam,
+              price: basePrice
+            });
+          }
+
+          return result;
+        };
+
         const getCurrentPrice = (item) => {
           if (!item) return 0;
-          if (item._selectedVariantIndex !== undefined && item._selectedVariantIndex >= 0 && item.variants && item.variants[item._selectedVariantIndex]) {
-            return item.variants[item._selectedVariantIndex].price;
+          const vars = getProductVariants(item);
+          if (vars.length > 0) {
+            const idx = (item._selectedVariantIndex !== undefined && item._selectedVariantIndex >= 0 && item._selectedVariantIndex < vars.length)
+              ? item._selectedVariantIndex
+              : 0;
+            return vars[idx].price || item.Harga || item.Harga_Promo || item.Harga_Normal || 0;
           }
           return item.Harga || item.Harga_Promo || item.Harga_Normal || 0;
         };
 
         const getCurrentRam = (item) => {
           if (!item) return '';
-          if (item._selectedVariantIndex !== undefined && item._selectedVariantIndex >= 0 && item.variants && item.variants[item._selectedVariantIndex]) {
-            return item.variants[item._selectedVariantIndex].ram_rom;
+          const vars = getProductVariants(item);
+          if (vars.length > 0) {
+            const idx = (item._selectedVariantIndex !== undefined && item._selectedVariantIndex >= 0 && item._selectedVariantIndex < vars.length)
+              ? item._selectedVariantIndex
+              : 0;
+            return vars[idx].ram_rom || item.RAM_ROM || '';
           }
           return item.RAM_ROM || '';
         };
@@ -1662,7 +1706,7 @@ const template = `<!DOCTYPE html>
 
         const selectVariant = (item, vIdx) => {
           if (!item) return;
-          item._selectedVariantIndex = vIdx;
+          item._selectedVariantIndex = (typeof vIdx === 'number' && vIdx >= 0) ? vIdx : 0;
           item._priceFlashed = true;
           setTimeout(() => {
             item._priceFlashed = false;
@@ -1704,7 +1748,9 @@ const template = `<!DOCTYPE html>
 
         const openDetail = (item) => {
           if (!item) return;
-          if (item._selectedVariantIndex === undefined) item._selectedVariantIndex = -1;
+          if (item._selectedVariantIndex === undefined || item._selectedVariantIndex === -1) {
+            item._selectedVariantIndex = 0;
+          }
           activeProduct.value = item;
         };
 
@@ -1786,13 +1832,6 @@ const template = `<!DOCTYPE html>
             const detected = detectBrand(productForm.value.Nama_Produk);
             if (detected) productForm.value.Brand = detected;
           }
-        };
-
-        const parsePriceNumber = (val) => {
-          if (typeof val === 'number') return val;
-          if (!val) return 0;
-          const cleaned = String(val).replace(/[^0-9]/g, '');
-          return cleaned ? parseInt(cleaned, 10) : 0;
         };
 
         // Tarik Spek (AI Auto-Fill)
@@ -1903,8 +1942,9 @@ const template = `<!DOCTYPE html>
           previewImgError.value = false;
           const copy = JSON.parse(JSON.stringify(item));
           
-          // Ensure variants array is populated
-          if (!copy.variants || copy.variants.length === 0) {
+          // Populate clean, deduplicated variants in edit form
+          const vars = getProductVariants(copy);
+          if (vars.length === 0) {
             copy.variants = [
               { 
                 ram_rom: copy.RAM_ROM || '4/128', 
@@ -1912,7 +1952,7 @@ const template = `<!DOCTYPE html>
               }
             ];
           } else {
-            copy.variants = copy.variants.map(v => ({
+            copy.variants = vars.map(v => ({
               ram_rom: v.ram_rom,
               price: typeof v.price === 'number' ? formatRupiah(v.price).replace('Rp ', '') : v.price
             }));
@@ -1958,35 +1998,38 @@ const template = `<!DOCTYPE html>
             productForm.value.Brand = detectBrand(productForm.value.Nama_Produk);
           }
 
-          // Ensure variants array exists
-          if (!productForm.value.variants || productForm.value.variants.length === 0) {
-            productForm.value.variants = [
-              { ram_rom: productForm.value.RAM_ROM || '4/128', price: parsePriceNumber(productForm.value.Harga) || 2999000 }
-            ];
-          }
-
-          // Clean variants prices and ram
+          // Clean and deduplicate variants
           const cleanVariants = [];
-          productForm.value.variants.forEach(v => {
+          const seen = new Set();
+          const norm = (str) => String(str || '').trim().toLowerCase().replace(/\\s+/g, '').replace(/gb$/i, '').replace(/ram|rom/gi, '');
+
+          (productForm.value.variants || []).forEach(v => {
+            const r = (v.ram_rom || '').trim();
             const p = parsePriceNumber(v.price);
-            const r = (v.ram_rom || '').trim() || '4/128';
-            if (p > 0 || r) {
-              cleanVariants.push({ ram_rom: r, price: p || 1999000 });
+            const key = norm(r);
+            if (r && !seen.has(key)) {
+              seen.add(key);
+              cleanVariants.push({
+                ram_rom: r,
+                price: p || 1999000
+              });
             }
           });
 
           if (cleanVariants.length === 0) {
             cleanVariants.push({ ram_rom: '4/128', price: 2999000 });
           }
-          productForm.value.variants = cleanVariants;
 
-          // Sync base properties with first variant
+          // Base RAM_ROM and Harga synced with first variant
           const firstVar = cleanVariants[0];
           productForm.value.RAM_ROM = firstVar.ram_rom;
           productForm.value.Harga = firstVar.price;
           if (!productForm.value.Harga_Normal || productForm.value.Harga_Normal < productForm.value.Harga) {
             productForm.value.Harga_Normal = productForm.value.Harga;
           }
+
+          productForm.value.variants = cleanVariants;
+          productForm.value._selectedVariantIndex = 0;
 
           if (isEditingExisting.value) {
             const idx = products.value.findIndex(p => p.id === productForm.value.id);
@@ -2093,8 +2136,12 @@ const template = `<!DOCTYPE html>
 
         const resetToDefault = () => {
           if (confirm('Kembalikan ke data bawaan 120 HP katalog resmi?')) {
-            products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
-            localStorage.setItem('telering_live_products', JSON.stringify(DEFAULT_PRODUCTS));
+            products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS)).map(p => ({
+              ...p,
+              variants: getProductVariants(p),
+              _selectedVariantIndex: 0
+            }));
+            localStorage.setItem('telering_live_products', JSON.stringify(products.value));
             showToast('Katalog di-reset ke 120 HP bawaan.');
             openExcelModal.value = false;
             broadcastToCloud();
@@ -2124,8 +2171,12 @@ const template = `<!DOCTYPE html>
               try {
                 const payload = JSON.parse(msg.toString());
                 if (payload.action === 'sync_catalog' && Array.isArray(payload.data)) {
-                  products.value = payload.data;
-                  localStorage.setItem('telering_live_products', JSON.stringify(payload.data));
+                  products.value = payload.data.map(p => ({
+                    ...p,
+                    variants: getProductVariants(p),
+                    _selectedVariantIndex: 0
+                  }));
+                  localStorage.setItem('telering_live_products', JSON.stringify(products.value));
                   showToast('Sinkronisasi realtime diterima dari cloud!');
                 }
               } catch (e) {}
@@ -2156,15 +2207,31 @@ const template = `<!DOCTYPE html>
             try {
               const parsed = JSON.parse(cached);
               if (Array.isArray(parsed) && parsed.length > 0) {
-                products.value = parsed.map(p => ({ ...p, _selectedVariantIndex: -1 }));
+                products.value = parsed.map(p => ({
+                  ...p,
+                  variants: getProductVariants(p),
+                  _selectedVariantIndex: 0
+                }));
               } else {
-                products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+                products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS)).map(p => ({
+                  ...p,
+                  variants: getProductVariants(p),
+                  _selectedVariantIndex: 0
+                }));
               }
             } catch (e) {
-              products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+              products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS)).map(p => ({
+                ...p,
+                variants: getProductVariants(p),
+                _selectedVariantIndex: 0
+              }));
             }
           } else {
-            products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+            products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS)).map(p => ({
+              ...p,
+              variants: getProductVariants(p),
+              _selectedVariantIndex: 0
+            }));
           }
 
           initMqtt();
@@ -2204,6 +2271,7 @@ const template = `<!DOCTYPE html>
           formatRupiah,
           getCurrentPrice,
           getCurrentRam,
+          getProductVariants,
           is5G,
           activeProduct,
           openDetail,
