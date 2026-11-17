@@ -100,23 +100,77 @@
       outline-offset: 2px;
     }
 
-    /* Micro-interactions: Smooth 2px lift on white card */
+    /* Micro-interactions: Tactile feedback on buttons & chips */
+    .pressable {
+      transition: transform 0.14s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.14s ease, background-color 0.14s ease, border-color 0.14s ease;
+      will-change: transform;
+    }
+    .pressable:active {
+      transform: scale(0.96);
+    }
+
+    /* Refined Card Lift Physics */
     .card-lift {
-      transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, box-shadow 0.18s ease;
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.2s ease;
       will-change: transform;
     }
     .card-lift:hover {
-      transform: translateY(-2px);
+      transform: translateY(-4px);
       border-color: #cbd5e1;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
     }
 
-    /* Image zoom within optical frame */
+    /* Optical Frame Image Float & Zoom */
     .img-frame img {
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
     }
     .card-lift:hover .img-frame img {
-      transform: scale(1.03);
+      transform: scale(1.06) translateY(-2px);
+    }
+
+    /* Price Flash Highlight when switching variant */
+    @keyframes pricePop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.08); color: #ff3823; }
+      100% { transform: scale(1); }
+    }
+    .price-flash {
+      animation: pricePop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Staggered Card Entrance Animation */
+    @keyframes cardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-card-in {
+      animation: cardEntrance 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Pulse Glow Indicator */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* Close button rotate micro-interaction */
+    .btn-close-rotate:hover svg {
+      transform: rotate(90deg);
+    }
+    .btn-close-rotate svg {
+      transition: transform 0.2s ease;
     }
 
     /* Hide scrollbars for pill rails */
@@ -149,7 +203,7 @@
           
           <!-- Brand Mark & Live Badge -->
           <div class="flex items-center gap-3">
-            <a href="#" @click.prevent="resetAllFilters" class="flex items-center gap-2 group" title="TELERING — Kembali ke Semua Katalog">
+            <a href="#" @click.prevent="resetAllFilters" class="flex items-center gap-2 group pressable" title="TELERING — Kembali ke Semua Katalog">
               <img 
                 src="logo_telering.png" 
                 alt="TELERING Logo"
@@ -182,7 +236,7 @@
             <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200" role="group" aria-label="Mode Tampilan">
               <button 
                 @click="viewMode = 'grid'"
-                class="px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center gap-1.5"
+                class="pressable px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center gap-1.5"
                 :class="viewMode === 'grid' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-900'"
                 title="Tampilan Kartu Katalog"
               >
@@ -193,7 +247,7 @@
               </button>
               <button 
                 @click="viewMode = 'table'"
-                class="px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center gap-1.5"
+                class="pressable px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center gap-1.5"
                 :class="viewMode === 'table' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-900'"
                 title="Tampilan Tabel Host Live"
               >
@@ -207,7 +261,7 @@
             <!-- Bagikan Link / QR -->
             <button 
               @click="openShareModal"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs transition-colors"
+              class="pressable inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs transition-colors"
               title="Bagikan Katalog & QR Code"
             >
               <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -220,7 +274,7 @@
             <button 
               v-if="!isAdmin"
               @click="openAdminLoginModal"
-              class="p-2 rounded-lg bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200 shadow-xs transition-colors"
+              class="pressable p-2 rounded-lg bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200 shadow-xs transition-colors"
               title="Akses Admin"
             >
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -232,7 +286,7 @@
             <div v-else class="flex items-center gap-1.5">
               <button 
                 @click="openAddProductModal"
-                class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-telering-500 hover:bg-telering-600 text-white shadow-xs transition-colors"
+                class="pressable inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-telering-500 hover:bg-telering-600 text-white shadow-xs transition-colors"
               >
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
@@ -242,7 +296,7 @@
 
               <button 
                 @click="openExcelModal = true"
-                class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs transition-colors"
+                class="pressable p-2 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs transition-colors"
                 title="Kelola Excel"
               >
                 <span class="hidden sm:inline">Excel</span>
@@ -251,7 +305,7 @@
 
               <button 
                 @click="logoutAdmin"
-                class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 transition-colors"
+                class="pressable p-2 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 transition-colors"
                 title="Keluar Admin"
               >
                 Keluar
@@ -268,14 +322,14 @@
     <!-- 2. STICKY FILTER & SEARCH RAIL (CLEAN BRIGHT BAR)        -->
     <!-- ======================================================== -->
     <div class="sticky top-[53px] sm:top-[57px] z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 space-y-2.5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 space-y-2">
         
         <!-- Search & Quick Sort Row -->
         <div class="flex items-center gap-2 sm:gap-3">
           
-          <!-- Precision Search Field -->
-          <div class="relative flex-1">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <!-- Precision Search Field with Keyboard Shortcut & Micro-animations -->
+          <div class="relative flex-1 group">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-slate-900 transition-colors">
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -285,17 +339,23 @@
               type="text" 
               v-model="searchQuery"
               placeholder="Cari tipe HP, brand, chipset, kamera, atau varian..."
-              class="w-full pl-9 pr-9 py-2 bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 focus:border-slate-400 rounded-lg text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none transition-colors shadow-2xs"
+              class="w-full pl-9 pr-14 sm:pr-16 py-2 bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 focus:border-slate-400 rounded-lg text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-900/5 transition-all shadow-2xs"
             >
+            <!-- Keyboard shortcut hint when empty -->
+            <div 
+              v-if="!searchQuery" 
+              class="absolute inset-y-0 right-0 pr-3 hidden sm:flex items-center pointer-events-none"
+            >
+              <kbd class="px-1.5 py-0.5 text-[10px] font-mono font-semibold text-slate-400 bg-white border border-slate-200 rounded shadow-2xs">/</kbd>
+            </div>
+            <!-- Clear button with micro-animation when has query -->
             <button 
               v-if="searchQuery" 
-              @click="searchQuery = ''" 
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700"
+              @click="searchQuery = ''; searchInput?.focus()" 
+              class="pressable absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700"
               title="Bersihkan Pencarian"
             >
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <span class="w-5 h-5 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center text-slate-600 text-xs">✕</span>
             </button>
           </div>
 
@@ -303,7 +363,7 @@
           <div class="shrink-0 relative">
             <select 
               v-model="sortBy"
-              class="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold rounded-lg py-2 pl-3 pr-8 focus:outline-none focus:border-slate-400 cursor-pointer shadow-2xs"
+              class="pressable appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold rounded-lg py-2 pl-3 pr-8 focus:outline-none focus:border-slate-400 cursor-pointer shadow-2xs"
             >
               <option value="featured">Paling Populer</option>
               <option value="price-asc">Harga Terendah</option>
@@ -325,7 +385,7 @@
           <!-- All Brands Chip -->
           <button 
             @click="selectedBrand = 'all'"
-            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1.5"
+            class="pressable px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1.5"
             :class="selectedBrand === 'all' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70 hover:text-slate-900'"
           >
             <span>Semua Brand</span>
@@ -336,7 +396,7 @@
           <button 
             v-for="b in availableBrands" :key="b.name"
             @click="selectedBrand = b.name"
-            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1.5"
+            class="pressable px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1.5"
             :class="selectedBrand === b.name ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70 hover:text-slate-900'"
           >
             <span>{{ b.name }}</span>
@@ -348,28 +408,28 @@
           <!-- Price Range Chips -->
           <button 
             @click="togglePriceFilter('under-2m')"
-            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
+            class="pressable px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
             :class="selectedPriceRange === 'under-2m' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             &lt; 2 Juta
           </button>
           <button 
             @click="togglePriceFilter('2m-4m')"
-            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
+            class="pressable px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
             :class="selectedPriceRange === '2m-4m' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             2 - 4 Juta
           </button>
           <button 
             @click="togglePriceFilter('4m-7m')"
-            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
+            class="pressable px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
             :class="selectedPriceRange === '4m-7m' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             4 - 7 Juta
           </button>
           <button 
             @click="togglePriceFilter('above-7m')"
-            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
+            class="pressable px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
             :class="selectedPriceRange === 'above-7m' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             &gt; 7 Juta
@@ -380,7 +440,7 @@
           <!-- Feature Filters -->
           <button 
             @click="filter5gOnly = !filter5gOnly"
-            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1"
+            class="pressable px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1"
             :class="filter5gOnly ? 'bg-telering-50 text-telering-600 border-telering-300' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             <span>5G</span>
@@ -388,7 +448,7 @@
 
           <button 
             @click="filterNfcOnly = !filterNfcOnly"
-            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1"
+            class="pressable px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1"
             :class="filterNfcOnly ? 'bg-sky-50 text-sky-600 border-sky-300' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             <span>NFC</span>
@@ -398,22 +458,88 @@
           <button 
             v-if="isFiltered" 
             @click="resetAllFilters"
-            class="px-2 py-1 rounded-md font-bold shrink-0 text-telering-600 hover:text-telering-700 text-[11px] underline underline-offset-2 ml-1"
+            class="pressable px-2 py-1 rounded-md font-bold shrink-0 text-rose-600 hover:text-rose-700 text-[11px] underline underline-offset-2 ml-1"
           >
             Reset
           </button>
 
         </div>
 
+        <!-- Active Filter Summary & Quick Clears (Macro Interaction) -->
+        <div v-if="isFiltered" class="flex items-center gap-1.5 pt-1.5 border-t border-slate-100 overflow-x-auto no-scrollbar text-[11px]">
+          <span class="text-slate-400 font-bold shrink-0 flex items-center gap-1">
+            <svg class="w-3 h-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            Filter Aktif:
+          </span>
+
+          <!-- Search Query Tag -->
+          <span 
+            v-if="searchQuery.trim()" 
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-300 text-slate-800 font-medium shrink-0 animate-card-in"
+          >
+            "{{ searchQuery }}"
+            <button @click="searchQuery = ''" class="pressable hover:text-rose-600 font-bold ml-0.5 text-xs" title="Hapus pencarian">✕</button>
+          </span>
+
+          <!-- Brand Tag -->
+          <span 
+            v-if="selectedBrand !== 'all'" 
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-900 text-white font-medium shrink-0 animate-card-in"
+          >
+            Brand: {{ selectedBrand }}
+            <button @click="selectedBrand = 'all'" class="pressable text-slate-300 hover:text-white font-bold ml-0.5 text-xs" title="Hapus filter brand">✕</button>
+          </span>
+
+          <!-- Price Range Tag -->
+          <span 
+            v-if="selectedPriceRange !== 'all'" 
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-medium shrink-0 animate-card-in"
+          >
+            Harga: {{ getPriceRangeLabel(selectedPriceRange) }}
+            <button @click="selectedPriceRange = 'all'" class="pressable text-emerald-600 hover:text-emerald-900 font-bold ml-0.5 text-xs" title="Hapus filter harga">✕</button>
+          </span>
+
+          <!-- 5G Tag -->
+          <span 
+            v-if="filter5gOnly" 
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-telering-50 border border-telering-200 text-telering-700 font-medium shrink-0 animate-card-in"
+          >
+            5G Only
+            <button @click="filter5gOnly = false" class="pressable text-telering-500 hover:text-telering-800 font-bold ml-0.5 text-xs" title="Hapus filter 5G">✕</button>
+          </span>
+
+          <!-- NFC Tag -->
+          <span 
+            v-if="filterNfcOnly" 
+            class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-sky-50 border border-sky-200 text-sky-700 font-medium shrink-0 animate-card-in"
+          >
+            NFC Only
+            <button @click="filterNfcOnly = false" class="pressable text-sky-500 hover:text-sky-800 font-bold ml-0.5 text-xs" title="Hapus filter NFC">✕</button>
+          </span>
+
+          <!-- Reset All Pill -->
+          <button 
+            @click="resetAllFilters"
+            class="pressable ml-auto px-2 py-0.5 rounded-full text-rose-600 hover:bg-rose-50 border border-rose-200 font-bold shrink-0 transition-colors flex items-center gap-1"
+          >
+            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+            Reset Semua
+          </button>
+        </div>
+
       </div>
     </div>
 
     <!-- ======================================================== -->
-    <!-- 3. TOAST NOTIFICATION                                    -->
+    <!-- 3. TOAST NOTIFICATION (MODERN FLOATING CAPSULE)           -->
     <!-- ======================================================== -->
-    <transition enter-active-class="transform ease-out duration-200 transition" enter-from-class="translate-y-2 opacity-0" enter-to-class="translate-y-0 opacity-100" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100" leave-to-class="opacity-0">
-      <div v-if="toastMessage" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-800 text-xs font-bold flex items-center gap-2.5 max-w-sm">
-        <span class="w-2 h-2 rounded-full bg-telering-500 shrink-0"></span>
+    <transition enter-active-class="transform ease-out duration-200 transition" enter-from-class="translate-y-2 opacity-0 scale-95" enter-to-class="translate-y-0 opacity-100 scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
+      <div v-if="toastMessage" class="fixed bottom-6 right-6 z-50 bg-slate-900/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl border border-slate-800 text-xs font-bold flex items-center gap-2.5 max-w-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-glow shrink-0"></span>
         <span>{{ toastMessage }}</span>
       </div>
     </transition>
@@ -439,20 +565,69 @@
         </div>
       </div>
 
-      <!-- Empty State -->
-      <div v-if="filteredProducts.length === 0" class="py-16 text-center bg-white rounded-2xl border border-slate-200 shadow-xs">
-        <div class="w-12 h-12 rounded-full bg-slate-100 mx-auto flex items-center justify-center text-slate-400 mb-3">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <!-- Empty State with Interactive Recovery Suggestions (Macro Interaction) -->
+      <div v-if="filteredProducts.length === 0" class="py-14 sm:py-20 text-center bg-white rounded-2xl border border-slate-200 shadow-xs max-w-2xl mx-auto px-6">
+        <div class="w-14 h-14 rounded-2xl bg-slate-100 mx-auto flex items-center justify-center text-slate-400 mb-3 shadow-inner">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
-        <h3 class="text-sm font-bold text-slate-900">Tidak Ada Smartphone yang Sesuai</h3>
-        <p class="text-xs text-slate-500 mt-1">Coba sesuaikan kata kunci pencarian atau bersihkan filter yang aktif.</p>
+        <h3 class="text-base font-black text-slate-900">Tidak Menemukan Smartphone yang Sesuai</h3>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-md mx-auto">
+          Tidak ada produk yang cocok dengan kombinasi filter dan kata kunci pencarian Anda saat ini.
+        </p>
+
+        <!-- Quick Recovery Suggestions -->
+        <div class="mt-6 pt-5 border-t border-slate-100">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">Saran Pencarian Cepat</p>
+          <div class="flex flex-wrap items-center justify-center gap-1.5">
+            <button 
+              @click="quickFilter('Samsung')" 
+              class="pressable px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition-colors"
+            >
+              Samsung
+            </button>
+            <button 
+              @click="quickFilter('Xiaomi')" 
+              class="pressable px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition-colors"
+            >
+              Xiaomi / Redmi
+            </button>
+            <button 
+              @click="quickFilter('OPPO')" 
+              class="pressable px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition-colors"
+            >
+              OPPO
+            </button>
+            <button 
+              @click="quickFilter('Vivo')" 
+              class="pressable px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition-colors"
+            >
+              Vivo
+            </button>
+            <button 
+              @click="quickPrice('< 2 Juta', 'under-2m')" 
+              class="pressable px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 transition-colors"
+            >
+              Di Bawah 2 Juta
+            </button>
+            <button 
+              @click="quick5G" 
+              class="pressable px-3 py-1.5 rounded-lg text-xs font-semibold bg-telering-50 hover:bg-telering-100 text-telering-700 border border-telering-200 transition-colors"
+            >
+              Hanya 5G
+            </button>
+          </div>
+        </div>
+
         <button 
           @click="resetAllFilters"
-          class="mt-4 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-colors"
+          class="pressable mt-6 px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-sm inline-flex items-center gap-1.5"
         >
-          Bersihkan Semua Filter
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <span>Bersihkan Semua Filter & Reset</span>
         </button>
       </div>
 
@@ -464,7 +639,7 @@
         <article 
           v-for="item in filteredProducts" 
           :key="item.id"
-          class="card-lift bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between group relative overflow-hidden shadow-card"
+          class="card-lift animate-card-in bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between group relative overflow-hidden shadow-card"
         >
 
           <!-- Top Section: Visual Frame + Badge -->
@@ -521,17 +696,17 @@
                 </span>
                 <template v-else>
                   <button 
-                    @click.stop="item._selectedVariantIndex = -1"
-                    class="px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-colors"
-                    :class="item._selectedVariantIndex === -1 ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
+                    @click.stop="selectVariant(item, -1)"
+                    class="pressable px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-all"
+                    :class="item._selectedVariantIndex === -1 ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ item.RAM_ROM }}
                   </button>
                   <button 
                     v-for="(v, vIdx) in item.variants" :key="vIdx"
-                    @click.stop="item._selectedVariantIndex = vIdx"
-                    class="px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-colors"
-                    :class="item._selectedVariantIndex === vIdx ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
+                    @click.stop="selectVariant(item, vIdx)"
+                    class="pressable px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-all"
+                    :class="item._selectedVariantIndex === vIdx ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ v.ram_rom }}
                   </button>
@@ -542,7 +717,10 @@
             <!-- Price Block -->
             <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-baseline justify-between">
               <div>
-                <div class="text-base sm:text-lg font-mono font-black text-slate-900">
+                <div 
+                  class="text-base sm:text-lg font-mono font-black text-slate-900 transition-colors"
+                  :class="{ 'price-flash': item._priceFlashed }"
+                >
                   {{ formatRupiah(getCurrentPrice(item)) }}
                 </div>
                 <div v-if="item.Harga_Normal && item.Harga_Normal > getCurrentPrice(item)" class="text-[11px] text-slate-400 line-through font-mono">
@@ -599,11 +777,11 @@
             
             <button 
               @click="openDetail(item)"
-              class="flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-colors flex items-center justify-center gap-1.5"
+              class="pressable group/btn flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-colors flex items-center justify-center gap-1.5"
               title="Buka spesifikasi lengkap"
             >
               <span>Lihat Detail Spesifikasi</span>
-              <svg class="w-3.5 h-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-3.5 h-3.5 text-slate-300 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -612,7 +790,7 @@
             <button 
               v-if="isAdmin"
               @click="openEditProductModal(item)"
-              class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border border-slate-200"
+              class="pressable p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border border-slate-200"
               title="Edit Data Produk"
             >
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -704,7 +882,7 @@
                 <td class="py-3 px-4 text-right">
                   <button 
                     @click="openDetail(item)"
-                    class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-black text-white text-[11px] font-bold shadow-xs transition-colors"
+                    class="pressable px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-black text-white text-[11px] font-bold shadow-xs transition-colors"
                   >
                     Detail
                   </button>
@@ -716,6 +894,28 @@
       </div>
 
     </main>
+
+    <!-- Floating Back to Top Button (Macro Interaction) -->
+    <transition
+      enter-active-class="transition ease-out duration-200"
+      enter-from-class="opacity-0 translate-y-3"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition ease-in duration-150"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 translate-y-3"
+    >
+      <button 
+        v-if="showBackToTop" 
+        @click="scrollToTop"
+        class="pressable fixed bottom-6 right-6 z-40 bg-white/95 backdrop-blur-md hover:bg-white text-slate-800 border border-slate-200/90 shadow-lg px-3.5 py-2 rounded-full flex items-center gap-1.5 text-xs font-bold transition-all hover:shadow-xl group"
+        title="Kembali ke atas halaman"
+      >
+        <svg class="w-4 h-4 text-slate-600 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+        <span class="hidden sm:inline">Ke Atas</span>
+      </button>
+    </transition>
 
     <!-- ======================================================== -->
     <!-- 7. MODAL: DETAIL PRODUK & CHEAT SHEET LIVE HOST          -->
@@ -730,7 +930,7 @@
             <span class="text-slate-300">·</span>
             <h3 class="text-base sm:text-lg font-black text-slate-900">{{ activeProduct.Nama_Produk }}</h3>
           </div>
-          <button @click="activeProduct = null" class="p-2 rounded-xl bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200">
+          <button @click="activeProduct = null" class="pressable btn-close-rotate p-2 rounded-xl bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200" title="Tutup">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -753,7 +953,10 @@
             <div class="flex-1 space-y-3">
               <div>
                 <div class="text-xs text-slate-500 font-semibold">Harga Katalog Resmi:</div>
-                <div class="text-2xl font-mono font-black text-slate-900 mt-0.5">
+                <div 
+                  class="text-2xl font-mono font-black text-slate-900 mt-0.5 transition-colors"
+                  :class="{ 'price-flash': activeProduct._priceFlashed }"
+                >
                   {{ formatRupiah(getCurrentPrice(activeProduct)) }}
                 </div>
                 <div v-if="activeProduct.Harga_Normal && activeProduct.Harga_Normal > getCurrentPrice(activeProduct)" class="text-xs text-slate-400 line-through font-mono">
@@ -766,17 +969,17 @@
                 <div class="text-xs text-slate-600 mb-1.5 font-bold">Pilih Varian RAM / Storage:</div>
                 <div class="flex flex-wrap gap-1.5">
                   <button 
-                    @click="activeProduct._selectedVariantIndex = -1"
-                    class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-colors"
-                    :class="activeProduct._selectedVariantIndex === -1 ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
+                    @click="selectVariant(activeProduct, -1)"
+                    class="pressable px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-colors"
+                    :class="activeProduct._selectedVariantIndex === -1 ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ activeProduct.RAM_ROM }}
                   </button>
                   <button 
                     v-for="(v, vIdx) in activeProduct.variants" :key="vIdx"
-                    @click="activeProduct._selectedVariantIndex = vIdx"
-                    class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-colors"
-                    :class="activeProduct._selectedVariantIndex === vIdx ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
+                    @click="selectVariant(activeProduct, vIdx)"
+                    class="pressable px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-colors"
+                    :class="activeProduct._selectedVariantIndex === vIdx ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ v.ram_rom }}
                   </button>
@@ -841,7 +1044,7 @@
 
         <!-- Footer -->
         <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-end">
-          <button @click="activeProduct = null" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold transition-colors">
+          <button @click="activeProduct = null" class="pressable px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold transition-colors">
             Tutup
           </button>
         </div>
@@ -854,8 +1057,15 @@
     <!-- ======================================================== -->
     <div v-if="shareModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
       <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-sm p-6 text-center space-y-4 shadow-2xl">
-        <h3 class="text-base font-black text-slate-900">Bagikan Katalog Live</h3>
-        <p class="text-xs text-slate-500">Scan QR Code atau salin link untuk membuka katalog ini di smartphone host atau penonton.</p>
+        <div class="flex items-center justify-between">
+          <h3 class="text-base font-black text-slate-900">Bagikan Katalog Live</h3>
+          <button @click="shareModalOpen = false" class="pressable btn-close-rotate p-1 rounded-lg text-slate-400 hover:text-slate-700">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <p class="text-xs text-slate-500 text-left">Scan QR Code atau salin link untuk membuka katalog ini di smartphone host atau penonton.</p>
 
         <!-- QR Code Container -->
         <div id="qrcode-container" class="flex justify-center my-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl mx-auto w-fit"></div>
@@ -869,7 +1079,7 @@
           >
           <button 
             @click="copyShareLink"
-            class="px-3 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-black shrink-0"
+            class="pressable px-3 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-black shrink-0 transition-colors"
           >
             {{ copiedShareLink ? 'Tersalin!' : 'Salin' }}
           </button>
@@ -877,7 +1087,7 @@
 
         <button 
           @click="shareModalOpen = false"
-          class="w-full py-2 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900"
+          class="pressable w-full py-2 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors"
         >
           Tutup
         </button>
@@ -913,13 +1123,13 @@
             <button 
               type="button" 
               @click="adminLoginModalOpen = false"
-              class="flex-1 py-2 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:text-slate-900"
+              class="pressable flex-1 py-2 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors"
             >
               Batal
             </button>
             <button 
               type="submit" 
-              class="flex-1 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-black"
+              class="pressable flex-1 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-black transition-colors"
             >
               Masuk
             </button>
@@ -935,7 +1145,11 @@
       <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
         <div class="flex items-center justify-between border-b border-slate-200 pb-3">
           <h3 class="text-base font-black text-slate-900">Sinkronisasi Data Excel (.xlsx)</h3>
-          <button @click="openExcelModal = false" class="text-slate-400 hover:text-slate-900 font-bold">✕</button>
+          <button @click="openExcelModal = false" class="pressable btn-close-rotate p-1 rounded-lg text-slate-400 hover:text-slate-900 font-bold" title="Tutup">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
 
         <p class="text-xs text-slate-600">
@@ -947,7 +1161,7 @@
           @dragover.prevent="dragOver = true"
           @dragleave.prevent="dragOver = false"
           @drop.prevent="handleFileDrop"
-          class="border-2 border-dashed rounded-2xl p-6 text-center transition-colors cursor-pointer"
+          class="pressable border-2 border-dashed rounded-2xl p-6 text-center transition-colors cursor-pointer"
           :class="dragOver ? 'border-telering-500 bg-telering-50' : 'border-slate-300 bg-slate-50 hover:bg-slate-100/70'"
           @click="$refs.excelFileInput.click()"
         >
@@ -958,7 +1172,7 @@
 
         <div v-if="parsedData.length > 0" class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-700 flex items-center justify-between">
           <span>Terbaca: <strong>{{ parsedData.length }} HP</strong> dari Excel</span>
-          <button @click="applyParsedData" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs">
+          <button @click="applyParsedData" class="pressable px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors">
             Terapkan ke Live
           </button>
         </div>
@@ -966,14 +1180,14 @@
         <div class="flex items-center justify-between pt-2 border-t border-slate-200">
           <button 
             @click="resetToDefault"
-            class="text-xs text-rose-500 hover:text-rose-600 font-bold underline"
+            class="pressable text-xs text-rose-500 hover:text-rose-600 font-bold underline"
           >
             Reset ke Data Bawaan
           </button>
 
           <button 
             @click="downloadTemplate"
-            class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs"
+            class="pressable px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-colors"
           >
             Unduh Data Excel
           </button>
@@ -1001,7 +1215,7 @@
           <button 
             type="button" 
             @click="editProductModalOpen = false" 
-            class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            class="pressable btn-close-rotate w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
             title="Tutup"
           >
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1029,7 +1243,7 @@
                 type="button" 
                 @click="tarikSpek" 
                 :disabled="isScraping"
-                class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 font-bold text-xs sm:text-sm border border-slate-200/90 transition-all shrink-0 inline-flex items-center gap-1.5 disabled:opacity-50"
+                class="pressable px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 font-bold text-xs sm:text-sm border border-slate-200/90 transition-all shrink-0 inline-flex items-center gap-1.5 disabled:opacity-50"
               >
                 <svg v-if="isScraping" class="animate-spin w-3.5 h-3.5 text-slate-700" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -1125,7 +1339,7 @@
                   <button 
                     type="button" 
                     @click="removeVariant(vIdx)" 
-                    class="text-rose-500 hover:text-rose-700 p-1.5 rounded-lg hover:bg-rose-50 transition-colors"
+                    class="pressable text-rose-500 hover:text-rose-700 p-1.5 rounded-lg hover:bg-rose-50 transition-colors"
                     title="Hapus varian"
                   >
                     <svg class="w-5 h-5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1142,7 +1356,7 @@
             <button 
               type="button" 
               @click="addVariant" 
-              class="text-xs sm:text-sm font-bold text-slate-900 hover:text-telering-600 transition-colors inline-flex items-center gap-1 cursor-pointer"
+              class="pressable text-xs sm:text-sm font-bold text-slate-900 hover:text-telering-600 transition-colors inline-flex items-center gap-1 cursor-pointer"
             >
               +Tambah Varian
             </button>
@@ -1200,7 +1414,7 @@
               v-if="isEditingExisting" 
               type="button" 
               @click="deleteProduct(productForm.id)" 
-              class="text-rose-600 hover:text-rose-700 font-bold text-xs sm:text-sm cursor-pointer hover:underline transition-all"
+              class="pressable text-rose-600 hover:text-rose-700 font-bold text-xs sm:text-sm cursor-pointer hover:underline transition-all"
             >
               Hapus HP
             </button>
@@ -1210,13 +1424,13 @@
               <button 
                 type="button" 
                 @click="editProductModalOpen = false" 
-                class="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 text-slate-700 font-bold text-xs sm:text-sm shadow-2xs transition-colors"
+                class="pressable px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 text-slate-700 font-bold text-xs sm:text-sm shadow-2xs transition-colors"
               >
                 Batal
               </button>
               <button 
                 type="submit" 
-                class="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
+                class="pressable px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
               >
                 Simpan
               </button>
@@ -3604,6 +3818,47 @@
           }
         };
 
+        const getPriceRangeLabel = (range) => {
+          if (range === 'under-2m') return '< 2 Juta';
+          if (range === '2m-4m') return '2 - 4 Juta';
+          if (range === '4m-7m') return '4 - 7 Juta';
+          if (range === 'above-7m') return '> 7 Juta';
+          return range;
+        };
+
+        const selectVariant = (item, vIdx) => {
+          if (!item) return;
+          item._selectedVariantIndex = vIdx;
+          item._priceFlashed = true;
+          setTimeout(() => {
+            item._priceFlashed = false;
+          }, 350);
+        };
+
+        const quickFilter = (brandName) => {
+          selectedBrand.value = brandName;
+          searchQuery.value = '';
+          selectedPriceRange.value = 'all';
+          filter5gOnly.value = false;
+          filterNfcOnly.value = false;
+        };
+
+        const quickPrice = (label, range) => {
+          selectedPriceRange.value = range;
+          searchQuery.value = '';
+        };
+
+        const quick5G = () => {
+          filter5gOnly.value = true;
+          searchQuery.value = '';
+        };
+
+        const showBackToTop = ref(false);
+
+        const scrollToTop = () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
         const resetAllFilters = () => {
           selectedBrand.value = 'all';
           selectedPriceRange.value = 'all';
@@ -4080,6 +4335,11 @@
 
           initMqtt();
 
+          // Scroll listener for back-to-top button
+          window.addEventListener('scroll', () => {
+            showBackToTop.value = window.scrollY > 300;
+          }, { passive: true });
+
           // Keyboard shortcut '/' to search
           window.addEventListener('keydown', (e) => {
             if (e.key === '/' && document.activeElement !== searchInput.value) {
@@ -4151,7 +4411,14 @@
           applyParsedData,
           downloadTemplate,
           resetToDefault,
-          cloudConnected
+          cloudConnected,
+          showBackToTop,
+          scrollToTop,
+          selectVariant,
+          getPriceRangeLabel,
+          quickFilter,
+          quickPrice,
+          quick5G
         };
       }
     }).mount('#app');
