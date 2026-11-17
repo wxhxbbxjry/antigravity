@@ -209,18 +209,6 @@ const template = `<!DOCTYPE html>
               </button>
             </div>
 
-            <!-- Compare Trigger -->
-            <button 
-              v-if="compareList.length > 0"
-              @click="openCompareModal = true"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-all"
-              title="Buka Perbandingan Spesifikasi"
-            >
-              <span class="w-2 h-2 rounded-full bg-telering-500"></span>
-              <span>Bandingkan</span>
-              <span class="px-1.5 py-0.2 rounded bg-telering-500 text-white font-mono text-[10px]">{{ compareList.length }}</span>
-            </button>
-
             <!-- Bagikan Link / QR -->
             <button 
               @click="openShareModal"
@@ -488,24 +476,14 @@ const template = `<!DOCTYPE html>
           <!-- Top Section: Visual Frame + Badge + Compare Checkbox -->
           <div>
             
-            <!-- Header bar inside card: Brand label & Compare Check -->
+            <!-- Header bar inside card: Brand label -->
             <div class="flex items-center justify-between gap-2 mb-2.5">
               <span class="text-[11px] font-black text-slate-500 uppercase tracking-wider">
                 {{ item.Brand }}
               </span>
-
-              <!-- Compare Checkbox -->
-              <button 
-                @click.stop="toggleCompare(item)"
-                class="px-2 py-0.5 rounded text-[11px] font-bold transition-colors border flex items-center gap-1"
-                :class="isCompared(item.id) ? 'bg-telering-500 text-white border-telering-500' : 'bg-slate-50 text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-slate-100'"
-                title="Bandingkan dengan HP lain"
-              >
-                <svg v-if="isCompared(item.id)" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Bandingkan</span>
-              </button>
+              <span v-if="is5G(item)" class="px-1.5 py-0.5 rounded text-[10px] font-extrabold tracking-wider bg-telering-50 text-telering-600 border border-telering-200/70">
+                5G
+              </span>
             </div>
 
             <!-- Optical Image Frame (Clean Light Frame) -->
@@ -622,33 +600,25 @@ const template = `<!DOCTYPE html>
 
           </div>
 
-          <!-- Bottom Actions: Copy Live Caption & Detail -->
+          <!-- Bottom Actions: Detail & Admin Edit -->
           <div class="mt-3.5 pt-3 border-t border-slate-100 flex items-center gap-2">
             
             <button 
-              @click="copyLiveCaption(item)"
-              class="flex-1 py-1.5 px-2.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors flex items-center justify-center gap-1.5"
-              title="Salin caption ringkas untuk live streaming"
-            >
-              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-              </svg>
-              <span>Salin Spek</span>
-            </button>
-
-            <button 
               @click="openDetail(item)"
-              class="py-1.5 px-3 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-colors"
-              title="Buka spesifikasi lengkap & poin jualan"
+              class="flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-colors flex items-center justify-center gap-1.5"
+              title="Buka spesifikasi lengkap"
             >
-              Detail
+              <span>Lihat Detail Spesifikasi</span>
+              <svg class="w-3.5 h-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
             </button>
 
             <!-- Admin Edit Button -->
             <button 
               v-if="isAdmin"
               @click="openEditProductModal(item)"
-              class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border border-slate-200"
+              class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border border-slate-200"
               title="Edit Data Produk"
             >
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -739,21 +709,12 @@ const template = `<!DOCTYPE html>
 
                 <!-- Actions -->
                 <td class="py-3 px-4 text-right">
-                  <div class="flex items-center justify-end gap-1.5">
-                    <button 
-                      @click="copyLiveCaption(item)"
-                      class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 text-[11px] font-bold transition-colors"
-                      title="Salin caption spek live"
-                    >
-                      Salin
-                    </button>
-                    <button 
-                      @click="openDetail(item)"
-                      class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-black text-white text-[11px] font-bold shadow-xs transition-colors"
-                    >
-                      Detail
-                    </button>
-                  </div>
+                  <button 
+                    @click="openDetail(item)"
+                    class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-black text-white text-[11px] font-bold shadow-xs transition-colors"
+                  >
+                    Detail
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -762,157 +723,6 @@ const template = `<!DOCTYPE html>
       </div>
 
     </main>
-
-    <!-- ======================================================== -->
-    <!-- 5. FLOATING COMPARISON DOCK                              -->
-    <!-- ======================================================== -->
-    <transition enter-active-class="transform ease-out duration-200" enter-from-class="translate-y-10 opacity-0" enter-to-class="translate-y-0 opacity-100" leave-active-class="transform ease-in duration-150" leave-from-class="translate-y-0 opacity-100" leave-to-class="translate-y-10 opacity-0">
-      <div v-if="compareList.length > 0" class="fixed bottom-5 inset-x-0 mx-auto max-w-lg z-40 px-4">
-        <div class="bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-3 shadow-2xl flex items-center justify-between gap-3">
-          
-          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-            <div 
-              v-for="cId in compareList" :key="cId" 
-              class="relative w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 group"
-            >
-              <img 
-                :src="getProductById(cId)?.Gambar_URL" 
-                :alt="getProductById(cId)?.Nama_Produk"
-                class="w-7 h-7 object-contain"
-              >
-              <button 
-                @click="removeCompare(cId)"
-                class="absolute -top-1 -right-1 w-4 h-4 bg-rose-500 text-white rounded-full flex items-center justify-center text-[10px] leading-none opacity-0 group-hover:opacity-100 transition-opacity"
-                title="Hapus dari perbandingan"
-              >
-                ×
-              </button>
-            </div>
-            <span class="text-xs text-slate-700 font-bold pl-1">
-              {{ compareList.length }} HP Dipilih
-            </span>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <button 
-              @click="compareList = []"
-              class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors"
-            >
-              Batal
-            </button>
-            <button 
-              @click="openCompareModal = true"
-              class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-black transition-colors flex items-center gap-1.5 shadow-xs"
-            >
-              <span>Bandingkan</span>
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </transition>
-
-    <!-- ======================================================== -->
-    <!-- 6. MODAL: SIDE-BY-SIDE COMPARISON                        -->
-    <!-- ======================================================== -->
-    <div v-if="openCompareModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-sm">
-      <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-        
-        <!-- Header -->
-        <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
-          <div>
-            <h3 class="text-base sm:text-lg font-black text-slate-900">Perbandingan Spesifikasi Smartphone</h3>
-            <p class="text-xs text-slate-500 mt-0.5">Membandingkan {{ compareList.length }} model smartphone secara langsung.</p>
-          </div>
-          <button @click="openCompareModal = false" class="p-2 rounded-xl bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        <!-- Comparison Grid Table -->
-        <div class="overflow-y-auto p-4 sm:p-6 space-y-6">
-          <div class="grid" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }" style="gap: 16px;">
-            
-            <div v-for="cId in compareList" :key="cId" class="bg-slate-50 rounded-2xl border border-slate-200 p-4 flex flex-col items-center text-center">
-              <img 
-                :src="getProductById(cId)?.Gambar_URL" 
-                :alt="getProductById(cId)?.Nama_Produk"
-                class="h-32 object-contain mb-3"
-              >
-              <div class="text-[11px] font-black text-slate-500 uppercase">{{ getProductById(cId)?.Brand }}</div>
-              <h4 class="font-bold text-slate-900 text-sm mt-0.5">{{ getProductById(cId)?.Nama_Produk }}</h4>
-              <div class="text-sm font-mono font-black text-telering-600 mt-1">
-                {{ formatRupiah(getCurrentPrice(getProductById(cId))) }}
-              </div>
-              <button 
-                @click="removeCompare(cId)"
-                class="mt-2 text-[11px] text-rose-500 hover:text-rose-600 font-semibold underline"
-              >
-                Hapus
-              </button>
-            </div>
-
-          </div>
-
-          <!-- Spec Comparison Rows -->
-          <div class="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-200 text-xs">
-            
-            <!-- Row: Chipset -->
-            <div class="p-3 bg-slate-100 font-bold text-slate-700">Chipset & Processor</div>
-            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-medium">
-                {{ getProductById(cId)?.Chipset || '-' }}
-              </div>
-            </div>
-
-            <!-- Row: RAM & Storage -->
-            <div class="p-3 bg-slate-100 font-bold text-slate-700">RAM & Memori Internal</div>
-            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-mono font-bold">
-                {{ getProductById(cId)?.RAM_ROM || '-' }}
-              </div>
-            </div>
-
-            <!-- Row: Baterai -->
-            <div class="p-3 bg-slate-100 font-bold text-slate-700">Baterai & Pengisian Daya</div>
-            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-medium">
-                {{ getProductById(cId)?.Baterai || '-' }}
-              </div>
-            </div>
-
-            <!-- Row: Layar -->
-            <div class="p-3 bg-slate-100 font-bold text-slate-700">Layar & Panel</div>
-            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-medium">
-                {{ getProductById(cId)?.Layar || '-' }}
-              </div>
-            </div>
-
-            <!-- Row: Kamera -->
-            <div class="p-3 bg-slate-100 font-bold text-slate-700">Kamera Utama & Selfie</div>
-            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-medium">
-                {{ getProductById(cId)?.Kamera || '-' }}
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-end">
-          <button @click="openCompareModal = false" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold shadow-xs transition-colors">
-            Tutup Perbandingan
-          </button>
-        </div>
-
-      </div>
-    </div>
 
     <!-- ======================================================== -->
     <!-- 7. MODAL: DETAIL PRODUK & CHEAT SHEET LIVE HOST          -->
@@ -980,26 +790,7 @@ const template = `<!DOCTYPE html>
                 </div>
               </div>
 
-              <!-- Quick Action Pills -->
-              <div class="flex flex-wrap gap-2 pt-1">
-                <button 
-                  @click="copyLiveCaption(activeProduct)"
-                  class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors flex items-center gap-1.5"
-                >
-                  <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                  </svg>
-                  <span>Salin Caption Live</span>
-                </button>
 
-                <button 
-                  @click="toggleCompare(activeProduct)"
-                  class="px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors"
-                  :class="isCompared(activeProduct.id) ? 'bg-telering-500 text-white border-telering-500' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
-                >
-                  {{ isCompared(activeProduct.id) ? '✓ Masuk Komparasi' : '+ Bandingkan' }}
-                </button>
-              </div>
 
             </div>
           </div>
@@ -1486,10 +1277,6 @@ const template = `<!DOCTYPE html>
         const filter5gOnly = ref(false);
         const filterNfcOnly = ref(false);
 
-        // Comparison Dock
-        const compareList = ref([]);
-        const openCompareModal = ref(false);
-
         // Detail Popup
         const activeProduct = ref(null);
 
@@ -1673,50 +1460,6 @@ const template = `<!DOCTYPE html>
           if (!item) return;
           if (item._selectedVariantIndex === undefined) item._selectedVariantIndex = -1;
           activeProduct.value = item;
-        };
-
-        // Comparison feature
-        const isCompared = (id) => compareList.value.includes(id);
-
-        const toggleCompare = (item) => {
-          if (!item || !item.id) return;
-          const idx = compareList.value.indexOf(item.id);
-          if (idx >= 0) {
-            compareList.value.splice(idx, 1);
-          } else {
-            if (compareList.value.length >= 3) {
-              showToast('Maksimal membandingkan 3 smartphone sekaligus!');
-              return;
-            }
-            compareList.value.push(item.id);
-            showToast('Ditambahkan ke perbandingan!');
-          }
-        };
-
-        const removeCompare = (id) => {
-          const idx = compareList.value.indexOf(id);
-          if (idx >= 0) compareList.value.splice(idx, 1);
-        };
-
-        const getProductById = (id) => products.value.find(p => p.id === id);
-
-        // Copy Live Caption for TikTok/Shopee Broadcast
-        const copyLiveCaption = (item) => {
-          if (!item) return;
-          const price = formatRupiah(getCurrentPrice(item));
-          const ram = getCurrentRam(item);
-          const caption = \`🔥 \${item.Nama_Produk} (\${ram}) - \${price}
-⚡ Chipset: \${item.Chipset || '-'}
-🔋 Baterai: \${item.Baterai || '-'}
-📸 Kamera: \${item.Kamera || '-'}
-📱 Layar: \${item.Layar || '-'}
-🛒 Order sekarang di Live Streaming TELERING!\`;
-
-          navigator.clipboard.writeText(caption).then(() => {
-            showToast('Caption spesifikasi live disalin ke clipboard!');
-          }).catch(() => {
-            showToast('Gagal menyalin caption.');
-          });
         };
 
         // Share Feature & QR Code
@@ -2187,7 +1930,6 @@ const template = `<!DOCTYPE html>
               searchInput.value?.focus();
             } else if (e.key === 'Escape') {
               if (activeProduct.value) activeProduct.value = null;
-              if (openCompareModal.value) openCompareModal.value = false;
               if (shareModalOpen.value) shareModalOpen.value = false;
               if (adminLoginModalOpen.value) adminLoginModalOpen.value = false;
               if (openExcelModal.value) openExcelModal.value = false;
@@ -2217,13 +1959,6 @@ const template = `<!DOCTYPE html>
           is5G,
           activeProduct,
           openDetail,
-          compareList,
-          openCompareModal,
-          isCompared,
-          toggleCompare,
-          removeCompare,
-          getProductById,
-          copyLiveCaption,
           toastMessage,
           shareModalOpen,
           shareUrl,
