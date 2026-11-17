@@ -11,6 +11,7 @@ const template = `<!DOCTYPE html>
   <meta name="page-type" content="software">
   <meta name="site-kind" content="software">
   <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/png" href="logo_telering.png?v=2">
   <title>TELERING — Katalog Spesifikasi & Cheat Sheet Host Live</title>
   
   <!-- Typography: Plus Jakarta Sans (Editorial & UI) & JetBrains Mono (Prices) -->
@@ -210,7 +211,7 @@ const template = `<!DOCTYPE html>
           <div class="flex items-center gap-3">
             <a href="#" @click.prevent="resetAllFilters" class="flex items-center gap-2 group pressable" title="TELERING — Kembali ke Semua Katalog">
               <img 
-                src="logo_telering.png" 
+                src="logo_telering.png?v=2" 
                 alt="TELERING Logo"
                 class="h-7 sm:h-8 w-auto object-contain transition-transform group-hover:scale-102"
                 onerror="this.style.display='none'; document.getElementById('text-logo-fallback').style.display='flex';"
