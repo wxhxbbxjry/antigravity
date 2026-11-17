@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="id" class="h-full dark">
+<html lang="id" class="h-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="page-type" content="software">
   <meta name="site-kind" content="software">
-  <meta name="theme-color" content="#0a0b0e">
+  <meta name="theme-color" content="#ffffff">
   <title>TELERING — Katalog Spesifikasi & Cheat Sheet Host Live</title>
   
-  <!-- Typography: Plus Jakarta Sans (Editorial & UI) -->
+  <!-- Typography: Plus Jakarta Sans (Editorial & UI) & JetBrains Mono (Prices) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
@@ -25,19 +25,17 @@
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            base: {
-              ground: '#0a0b0e',
-              card: '#121418',
-              cardHover: '#181b21',
-              border: '#1f232b',
-              borderHover: '#2a303a',
-            },
             telering: {
               50: '#fff1f0',
+              100: '#ffe1de',
               500: '#ff3823',
               600: '#e62b17',
               700: '#cc2110',
             }
+          },
+          boxShadow: {
+            'card': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
+            'card-hover': '0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04)',
           }
         }
       }
@@ -57,15 +55,15 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
   <style>
-    /* Precision Dark System Styles */
+    /* Clean Bright Light System */
     :root {
-      --bg-ground: #0a0b0e;
-      --surface-card: #121418;
-      --border-hairline: #1f232b;
-      --border-highlight: #2a303a;
-      --ink-primary: #f3f4f6;
-      --ink-secondary: #9ca3af;
-      --ink-muted: #6b7280;
+      --bg-ground: #f8fafc;
+      --surface-card: #ffffff;
+      --border-hairline: #e2e8f0;
+      --border-highlight: #cbd5e1;
+      --ink-primary: #0f172a;
+      --ink-secondary: #475569;
+      --ink-muted: #94a3b8;
     }
 
     body {
@@ -82,14 +80,14 @@
       height: 5px;
     }
     ::-webkit-scrollbar-track {
-      background: #0a0b0e;
+      background: #f1f5f9;
     }
     ::-webkit-scrollbar-thumb {
-      background: #1f232b;
+      background: #cbd5e1;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #2f3542;
+      background: #94a3b8;
     }
     
     [v-cloak] {
@@ -102,15 +100,15 @@
       outline-offset: 2px;
     }
 
-    /* Micro-interactions: Restrained 2px lift, zero blur at rest */
+    /* Micro-interactions: Smooth 2px lift on white card */
     .card-lift {
-      transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, background-color 0.18s ease;
+      transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, box-shadow 0.18s ease;
       will-change: transform;
     }
     .card-lift:hover {
       transform: translateY(-2px);
-      border-color: var(--border-highlight);
-      background-color: #16181f;
+      border-color: #cbd5e1;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
     }
 
     /* Image zoom within optical frame */
@@ -118,7 +116,7 @@
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card-lift:hover .img-frame img {
-      transform: scale(1.025);
+      transform: scale(1.03);
     }
 
     /* Hide scrollbars for pill rails */
@@ -138,15 +136,15 @@
   </style>
 </head>
 
-<body class="min-h-full flex flex-col font-sans selection:bg-telering-600 selection:text-white">
+<body class="min-h-full flex flex-col font-sans bg-slate-50 text-slate-900 selection:bg-telering-500 selection:text-white">
   
   <div id="app" v-cloak class="min-h-screen flex flex-col">
 
     <!-- ======================================================== -->
-    <!-- 1. TOP APP BAR (EDITORIAL PRECISION NAV)                 -->
+    <!-- 1. TOP APP BAR (CRISP BRIGHT WHITE NAVBAR)               -->
     <!-- ======================================================== -->
-    <header class="sticky top-0 z-30 bg-[#0a0b0e]/95 backdrop-blur-md border-b border-[#1f232b]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 sm:py-3">
         <div class="flex items-center justify-between gap-3">
           
           <!-- Brand Mark & Live Badge -->
@@ -155,25 +153,25 @@
               <img 
                 src="logo_telering.png" 
                 alt="TELERING Logo"
-                class="h-7 sm:h-8 w-auto object-contain transition-opacity group-hover:opacity-90"
+                class="h-7 sm:h-8 w-auto object-contain transition-transform group-hover:scale-102"
                 onerror="this.style.display='none'; document.getElementById('text-logo-fallback').style.display='flex';"
               >
-              <div id="text-logo-fallback" style="display:none" class="items-center gap-1 font-extrabold tracking-tight text-white text-base">
+              <div id="text-logo-fallback" style="display:none" class="items-center gap-1 font-extrabold tracking-tight text-slate-900 text-base">
                 <span class="bg-telering-500 text-white px-2 py-0.5 rounded">TELE</span><span>RING</span>
               </div>
             </a>
 
             <!-- Realtime Cloud Sync Status Pill -->
-            <div class="hidden sm:inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#121418] border border-[#1f232b] text-xs">
+            <div class="hidden sm:inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200/80 text-xs">
               <span class="relative flex h-2 w-2">
-                <span v-if="cloudConnected" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span v-if="cloudConnected" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2" :class="cloudConnected ? 'bg-emerald-500' : 'bg-amber-500'"></span>
               </span>
-              <span class="text-xs text-[#9ca3af] font-medium">
+              <span class="text-xs text-slate-600 font-medium">
                 {{ cloudConnected ? 'Cloud Sync Aktif' : 'Menghubungkan...' }}
               </span>
-              <span class="text-[#3b424f]">·</span>
-              <span class="text-xs font-mono font-semibold text-[#f3f4f6]">{{ filteredProducts.length }} Model</span>
+              <span class="text-slate-300">·</span>
+              <span class="text-xs font-mono font-bold text-slate-800">{{ filteredProducts.length }} Model</span>
             </div>
           </div>
 
@@ -181,11 +179,11 @@
           <div class="flex items-center gap-2">
             
             <!-- View Mode Switcher -->
-            <div class="flex items-center bg-[#121418] p-0.5 rounded-lg border border-[#1f232b]" role="group" aria-label="Mode Tampilan">
+            <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200" role="group" aria-label="Mode Tampilan">
               <button 
                 @click="viewMode = 'grid'"
-                class="px-2.5 py-1 rounded-md text-xs font-semibold transition-colors flex items-center gap-1.5"
-                :class="viewMode === 'grid' ? 'bg-[#1f232b] text-white' : 'text-[#9ca3af] hover:text-white'"
+                class="px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center gap-1.5"
+                :class="viewMode === 'grid' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-900'"
                 title="Tampilan Kartu Katalog"
               >
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -195,8 +193,8 @@
               </button>
               <button 
                 @click="viewMode = 'table'"
-                class="px-2.5 py-1 rounded-md text-xs font-semibold transition-colors flex items-center gap-1.5"
-                :class="viewMode === 'table' ? 'bg-[#1f232b] text-white' : 'text-[#9ca3af] hover:text-white'"
+                class="px-2.5 py-1 rounded-md text-xs font-bold transition-all flex items-center gap-1.5"
+                :class="viewMode === 'table' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-900'"
                 title="Tampilan Tabel Host Live"
               >
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -206,11 +204,11 @@
               </button>
             </div>
 
-            <!-- Compare Drawer Trigger (Visible when >= 1 selected) -->
+            <!-- Compare Trigger -->
             <button 
               v-if="compareList.length > 0"
               @click="openCompareModal = true"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1f232b] hover:bg-[#282e38] text-white border border-[#2a303a] transition-all"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-all"
               title="Buka Perbandingan Spesifikasi"
             >
               <span class="w-2 h-2 rounded-full bg-telering-500"></span>
@@ -221,10 +219,10 @@
             <!-- Bagikan Link / QR -->
             <button 
               @click="openShareModal"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#121418] hover:bg-[#1a1c22] text-[#f3f4f6] border border-[#1f232b] transition-colors"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs transition-colors"
               title="Bagikan Katalog & QR Code"
             >
-              <svg class="w-3.5 h-3.5 text-[#9ca3af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
               </svg>
               <span class="hidden sm:inline">Bagikan</span>
@@ -234,7 +232,7 @@
             <button 
               v-if="!isAdmin"
               @click="openAdminLoginModal"
-              class="p-2 rounded-lg bg-[#121418] hover:bg-[#1a1c22] text-[#9ca3af] hover:text-white border border-[#1f232b] transition-colors"
+              class="p-2 rounded-lg bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200 shadow-xs transition-colors"
               title="Akses Admin"
             >
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -246,7 +244,7 @@
             <div v-else class="flex items-center gap-1.5">
               <button 
                 @click="openAddProductModal"
-                class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-telering-500 hover:bg-telering-600 text-white transition-colors"
+                class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-telering-500 hover:bg-telering-600 text-white shadow-xs transition-colors"
               >
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
@@ -256,7 +254,7 @@
 
               <button 
                 @click="openExcelModal = true"
-                class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-medium bg-[#121418] hover:bg-[#1a1c22] text-[#f3f4f6] border border-[#1f232b] transition-colors"
+                class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs transition-colors"
                 title="Kelola Excel"
               >
                 <span class="hidden sm:inline">Excel</span>
@@ -265,7 +263,7 @@
 
               <button 
                 @click="logoutAdmin"
-                class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-medium bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 transition-colors"
+                class="p-2 sm:px-2.5 sm:py-1.5 rounded-lg text-xs font-bold bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 transition-colors"
                 title="Keluar Admin"
               >
                 Keluar
@@ -279,9 +277,9 @@
     </header>
 
     <!-- ======================================================== -->
-    <!-- 2. STICKY FILTER & SEARCH RAIL (CLEAN EDITORIAL BAR)     -->
+    <!-- 2. STICKY FILTER & SEARCH RAIL (CLEAN BRIGHT BAR)        -->
     <!-- ======================================================== -->
-    <div class="sticky top-[53px] sm:top-[57px] z-20 bg-[#0a0b0e]/95 backdrop-blur-md border-b border-[#1f232b]">
+    <div class="sticky top-[53px] sm:top-[57px] z-20 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 space-y-2.5">
         
         <!-- Search & Quick Sort Row -->
@@ -289,7 +287,7 @@
           
           <!-- Precision Search Field -->
           <div class="relative flex-1">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#6b7280]">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -299,12 +297,12 @@
               type="text" 
               v-model="searchQuery"
               placeholder="Cari tipe HP, brand, chipset, kamera, atau varian..."
-              class="w-full pl-9 pr-9 py-2 bg-[#121418] hover:bg-[#16181f] focus:bg-[#16181f] border border-[#1f232b] focus:border-[#2a303a] rounded-lg text-xs sm:text-sm text-[#f3f4f6] placeholder-[#6b7280] focus:outline-none transition-colors"
+              class="w-full pl-9 pr-9 py-2 bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 focus:border-slate-400 rounded-lg text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none transition-colors shadow-2xs"
             >
             <button 
               v-if="searchQuery" 
               @click="searchQuery = ''" 
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#6b7280] hover:text-[#f3f4f6]"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700"
               title="Bersihkan Pencarian"
             >
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -317,14 +315,14 @@
           <div class="shrink-0 relative">
             <select 
               v-model="sortBy"
-              class="appearance-none bg-[#121418] hover:bg-[#16181f] border border-[#1f232b] text-[#f3f4f6] text-xs font-medium rounded-lg py-2 pl-3 pr-8 focus:outline-none focus:border-[#2a303a] cursor-pointer"
+              class="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold rounded-lg py-2 pl-3 pr-8 focus:outline-none focus:border-slate-400 cursor-pointer shadow-2xs"
             >
               <option value="featured">Paling Populer</option>
               <option value="price-asc">Harga Terendah</option>
               <option value="price-desc">Harga Tertinggi</option>
               <option value="name-asc">Nama Model (A-Z)</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-[#6b7280]">
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-slate-400">
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -339,71 +337,71 @@
           <!-- All Brands Chip -->
           <button 
             @click="selectedBrand = 'all'"
-            class="px-2.5 py-1 rounded-md font-medium shrink-0 transition-colors border text-[11px] flex items-center gap-1.5"
-            :class="selectedBrand === 'all' ? 'bg-white text-black border-white' : 'bg-[#121418] text-[#9ca3af] border-[#1f232b] hover:border-[#2a303a] hover:text-[#f3f4f6]'"
+            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1.5"
+            :class="selectedBrand === 'all' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70 hover:text-slate-900'"
           >
             <span>Semua Brand</span>
-            <span class="px-1.5 py-0.2 rounded text-[10px]" :class="selectedBrand === 'all' ? 'bg-black/10 text-black' : 'bg-[#1f232b] text-[#9ca3af]'">{{ products.length }}</span>
+            <span class="px-1.5 py-0.2 rounded text-[10px]" :class="selectedBrand === 'all' ? 'bg-slate-800 text-white' : 'bg-white text-slate-600 border border-slate-200'">{{ products.length }}</span>
           </button>
           
           <!-- Brand List Chips -->
           <button 
             v-for="b in availableBrands" :key="b.name"
             @click="selectedBrand = b.name"
-            class="px-2.5 py-1 rounded-md font-medium shrink-0 transition-colors border text-[11px] flex items-center gap-1.5"
-            :class="selectedBrand === b.name ? 'bg-white text-black border-white' : 'bg-[#121418] text-[#9ca3af] border-[#1f232b] hover:border-[#2a303a] hover:text-[#f3f4f6]'"
+            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1.5"
+            :class="selectedBrand === b.name ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70 hover:text-slate-900'"
           >
             <span>{{ b.name }}</span>
-            <span class="px-1.5 py-0.2 rounded text-[10px]" :class="selectedBrand === b.name ? 'bg-black/10 text-black' : 'bg-[#1f232b] text-[#9ca3af]'">{{ b.count }}</span>
+            <span class="px-1.5 py-0.2 rounded text-[10px]" :class="selectedBrand === b.name ? 'bg-slate-800 text-white' : 'bg-white text-slate-600 border border-slate-200'">{{ b.count }}</span>
           </button>
 
-          <div class="h-3.5 w-[1px] bg-[#1f232b] mx-1 shrink-0"></div>
+          <div class="h-3.5 w-[1px] bg-slate-200 mx-1 shrink-0"></div>
 
           <!-- Price Range Chips -->
           <button 
             @click="togglePriceFilter('under-2m')"
-            class="px-2.5 py-1 rounded-md font-medium shrink-0 transition-colors border text-[11px]"
-            :class="selectedPriceRange === 'under-2m' ? 'bg-[#1f232b] text-white border-[#3a4250]' : 'bg-[#121418] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
+            :class="selectedPriceRange === 'under-2m' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             &lt; 2 Juta
           </button>
           <button 
             @click="togglePriceFilter('2m-4m')"
-            class="px-2.5 py-1 rounded-md font-medium shrink-0 transition-colors border text-[11px]"
-            :class="selectedPriceRange === '2m-4m' ? 'bg-[#1f232b] text-white border-[#3a4250]' : 'bg-[#121418] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
+            :class="selectedPriceRange === '2m-4m' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             2 - 4 Juta
           </button>
           <button 
             @click="togglePriceFilter('4m-7m')"
-            class="px-2.5 py-1 rounded-md font-medium shrink-0 transition-colors border text-[11px]"
-            :class="selectedPriceRange === '4m-7m' ? 'bg-[#1f232b] text-white border-[#3a4250]' : 'bg-[#121418] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
+            :class="selectedPriceRange === '4m-7m' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             4 - 7 Juta
           </button>
           <button 
             @click="togglePriceFilter('above-7m')"
-            class="px-2.5 py-1 rounded-md font-medium shrink-0 transition-colors border text-[11px]"
-            :class="selectedPriceRange === 'above-7m' ? 'bg-[#1f232b] text-white border-[#3a4250]' : 'bg-[#121418] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px]"
+            :class="selectedPriceRange === 'above-7m' ? 'bg-slate-900 text-white border-slate-900 shadow-xs' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             &gt; 7 Juta
           </button>
 
-          <div class="h-3.5 w-[1px] bg-[#1f232b] mx-1 shrink-0"></div>
+          <div class="h-3.5 w-[1px] bg-slate-200 mx-1 shrink-0"></div>
 
           <!-- Feature Filters -->
           <button 
             @click="filter5gOnly = !filter5gOnly"
-            class="px-2.5 py-1 rounded-md font-medium shrink-0 transition-colors border text-[11px] flex items-center gap-1"
-            :class="filter5gOnly ? 'bg-telering-500/20 text-telering-400 border-telering-500/40' : 'bg-[#121418] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1"
+            :class="filter5gOnly ? 'bg-telering-50 text-telering-600 border-telering-300' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             <span>5G</span>
           </button>
 
           <button 
             @click="filterNfcOnly = !filterNfcOnly"
-            class="px-2.5 py-1 rounded-md font-medium shrink-0 transition-colors border text-[11px] flex items-center gap-1"
-            :class="filterNfcOnly ? 'bg-sky-500/20 text-sky-400 border-sky-500/40' : 'bg-[#121418] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+            class="px-2.5 py-1 rounded-md font-bold shrink-0 transition-colors border text-[11px] flex items-center gap-1"
+            :class="filterNfcOnly ? 'bg-sky-50 text-sky-600 border-sky-300' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/70'"
           >
             <span>NFC</span>
           </button>
@@ -412,7 +410,7 @@
           <button 
             v-if="isFiltered" 
             @click="resetAllFilters"
-            class="px-2 py-1 rounded-md font-medium shrink-0 text-telering-500 hover:text-telering-400 text-[11px] underline underline-offset-2 ml-1"
+            class="px-2 py-1 rounded-md font-bold shrink-0 text-telering-600 hover:text-telering-700 text-[11px] underline underline-offset-2 ml-1"
           >
             Reset
           </button>
@@ -426,76 +424,76 @@
     <!-- 3. TOAST NOTIFICATION                                    -->
     <!-- ======================================================== -->
     <transition enter-active-class="transform ease-out duration-200 transition" enter-from-class="translate-y-2 opacity-0" enter-to-class="translate-y-0 opacity-100" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100" leave-to-class="opacity-0">
-      <div v-if="toastMessage" class="fixed bottom-6 right-6 z-50 bg-[#16181f] text-[#f3f4f6] px-4 py-3 rounded-lg shadow-xl border border-[#2a303a] text-xs font-semibold flex items-center gap-2.5 max-w-sm">
+      <div v-if="toastMessage" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-800 text-xs font-bold flex items-center gap-2.5 max-w-sm">
         <span class="w-2 h-2 rounded-full bg-telering-500 shrink-0"></span>
         <span>{{ toastMessage }}</span>
       </div>
     </transition>
 
     <!-- ======================================================== -->
-    <!-- 4. MAIN CONTENT AREA                                     -->
+    <!-- 4. MAIN CONTENT AREA (BRIGHT EDITORIAL CATALOG)          -->
     <!-- ======================================================== -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
 
-      <!-- Hero Header Statement (One Intentional Headline, Zero Clutter) -->
-      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-[#1f232b] pb-4">
+      <!-- Hero Header Statement -->
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-slate-200/80 pb-4">
         <div>
-          <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-[#f3f4f6]">
+          <h1 class="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
             Katalog Spesifikasi & Harga HP
           </h1>
-          <p class="text-xs sm:text-sm text-[#9ca3af] mt-1">
+          <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
             Data spesifikasi resmi & cheat sheet poin jualan live streaming TELERING.
           </p>
         </div>
 
-        <div class="text-xs text-[#6b7280] font-mono">
-          Menampilkan <span class="text-[#f3f4f6] font-semibold">{{ filteredProducts.length }}</span> dari {{ products.length }} produk
+        <div class="text-xs text-slate-500 font-mono font-medium">
+          Menampilkan <span class="text-slate-900 font-bold">{{ filteredProducts.length }}</span> dari {{ products.length }} produk
         </div>
       </div>
 
       <!-- Empty State -->
-      <div v-if="filteredProducts.length === 0" class="py-16 text-center bg-[#121418] rounded-xl border border-[#1f232b]">
-        <div class="w-12 h-12 rounded-full bg-[#1a1c22] mx-auto flex items-center justify-center text-[#6b7280] mb-3">
+      <div v-if="filteredProducts.length === 0" class="py-16 text-center bg-white rounded-2xl border border-slate-200 shadow-xs">
+        <div class="w-12 h-12 rounded-full bg-slate-100 mx-auto flex items-center justify-center text-slate-400 mb-3">
           <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <h3 class="text-sm font-semibold text-[#f3f4f6]">Tidak Ada Smartphone yang Sesuai</h3>
-        <p class="text-xs text-[#6b7280] mt-1">Coba sesuaikan kata kunci pencarian atau bersihkan filter yang aktif.</p>
+        <h3 class="text-sm font-bold text-slate-900">Tidak Ada Smartphone yang Sesuai</h3>
+        <p class="text-xs text-slate-500 mt-1">Coba sesuaikan kata kunci pencarian atau bersihkan filter yang aktif.</p>
         <button 
           @click="resetAllFilters"
-          class="mt-4 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#1f232b] hover:bg-[#282e38] text-white border border-[#2a303a] transition-colors"
+          class="mt-4 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-colors"
         >
           Bersihkan Semua Filter
         </button>
       </div>
 
       <!-- ==================================================== -->
-      <!-- 4A. GRID VIEW: THE HIGH-TASTE PRODUCT CARD           -->
+      <!-- 4A. GRID VIEW: BRIGHT HIGH-TASTE PRODUCT CARDS       -->
       <!-- ==================================================== -->
       <div v-else-if="viewMode === 'grid'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         
         <article 
           v-for="item in filteredProducts" 
           :key="item.id"
-          class="card-lift bg-[#121418] border border-[#1f232b] rounded-xl p-4 flex flex-col justify-between group relative overflow-hidden"
-          :class="{'ring-1 ring-telering-500 border-telering-500/50': isCompared(item.id)}"
+          class="card-lift bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between group relative overflow-hidden shadow-card"
+          :class="{'ring-2 ring-telering-500 border-telering-500': isCompared(item.id)}"
         >
 
           <!-- Top Section: Visual Frame + Badge + Compare Checkbox -->
           <div>
             
             <!-- Header bar inside card: Brand label & Compare Check -->
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="text-[11px] font-bold text-[#9ca3af] uppercase tracking-wider">
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="text-[11px] font-black text-slate-500 uppercase tracking-wider">
                 {{ item.Brand }}
               </span>
 
               <!-- Compare Checkbox -->
               <button 
                 @click.stop="toggleCompare(item)"
-                class="px-2 py-0.5 rounded text-[11px] font-medium transition-colors border flex items-center gap-1"
-                :class="isCompared(item.id) ? 'bg-telering-500 text-white border-telering-500' : 'bg-[#181a20] text-[#6b7280] border-[#1f232b] hover:text-[#9ca3af]'"
+                class="px-2 py-0.5 rounded text-[11px] font-bold transition-colors border flex items-center gap-1"
+                :class="isCompared(item.id) ? 'bg-telering-500 text-white border-telering-500' : 'bg-slate-50 text-slate-500 border-slate-200 hover:text-slate-800 hover:bg-slate-100'"
                 title="Bandingkan dengan HP lain"
               >
                 <svg v-if="isCompared(item.id)" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -505,23 +503,23 @@
               </button>
             </div>
 
-            <!-- Optical Image Frame (Quiet, clean aspect ratio, dark field) -->
+            <!-- Optical Image Frame (Clean Light Frame) -->
             <div 
               @click="openDetail(item)"
-              class="img-frame cursor-pointer h-44 rounded-lg bg-[#0e1014] border border-[#1a1d24] flex items-center justify-center p-3 relative overflow-hidden group/img"
+              class="img-frame cursor-pointer h-44 rounded-xl bg-slate-50/80 border border-slate-100 flex items-center justify-center p-3 relative overflow-hidden group/img"
             >
               <img 
                 :src="item.Gambar_URL" 
                 :alt="item.Nama_Produk"
-                class="max-h-full max-w-full object-contain filter drop-shadow-md"
+                class="max-h-full max-w-full object-contain filter drop-shadow-sm"
                 loading="lazy"
-                onerror="this.src='https://placehold.co/300x400/121418/6b7280?text=Spek+HP';"
+                onerror="this.src='https://placehold.co/300x400/f8fafc/94a3b8?text=Spek+HP';"
               >
 
               <!-- Quick View Pill Overlay on Hover -->
-              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="px-2.5 py-1 rounded bg-[#121418] text-[#f3f4f6] text-xs font-semibold border border-[#2a303a]">
-                  Buka Cheat Sheet
+              <div class="absolute inset-0 bg-slate-900/10 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-2.5 py-1 rounded-lg bg-white/95 text-slate-900 text-xs font-bold border border-slate-200 shadow-sm">
+                  Lihat Spek
                 </span>
               </div>
             </div>
@@ -530,7 +528,7 @@
             <div class="mt-3.5 space-y-1">
               <h2 
                 @click="openDetail(item)"
-                class="text-sm sm:text-base font-bold text-[#f3f4f6] hover:text-white cursor-pointer line-clamp-1 leading-snug"
+                class="text-sm sm:text-base font-black text-slate-900 hover:text-telering-600 cursor-pointer line-clamp-1 leading-snug"
                 :title="item.Nama_Produk"
               >
                 {{ item.Nama_Produk }}
@@ -540,23 +538,23 @@
               <div class="flex items-center gap-1.5 flex-wrap pt-0.5">
                 <span 
                   v-if="!item.variants || item.variants.length === 0"
-                  class="px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-[#181b21] text-[#9ca3af] border border-[#1f232b]"
+                  class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200/80"
                 >
                   {{ item.RAM_ROM }}
                 </span>
                 <template v-else>
                   <button 
                     @click.stop="item._selectedVariantIndex = -1"
-                    class="px-2 py-0.5 rounded text-[11px] font-mono font-medium border transition-colors"
-                    :class="item._selectedVariantIndex === -1 ? 'bg-[#1f232b] text-white border-[#3a4250]' : 'bg-[#181b21] text-[#6b7280] border-[#1f232b] hover:text-white'"
+                    class="px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-colors"
+                    :class="item._selectedVariantIndex === -1 ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ item.RAM_ROM }}
                   </button>
                   <button 
                     v-for="(v, vIdx) in item.variants" :key="vIdx"
                     @click.stop="item._selectedVariantIndex = vIdx"
-                    class="px-2 py-0.5 rounded text-[11px] font-mono font-medium border transition-colors"
-                    :class="item._selectedVariantIndex === vIdx ? 'bg-[#1f232b] text-white border-[#3a4250]' : 'bg-[#181b21] text-[#6b7280] border-[#1f232b] hover:text-white'"
+                    class="px-2 py-0.5 rounded text-[11px] font-mono font-bold border transition-colors"
+                    :class="item._selectedVariantIndex === vIdx ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ v.ram_rom }}
                   </button>
@@ -564,53 +562,53 @@
               </div>
             </div>
 
-            <!-- Price Block (Clean Tabular Display, No Clutter) -->
-            <div class="mt-3 pt-2.5 border-t border-[#1f232b]/80 flex items-baseline justify-between">
+            <!-- Price Block -->
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-baseline justify-between">
               <div>
-                <div class="text-base sm:text-lg font-mono font-bold text-[#f3f4f6]">
+                <div class="text-base sm:text-lg font-mono font-black text-slate-900">
                   {{ formatRupiah(getCurrentPrice(item)) }}
                 </div>
-                <div v-if="item.Harga_Normal && item.Harga_Normal > getCurrentPrice(item)" class="text-[11px] text-[#6b7280] line-through font-mono">
+                <div v-if="item.Harga_Normal && item.Harga_Normal > getCurrentPrice(item)" class="text-[11px] text-slate-400 line-through font-mono">
                   {{ formatRupiah(item.Harga_Normal) }}
                 </div>
               </div>
 
-              <span v-if="is5G(item)" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-telering-500/10 text-telering-400 border border-telering-500/20">
+              <span v-if="is5G(item)" class="px-1.5 py-0.5 rounded text-[10px] font-black bg-telering-50 text-telering-600 border border-telering-200">
                 5G
               </span>
             </div>
 
-            <!-- Spec Matrix (4-Row Aligned Data Strip) -->
-            <div class="mt-3 bg-[#0d0e12] rounded-lg border border-[#1a1c22] p-2.5 space-y-1.5 text-xs">
+            <!-- Spec Matrix (Clean Light Strip) -->
+            <div class="mt-3 bg-slate-50 rounded-xl border border-slate-200/70 p-2.5 space-y-1.5 text-xs">
               
               <!-- Chipset -->
               <div class="flex items-center justify-between gap-2">
-                <span class="text-[#6b7280] text-[11px] shrink-0">Chipset</span>
-                <span class="text-[#d1d5db] font-medium text-[11px] truncate text-right" :title="item.Chipset || '-'">
+                <span class="text-slate-500 text-[11px] shrink-0 font-medium">Chipset</span>
+                <span class="text-slate-800 font-semibold text-[11px] truncate text-right" :title="item.Chipset || '-'">
                   {{ item.Chipset || '-' }}
                 </span>
               </div>
 
               <!-- Baterai -->
               <div class="flex items-center justify-between gap-2">
-                <span class="text-[#6b7280] text-[11px] shrink-0">Baterai</span>
-                <span class="text-[#d1d5db] font-medium text-[11px] truncate text-right" :title="item.Baterai || '-'">
+                <span class="text-slate-500 text-[11px] shrink-0 font-medium">Baterai</span>
+                <span class="text-slate-800 font-semibold text-[11px] truncate text-right" :title="item.Baterai || '-'">
                   {{ item.Baterai || '-' }}
                 </span>
               </div>
 
               <!-- Layar -->
               <div class="flex items-center justify-between gap-2">
-                <span class="text-[#6b7280] text-[11px] shrink-0">Layar</span>
-                <span class="text-[#d1d5db] font-medium text-[11px] truncate text-right" :title="item.Layar || '-'">
+                <span class="text-slate-500 text-[11px] shrink-0 font-medium">Layar</span>
+                <span class="text-slate-800 font-semibold text-[11px] truncate text-right" :title="item.Layar || '-'">
                   {{ item.Layar || '-' }}
                 </span>
               </div>
 
               <!-- Kamera -->
               <div class="flex items-center justify-between gap-2">
-                <span class="text-[#6b7280] text-[11px] shrink-0">Kamera</span>
-                <span class="text-[#d1d5db] font-medium text-[11px] truncate text-right" :title="item.Kamera || '-'">
+                <span class="text-slate-500 text-[11px] shrink-0 font-medium">Kamera</span>
+                <span class="text-slate-800 font-semibold text-[11px] truncate text-right" :title="item.Kamera || '-'">
                   {{ item.Kamera || '-' }}
                 </span>
               </div>
@@ -620,14 +618,14 @@
           </div>
 
           <!-- Bottom Actions: Copy Live Caption & Detail -->
-          <div class="mt-3.5 pt-3 border-t border-[#1f232b] flex items-center gap-2">
+          <div class="mt-3.5 pt-3 border-t border-slate-100 flex items-center gap-2">
             
             <button 
               @click="copyLiveCaption(item)"
-              class="flex-1 py-1.5 px-2.5 rounded-lg text-xs font-semibold bg-[#181b21] hover:bg-[#20242c] text-[#f3f4f6] border border-[#1f232b] transition-colors flex items-center justify-center gap-1.5"
+              class="flex-1 py-1.5 px-2.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors flex items-center justify-center gap-1.5"
               title="Salin caption ringkas untuk live streaming"
             >
-              <svg class="w-3.5 h-3.5 text-[#9ca3af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
               </svg>
               <span>Salin Spek</span>
@@ -635,7 +633,7 @@
 
             <button 
               @click="openDetail(item)"
-              class="py-1.5 px-3 rounded-lg text-xs font-semibold bg-white hover:bg-slate-200 text-black transition-colors"
+              class="py-1.5 px-3 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs transition-colors"
               title="Buka spesifikasi lengkap & poin jualan"
             >
               Detail
@@ -645,7 +643,7 @@
             <button 
               v-if="isAdmin"
               @click="openEditProductModal(item)"
-              class="p-1.5 rounded-lg bg-[#181b21] hover:bg-[#20242c] text-[#9ca3af] hover:text-white border border-[#1f232b]"
+              class="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border border-slate-200"
               title="Edit Data Produk"
             >
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -662,11 +660,11 @@
       <!-- ==================================================== -->
       <!-- 4B. TABLE VIEW: LIVE HOST SPEED MATRIX               -->
       <!-- ==================================================== -->
-      <div v-else class="bg-[#121418] border border-[#1f232b] rounded-xl overflow-hidden shadow-sm">
+      <div v-else class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-card">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs border-collapse">
             <thead>
-              <tr class="bg-[#0e1014] text-[#9ca3af] border-b border-[#1f232b] font-semibold text-[11px]">
+              <tr class="bg-slate-50 text-slate-600 border-b border-slate-200 font-bold text-[11px]">
                 <th class="py-3 px-4 shrink-0">Model Smartphone</th>
                 <th class="py-3 px-4">Varian & Harga</th>
                 <th class="py-3 px-4">Chipset</th>
@@ -676,12 +674,12 @@
                 <th class="py-3 px-4 text-right">Aksi Host Live</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-[#1f232b]">
+            <tbody class="divide-y divide-slate-100">
               <tr 
                 v-for="item in filteredProducts" 
                 :key="item.id"
-                class="hover:bg-[#16181f] transition-colors group"
-                :class="{'bg-[#181a20]': isCompared(item.id)}"
+                class="hover:bg-slate-50 transition-colors group"
+                :class="{'bg-telering-50/40': isCompared(item.id)}"
               >
                 <!-- Model & Brand -->
                 <td class="py-3 px-4">
@@ -689,15 +687,15 @@
                     <img 
                       :src="item.Gambar_URL" 
                       :alt="item.Nama_Produk"
-                      class="w-10 h-10 object-contain rounded bg-[#0e1014] p-1 border border-[#1f232b] shrink-0"
+                      class="w-10 h-10 object-contain rounded-lg bg-slate-50 p-1 border border-slate-200 shrink-0"
                       loading="lazy"
-                      onerror="this.src='https://placehold.co/100x100/121418/6b7280?text=HP';"
+                      onerror="this.src='https://placehold.co/100x100/f8fafc/94a3b8?text=HP';"
                     >
                     <div>
-                      <div class="font-bold text-[#f3f4f6] text-xs sm:text-sm group-hover:text-white cursor-pointer" @click="openDetail(item)">
+                      <div class="font-bold text-slate-900 text-xs sm:text-sm group-hover:text-telering-600 cursor-pointer" @click="openDetail(item)">
                         {{ item.Nama_Produk }}
                       </div>
-                      <div class="text-[11px] text-[#6b7280]">
+                      <div class="text-[11px] text-slate-500 font-semibold">
                         {{ item.Brand }}
                       </div>
                     </div>
@@ -706,31 +704,31 @@
 
                 <!-- Price & Variant -->
                 <td class="py-3 px-4 font-mono">
-                  <div class="font-bold text-[#f3f4f6] text-xs sm:text-sm">
+                  <div class="font-bold text-slate-900 text-xs sm:text-sm">
                     {{ formatRupiah(getCurrentPrice(item)) }}
                   </div>
-                  <div class="text-[11px] text-[#9ca3af]">
+                  <div class="text-[11px] text-slate-500 font-medium">
                     {{ getCurrentRam(item) }}
                   </div>
                 </td>
 
                 <!-- Chipset -->
-                <td class="py-3 px-4 text-[#d1d5db]">
+                <td class="py-3 px-4 text-slate-700 font-medium">
                   <span class="line-clamp-1" :title="item.Chipset">{{ item.Chipset || '-' }}</span>
                 </td>
 
                 <!-- Layar -->
-                <td class="py-3 px-4 text-[#d1d5db]">
+                <td class="py-3 px-4 text-slate-700 font-medium">
                   <span class="line-clamp-1" :title="item.Layar">{{ item.Layar || '-' }}</span>
                 </td>
 
                 <!-- Baterai -->
-                <td class="py-3 px-4 text-[#d1d5db]">
+                <td class="py-3 px-4 text-slate-700 font-medium">
                   <span class="line-clamp-1" :title="item.Baterai">{{ item.Baterai || '-' }}</span>
                 </td>
 
                 <!-- Kamera -->
-                <td class="py-3 px-4 text-[#d1d5db]">
+                <td class="py-3 px-4 text-slate-700 font-medium">
                   <span class="line-clamp-1" :title="item.Kamera">{{ item.Kamera || '-' }}</span>
                 </td>
 
@@ -739,14 +737,14 @@
                   <div class="flex items-center justify-end gap-1.5">
                     <button 
                       @click="copyLiveCaption(item)"
-                      class="px-2.5 py-1 rounded bg-[#181b21] hover:bg-[#20242c] text-[#f3f4f6] border border-[#1f232b] text-[11px] font-medium transition-colors"
+                      class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 text-[11px] font-bold transition-colors"
                       title="Salin caption spek live"
                     >
                       Salin
                     </button>
                     <button 
                       @click="openDetail(item)"
-                      class="px-2.5 py-1 rounded bg-white hover:bg-slate-200 text-black text-[11px] font-semibold transition-colors"
+                      class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-black text-white text-[11px] font-bold shadow-xs transition-colors"
                     >
                       Detail
                     </button>
@@ -765,12 +763,12 @@
     <!-- ======================================================== -->
     <transition enter-active-class="transform ease-out duration-200" enter-from-class="translate-y-10 opacity-0" enter-to-class="translate-y-0 opacity-100" leave-active-class="transform ease-in duration-150" leave-from-class="translate-y-0 opacity-100" leave-to-class="translate-y-10 opacity-0">
       <div v-if="compareList.length > 0" class="fixed bottom-5 inset-x-0 mx-auto max-w-lg z-40 px-4">
-        <div class="bg-[#16181f]/95 backdrop-blur-md border border-[#2a303a] rounded-xl p-3 shadow-2xl flex items-center justify-between gap-3">
+        <div class="bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-3 shadow-2xl flex items-center justify-between gap-3">
           
           <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
             <div 
               v-for="cId in compareList" :key="cId" 
-              class="relative w-9 h-9 rounded bg-[#0a0b0e] border border-[#1f232b] flex items-center justify-center shrink-0 group"
+              class="relative w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 group"
             >
               <img 
                 :src="getProductById(cId)?.Gambar_URL" 
@@ -785,7 +783,7 @@
                 ×
               </button>
             </div>
-            <span class="text-xs text-[#9ca3af] font-medium pl-1">
+            <span class="text-xs text-slate-700 font-bold pl-1">
               {{ compareList.length }} HP Dipilih
             </span>
           </div>
@@ -793,13 +791,13 @@
           <div class="flex items-center gap-2">
             <button 
               @click="compareList = []"
-              class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-[#9ca3af] hover:text-white transition-colors"
+              class="px-2.5 py-1.5 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors"
             >
               Batal
             </button>
             <button 
               @click="openCompareModal = true"
-              class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-white text-black hover:bg-slate-200 transition-colors flex items-center gap-1.5"
+              class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-black transition-colors flex items-center gap-1.5 shadow-xs"
             >
               <span>Bandingkan</span>
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -815,16 +813,16 @@
     <!-- ======================================================== -->
     <!-- 6. MODAL: SIDE-BY-SIDE COMPARISON                        -->
     <!-- ======================================================== -->
-    <div v-if="openCompareModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm">
-      <div class="bg-[#121418] border border-[#1f232b] rounded-2xl w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+    <div v-if="openCompareModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-sm">
+      <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
         
         <!-- Header -->
-        <div class="p-4 sm:p-5 border-b border-[#1f232b] flex items-center justify-between bg-[#0e1014]">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div>
-            <h3 class="text-base sm:text-lg font-bold text-[#f3f4f6]">Perbandingan Spesifikasi Smartphone</h3>
-            <p class="text-xs text-[#9ca3af] mt-0.5">Membandingkan {{ compareList.length }} model smartphone secara langsung.</p>
+            <h3 class="text-base sm:text-lg font-black text-slate-900">Perbandingan Spesifikasi Smartphone</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Membandingkan {{ compareList.length }} model smartphone secara langsung.</p>
           </div>
-          <button @click="openCompareModal = false" class="p-2 rounded-lg bg-[#181b21] hover:bg-[#20242c] text-[#9ca3af] hover:text-white">
+          <button @click="openCompareModal = false" class="p-2 rounded-xl bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -835,20 +833,20 @@
         <div class="overflow-y-auto p-4 sm:p-6 space-y-6">
           <div class="grid" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }" style="gap: 16px;">
             
-            <div v-for="cId in compareList" :key="cId" class="bg-[#0e1014] rounded-xl border border-[#1f232b] p-4 flex flex-col items-center text-center">
+            <div v-for="cId in compareList" :key="cId" class="bg-slate-50 rounded-2xl border border-slate-200 p-4 flex flex-col items-center text-center">
               <img 
                 :src="getProductById(cId)?.Gambar_URL" 
                 :alt="getProductById(cId)?.Nama_Produk"
                 class="h-32 object-contain mb-3"
               >
-              <div class="text-[11px] font-bold text-[#9ca3af] uppercase">{{ getProductById(cId)?.Brand }}</div>
-              <h4 class="font-bold text-[#f3f4f6] text-sm mt-0.5">{{ getProductById(cId)?.Nama_Produk }}</h4>
-              <div class="text-sm font-mono font-bold text-telering-500 mt-1">
+              <div class="text-[11px] font-black text-slate-500 uppercase">{{ getProductById(cId)?.Brand }}</div>
+              <h4 class="font-bold text-slate-900 text-sm mt-0.5">{{ getProductById(cId)?.Nama_Produk }}</h4>
+              <div class="text-sm font-mono font-black text-telering-600 mt-1">
                 {{ formatRupiah(getCurrentPrice(getProductById(cId))) }}
               </div>
               <button 
                 @click="removeCompare(cId)"
-                class="mt-2 text-[11px] text-rose-400 hover:text-rose-300 underline"
+                class="mt-2 text-[11px] text-rose-500 hover:text-rose-600 font-semibold underline"
               >
                 Hapus
               </button>
@@ -857,44 +855,44 @@
           </div>
 
           <!-- Spec Comparison Rows -->
-          <div class="border border-[#1f232b] rounded-xl overflow-hidden divide-y divide-[#1f232b] text-xs">
+          <div class="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-200 text-xs">
             
             <!-- Row: Chipset -->
-            <div class="p-3 bg-[#0a0b0e] font-bold text-[#9ca3af]">Chipset & Processor</div>
-            <div class="grid bg-[#121418] divide-x divide-[#1f232b]" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-[#f3f4f6]">
+            <div class="p-3 bg-slate-100 font-bold text-slate-700">Chipset & Processor</div>
+            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
+              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-medium">
                 {{ getProductById(cId)?.Chipset || '-' }}
               </div>
             </div>
 
             <!-- Row: RAM & Storage -->
-            <div class="p-3 bg-[#0a0b0e] font-bold text-[#9ca3af]">RAM & Memori Internal</div>
-            <div class="grid bg-[#121418] divide-x divide-[#1f232b]" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-[#f3f4f6] font-mono">
+            <div class="p-3 bg-slate-100 font-bold text-slate-700">RAM & Memori Internal</div>
+            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
+              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-mono font-bold">
                 {{ getProductById(cId)?.RAM_ROM || '-' }}
               </div>
             </div>
 
             <!-- Row: Baterai -->
-            <div class="p-3 bg-[#0a0b0e] font-bold text-[#9ca3af]">Baterai & Pengisian Daya</div>
-            <div class="grid bg-[#121418] divide-x divide-[#1f232b]" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-[#f3f4f6]">
+            <div class="p-3 bg-slate-100 font-bold text-slate-700">Baterai & Pengisian Daya</div>
+            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
+              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-medium">
                 {{ getProductById(cId)?.Baterai || '-' }}
               </div>
             </div>
 
             <!-- Row: Layar -->
-            <div class="p-3 bg-[#0a0b0e] font-bold text-[#9ca3af]">Layar & Panel</div>
-            <div class="grid bg-[#121418] divide-x divide-[#1f232b]" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-[#f3f4f6]">
+            <div class="p-3 bg-slate-100 font-bold text-slate-700">Layar & Panel</div>
+            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
+              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-medium">
                 {{ getProductById(cId)?.Layar || '-' }}
               </div>
             </div>
 
             <!-- Row: Kamera -->
-            <div class="p-3 bg-[#0a0b0e] font-bold text-[#9ca3af]">Kamera Utama & Selfie</div>
-            <div class="grid bg-[#121418] divide-x divide-[#1f232b]" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
-              <div v-for="cId in compareList" :key="cId" class="p-3 text-[#f3f4f6]">
+            <div class="p-3 bg-slate-100 font-bold text-slate-700">Kamera Utama & Selfie</div>
+            <div class="grid bg-white divide-x divide-slate-200" :style="{ gridTemplateColumns: 'repeat(' + (compareList.length) + ', minmax(220px, 1fr))' }">
+              <div v-for="cId in compareList" :key="cId" class="p-3 text-slate-800 font-medium">
                 {{ getProductById(cId)?.Kamera || '-' }}
               </div>
             </div>
@@ -902,8 +900,8 @@
           </div>
         </div>
 
-        <div class="p-4 border-t border-[#1f232b] bg-[#0e1014] flex justify-end">
-          <button @click="openCompareModal = false" class="px-4 py-2 rounded-lg bg-white hover:bg-slate-200 text-black text-xs font-bold transition-colors">
+        <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-end">
+          <button @click="openCompareModal = false" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold shadow-xs transition-colors">
             Tutup Perbandingan
           </button>
         </div>
@@ -914,17 +912,17 @@
     <!-- ======================================================== -->
     <!-- 7. MODAL: DETAIL PRODUK & CHEAT SHEET LIVE HOST          -->
     <!-- ======================================================== -->
-    <div v-if="activeProduct" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm">
-      <div class="bg-[#121418] border border-[#1f232b] rounded-2xl w-full max-w-3xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl">
+    <div v-if="activeProduct" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-sm">
+      <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-3xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl">
         
         <!-- Header -->
-        <div class="p-4 sm:p-5 border-b border-[#1f232b] flex items-center justify-between bg-[#0e1014]">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div class="flex items-center gap-2">
-            <span class="text-xs font-bold text-[#9ca3af] uppercase tracking-wider">{{ activeProduct.Brand }}</span>
-            <span class="text-[#3b424f]">·</span>
-            <h3 class="text-base sm:text-lg font-bold text-[#f3f4f6]">{{ activeProduct.Nama_Produk }}</h3>
+            <span class="text-xs font-black text-slate-500 uppercase tracking-wider">{{ activeProduct.Brand }}</span>
+            <span class="text-slate-300">·</span>
+            <h3 class="text-base sm:text-lg font-black text-slate-900">{{ activeProduct.Nama_Produk }}</h3>
           </div>
-          <button @click="activeProduct = null" class="p-2 rounded-lg bg-[#181b21] hover:bg-[#20242c] text-[#9ca3af] hover:text-white">
+          <button @click="activeProduct = null" class="p-2 rounded-xl bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -936,41 +934,41 @@
           
           <!-- Top Hero Row: Image, Price & Variant Switcher -->
           <div class="flex flex-col sm:flex-row gap-5 items-start">
-            <div class="w-full sm:w-48 h-48 rounded-xl bg-[#0a0b0e] border border-[#1f232b] p-3 flex items-center justify-center shrink-0">
+            <div class="w-full sm:w-48 h-48 rounded-2xl bg-slate-50 border border-slate-200 p-3 flex items-center justify-center shrink-0">
               <img 
                 :src="activeProduct.Gambar_URL" 
                 :alt="activeProduct.Nama_Produk"
-                class="max-h-full max-w-full object-contain filter drop-shadow-lg"
+                class="max-h-full max-w-full object-contain filter drop-shadow-md"
               >
             </div>
 
             <div class="flex-1 space-y-3">
               <div>
-                <div class="text-xs text-[#9ca3af]">Harga Katalog Resmi:</div>
-                <div class="text-2xl font-mono font-extrabold text-[#f3f4f6] mt-0.5">
+                <div class="text-xs text-slate-500 font-semibold">Harga Katalog Resmi:</div>
+                <div class="text-2xl font-mono font-black text-slate-900 mt-0.5">
                   {{ formatRupiah(getCurrentPrice(activeProduct)) }}
                 </div>
-                <div v-if="activeProduct.Harga_Normal && activeProduct.Harga_Normal > getCurrentPrice(activeProduct)" class="text-xs text-[#6b7280] line-through font-mono">
+                <div v-if="activeProduct.Harga_Normal && activeProduct.Harga_Normal > getCurrentPrice(activeProduct)" class="text-xs text-slate-400 line-through font-mono">
                   Harga Normal: {{ formatRupiah(activeProduct.Harga_Normal) }}
                 </div>
               </div>
 
               <!-- Variant Selector inside Modal -->
               <div v-if="activeProduct.variants && activeProduct.variants.length > 0">
-                <div class="text-xs text-[#9ca3af] mb-1.5 font-medium">Pilih Varian RAM / Storage:</div>
+                <div class="text-xs text-slate-600 mb-1.5 font-bold">Pilih Varian RAM / Storage:</div>
                 <div class="flex flex-wrap gap-1.5">
                   <button 
                     @click="activeProduct._selectedVariantIndex = -1"
-                    class="px-2.5 py-1 rounded text-xs font-mono font-medium border transition-colors"
-                    :class="activeProduct._selectedVariantIndex === -1 ? 'bg-white text-black border-white' : 'bg-[#181b21] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+                    class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-colors"
+                    :class="activeProduct._selectedVariantIndex === -1 ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ activeProduct.RAM_ROM }}
                   </button>
                   <button 
                     v-for="(v, vIdx) in activeProduct.variants" :key="vIdx"
                     @click="activeProduct._selectedVariantIndex = vIdx"
-                    class="px-2.5 py-1 rounded text-xs font-mono font-medium border transition-colors"
-                    :class="activeProduct._selectedVariantIndex === vIdx ? 'bg-white text-black border-white' : 'bg-[#181b21] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+                    class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-colors"
+                    :class="activeProduct._selectedVariantIndex === vIdx ? 'bg-slate-900 text-white border-slate-900' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
                   >
                     {{ v.ram_rom }}
                   </button>
@@ -981,9 +979,9 @@
               <div class="flex flex-wrap gap-2 pt-1">
                 <button 
                   @click="copyLiveCaption(activeProduct)"
-                  class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1f232b] hover:bg-[#282e38] text-white border border-[#2a303a] transition-colors flex items-center gap-1.5"
+                  class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 transition-colors flex items-center gap-1.5"
                 >
-                  <svg class="w-3.5 h-3.5 text-[#9ca3af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg class="w-3.5 h-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                   </svg>
                   <span>Salin Caption Live</span>
@@ -992,7 +990,7 @@
                 <button 
                   @click="toggleCompare(activeProduct)"
                   class="px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors"
-                  :class="isCompared(activeProduct.id) ? 'bg-telering-500 text-white border-telering-500' : 'bg-[#181b21] text-[#9ca3af] border-[#1f232b] hover:text-white'"
+                  :class="isCompared(activeProduct.id) ? 'bg-telering-500 text-white border-telering-500' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'"
                 >
                   {{ isCompared(activeProduct.id) ? '✓ Masuk Komparasi' : '+ Bandingkan' }}
                 </button>
@@ -1001,13 +999,13 @@
             </div>
           </div>
 
-          <!-- Section: Live Stream Talking Points (Poin Jualan Host) -->
-          <div class="bg-[#0e1014] rounded-xl border border-[#1f232b] p-4 space-y-2.5">
+          <!-- Section: Live Stream Talking Points -->
+          <div class="bg-amber-50/70 rounded-2xl border border-amber-200/80 p-4 space-y-2.5">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-telering-500 animate-pulse"></span>
-              <h4 class="text-xs font-bold uppercase tracking-wider text-[#f3f4f6]">Cheat Sheet Poin Jualan Host Live</h4>
+              <h4 class="text-xs font-black uppercase tracking-wider text-slate-900">Cheat Sheet Poin Jualan Host Live</h4>
             </div>
-            <ul class="space-y-1.5 text-xs text-[#d1d5db]">
+            <ul class="space-y-1.5 text-xs text-slate-700">
               <li class="flex items-start gap-2">
                 <span class="text-telering-500 font-bold shrink-0">✦</span>
                 <span><strong>Target Pembeli:</strong> Cocok untuk pengguna yang butuh performa <strong>{{ activeProduct.Chipset }}</strong> dengan baterai hemat <strong>{{ activeProduct.Baterai }}</strong>.</span>
@@ -1025,27 +1023,27 @@
 
           <!-- Section: Full Technical Specs Table -->
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-[#9ca3af] mb-2">Spesifikasi Lengkap</h4>
-            <div class="border border-[#1f232b] rounded-xl overflow-hidden divide-y divide-[#1f232b] text-xs">
-              <div class="flex p-3 bg-[#121418]">
-                <div class="w-32 shrink-0 text-[#6b7280] font-medium">Chipset</div>
-                <div class="text-[#f3f4f6] font-medium">{{ activeProduct.Chipset || '-' }}</div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Spesifikasi Lengkap</h4>
+            <div class="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-100 text-xs">
+              <div class="flex p-3 bg-white">
+                <div class="w-32 shrink-0 text-slate-500 font-medium">Chipset</div>
+                <div class="text-slate-900 font-semibold">{{ activeProduct.Chipset || '-' }}</div>
               </div>
-              <div class="flex p-3 bg-[#121418]">
-                <div class="w-32 shrink-0 text-[#6b7280] font-medium">RAM / Memori</div>
-                <div class="text-[#f3f4f6] font-mono">{{ activeProduct.RAM_ROM || '-' }}</div>
+              <div class="flex p-3 bg-white">
+                <div class="w-32 shrink-0 text-slate-500 font-medium">RAM / Memori</div>
+                <div class="text-slate-900 font-mono font-bold">{{ activeProduct.RAM_ROM || '-' }}</div>
               </div>
-              <div class="flex p-3 bg-[#121418]">
-                <div class="w-32 shrink-0 text-[#6b7280] font-medium">Baterai & Charger</div>
-                <div class="text-[#f3f4f6]">{{ activeProduct.Baterai || '-' }}</div>
+              <div class="flex p-3 bg-white">
+                <div class="w-32 shrink-0 text-slate-500 font-medium">Baterai & Charger</div>
+                <div class="text-slate-900 font-semibold">{{ activeProduct.Baterai || '-' }}</div>
               </div>
-              <div class="flex p-3 bg-[#121418]">
-                <div class="w-32 shrink-0 text-[#6b7280] font-medium">Layar & Refresh</div>
-                <div class="text-[#f3f4f6]">{{ activeProduct.Layar || '-' }}</div>
+              <div class="flex p-3 bg-white">
+                <div class="w-32 shrink-0 text-slate-500 font-medium">Layar & Refresh</div>
+                <div class="text-slate-900 font-semibold">{{ activeProduct.Layar || '-' }}</div>
               </div>
-              <div class="flex p-3 bg-[#121418]">
-                <div class="w-32 shrink-0 text-[#6b7280] font-medium">Konfigurasi Kamera</div>
-                <div class="text-[#f3f4f6]">{{ activeProduct.Kamera || '-' }}</div>
+              <div class="flex p-3 bg-white">
+                <div class="w-32 shrink-0 text-slate-500 font-medium">Konfigurasi Kamera</div>
+                <div class="text-slate-900 font-semibold">{{ activeProduct.Kamera || '-' }}</div>
               </div>
             </div>
           </div>
@@ -1053,8 +1051,8 @@
         </div>
 
         <!-- Footer -->
-        <div class="p-4 border-t border-[#1f232b] bg-[#0e1014] flex justify-end">
-          <button @click="activeProduct = null" class="px-4 py-2 rounded-lg bg-white hover:bg-slate-200 text-black text-xs font-bold transition-colors">
+        <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-end">
+          <button @click="activeProduct = null" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold transition-colors">
             Tutup
           </button>
         </div>
@@ -1065,24 +1063,24 @@
     <!-- ======================================================== -->
     <!-- 8. MODAL: SHARE & QR CODE                                -->
     <!-- ======================================================== -->
-    <div v-if="shareModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div class="bg-[#121418] border border-[#1f232b] rounded-2xl w-full max-w-sm p-6 text-center space-y-4 shadow-2xl">
-        <h3 class="text-base font-bold text-[#f3f4f6]">Bagikan Katalog Live</h3>
-        <p class="text-xs text-[#9ca3af]">Scan QR Code atau salin link untuk membuka katalog ini di smartphone host atau penonton.</p>
+    <div v-if="shareModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+      <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-sm p-6 text-center space-y-4 shadow-2xl">
+        <h3 class="text-base font-black text-slate-900">Bagikan Katalog Live</h3>
+        <p class="text-xs text-slate-500">Scan QR Code atau salin link untuk membuka katalog ini di smartphone host atau penonton.</p>
 
         <!-- QR Code Container -->
-        <div id="qrcode-container" class="flex justify-center my-4 p-4 bg-white rounded-xl mx-auto w-fit"></div>
+        <div id="qrcode-container" class="flex justify-center my-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl mx-auto w-fit"></div>
 
         <div class="flex items-center gap-2">
           <input 
             type="text" 
             :value="shareUrl" 
             readonly 
-            class="flex-1 bg-[#0a0b0e] border border-[#1f232b] rounded-lg px-3 py-2 text-xs text-[#9ca3af] font-mono focus:outline-none"
+            class="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-600 font-mono focus:outline-none"
           >
           <button 
             @click="copyShareLink"
-            class="px-3 py-2 rounded-lg text-xs font-bold bg-white text-black hover:bg-slate-200 shrink-0"
+            class="px-3 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-black shrink-0"
           >
             {{ copiedShareLink ? 'Tersalin!' : 'Salin' }}
           </button>
@@ -1090,7 +1088,7 @@
 
         <button 
           @click="shareModalOpen = false"
-          class="w-full py-2 rounded-lg text-xs font-medium text-[#9ca3af] hover:text-white"
+          class="w-full py-2 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900"
         >
           Tutup
         </button>
@@ -1100,16 +1098,16 @@
     <!-- ======================================================== -->
     <!-- 9. MODAL: ADMIN LOGIN (PIN)                              -->
     <!-- ======================================================== -->
-    <div v-if="adminLoginModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div class="bg-[#121418] border border-[#1f232b] rounded-2xl w-full max-w-xs p-6 space-y-4 shadow-2xl">
+    <div v-if="adminLoginModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+      <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-xs p-6 space-y-4 shadow-2xl">
         <div class="text-center">
-          <div class="w-10 h-10 rounded-full bg-[#181b21] mx-auto flex items-center justify-center text-[#9ca3af] mb-2">
+          <div class="w-10 h-10 rounded-full bg-slate-100 mx-auto flex items-center justify-center text-slate-600 mb-2">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
           </div>
-          <h3 class="text-sm font-bold text-[#f3f4f6]">Akses Admin TELERING</h3>
-          <p class="text-xs text-[#6b7280] mt-0.5">Masukkan PIN Admin (Bawaan: 8888)</p>
+          <h3 class="text-sm font-black text-slate-900">Akses Admin TELERING</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Masukkan PIN Admin (Bawaan: 8888)</p>
         </div>
 
         <form @submit.prevent="verifyAdminLogin" class="space-y-3">
@@ -1117,22 +1115,22 @@
             type="password" 
             v-model="enteredAdminPin" 
             placeholder="PIN Admin..." 
-            class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] focus:border-[#2a303a] rounded-lg text-center text-sm font-mono text-[#f3f4f6] tracking-widest focus:outline-none"
+            class="w-full px-3 py-2 bg-slate-50 border border-slate-200 focus:border-slate-400 rounded-lg text-center text-sm font-mono text-slate-900 tracking-widest focus:outline-none"
             autofocus
           >
-          <div v-if="adminPinError" class="text-[11px] text-rose-400 text-center font-medium">PIN yang Anda masukkan salah!</div>
+          <div v-if="adminPinError" class="text-[11px] text-rose-500 text-center font-bold">PIN yang Anda masukkan salah!</div>
           
           <div class="flex gap-2">
             <button 
               type="button" 
               @click="adminLoginModalOpen = false"
-              class="flex-1 py-2 rounded-lg text-xs font-semibold bg-[#181b21] text-[#9ca3af] hover:text-white"
+              class="flex-1 py-2 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:text-slate-900"
             >
               Batal
             </button>
             <button 
               type="submit" 
-              class="flex-1 py-2 rounded-lg text-xs font-bold bg-white text-black hover:bg-slate-200"
+              class="flex-1 py-2 rounded-lg text-xs font-bold bg-slate-900 text-white hover:bg-black"
             >
               Masuk
             </button>
@@ -1144,14 +1142,14 @@
     <!-- ======================================================== -->
     <!-- 10. MODAL: EXCEL SYNC & DATA MANAGEMENT                  -->
     <!-- ======================================================== -->
-    <div v-if="openExcelModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div class="bg-[#121418] border border-[#1f232b] rounded-2xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
-        <div class="flex items-center justify-between border-b border-[#1f232b] pb-3">
-          <h3 class="text-base font-bold text-[#f3f4f6]">Sinkronisasi Data Excel (.xlsx)</h3>
-          <button @click="openExcelModal = false" class="text-[#9ca3af] hover:text-white">✕</button>
+    <div v-if="openExcelModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+      <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+          <h3 class="text-base font-black text-slate-900">Sinkronisasi Data Excel (.xlsx)</h3>
+          <button @click="openExcelModal = false" class="text-slate-400 hover:text-slate-900 font-bold">✕</button>
         </div>
 
-        <p class="text-xs text-[#9ca3af]">
+        <p class="text-xs text-slate-600">
           Anda dapat mengekspor seluruh katalog saat ini ke Excel atau mengunggah file Excel baru untuk memperbarui data live secara realtime.
         </p>
 
@@ -1160,33 +1158,33 @@
           @dragover.prevent="dragOver = true"
           @dragleave.prevent="dragOver = false"
           @drop.prevent="handleFileDrop"
-          class="border-2 border-dashed rounded-xl p-6 text-center transition-colors cursor-pointer"
-          :class="dragOver ? 'border-telering-500 bg-telering-500/10' : 'border-[#1f232b] bg-[#0a0b0e] hover:border-[#2a303a]'"
+          class="border-2 border-dashed rounded-2xl p-6 text-center transition-colors cursor-pointer"
+          :class="dragOver ? 'border-telering-500 bg-telering-50' : 'border-slate-300 bg-slate-50 hover:bg-slate-100/70'"
           @click="$refs.excelFileInput.click()"
         >
           <input type="file" ref="excelFileInput" @change="handleFileSelect" accept=".xlsx, .xls" class="hidden">
-          <div class="text-xs text-[#d1d5db] font-semibold">Tarik & Lepas File Excel di Sini</div>
-          <div class="text-[11px] text-[#6b7280] mt-1">atau klik untuk memilih file dari komputer Anda</div>
+          <div class="text-xs text-slate-800 font-bold">Tarik & Lepas File Excel di Sini</div>
+          <div class="text-[11px] text-slate-500 mt-1">atau klik untuk memilih file dari komputer Anda</div>
         </div>
 
-        <div v-if="parsedData.length > 0" class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-xs text-emerald-400 flex items-center justify-between">
+        <div v-if="parsedData.length > 0" class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-700 flex items-center justify-between">
           <span>Terbaca: <strong>{{ parsedData.length }} HP</strong> dari Excel</span>
-          <button @click="applyParsedData" class="px-3 py-1 rounded bg-emerald-500 text-black font-bold text-xs">
+          <button @click="applyParsedData" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs">
             Terapkan ke Live
           </button>
         </div>
 
-        <div class="flex items-center justify-between pt-2 border-t border-[#1f232b]">
+        <div class="flex items-center justify-between pt-2 border-t border-slate-200">
           <button 
             @click="resetToDefault"
-            class="text-xs text-rose-400 hover:text-rose-300 font-medium underline"
+            class="text-xs text-rose-500 hover:text-rose-600 font-bold underline"
           >
-            Reset ke 146 HP Bawaan
+            Reset ke Data Bawaan
           </button>
 
           <button 
             @click="downloadTemplate"
-            class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#181b21] hover:bg-[#20242c] text-[#f3f4f6] border border-[#1f232b]"
+            class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-black text-white shadow-xs"
           >
             Unduh Data Excel
           </button>
@@ -1197,95 +1195,95 @@
     <!-- ======================================================== -->
     <!-- 11. MODAL: TAMBAH / EDIT PRODUK                          -->
     <!-- ======================================================== -->
-    <div v-if="editProductModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div class="bg-[#121418] border border-[#1f232b] rounded-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-        <div class="p-4 border-b border-[#1f232b] flex items-center justify-between bg-[#0e1014]">
-          <h3 class="text-sm sm:text-base font-bold text-[#f3f4f6]">
+    <div v-if="editProductModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+      <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+        <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+          <h3 class="text-sm sm:text-base font-black text-slate-900">
             {{ isEditingExisting ? 'Edit Data Smartphone' : 'Tambah Smartphone Baru' }}
           </h3>
-          <button @click="editProductModalOpen = false" class="text-[#9ca3af] hover:text-white">✕</button>
+          <button @click="editProductModalOpen = false" class="text-slate-400 hover:text-slate-900 font-bold">✕</button>
         </div>
 
         <form @submit.prevent="saveProductForm" class="p-4 sm:p-6 overflow-y-auto space-y-3.5 text-xs">
           
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">Brand</label>
-              <input type="text" v-model="productForm.Brand" required class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
+              <label class="block text-slate-700 mb-1 font-bold">Brand</label>
+              <input type="text" v-model="productForm.Brand" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
             </div>
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">Nama Produk</label>
-              <input type="text" v-model="productForm.Nama_Produk" required class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
+              <label class="block text-slate-700 mb-1 font-bold">Nama Produk</label>
+              <input type="text" v-model="productForm.Nama_Produk" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
             </div>
           </div>
 
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">Harga Promo (Rp)</label>
-              <input type="number" v-model.number="productForm.Harga" required class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6] font-mono">
+              <label class="block text-slate-700 mb-1 font-bold">Harga Promo (Rp)</label>
+              <input type="number" v-model.number="productForm.Harga" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono focus:bg-white focus:outline-none">
             </div>
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">Harga Normal (Rp)</label>
-              <input type="number" v-model.number="productForm.Harga_Normal" class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6] font-mono">
+              <label class="block text-slate-700 mb-1 font-bold">Harga Normal (Rp)</label>
+              <input type="number" v-model.number="productForm.Harga_Normal" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono focus:bg-white focus:outline-none">
             </div>
           </div>
 
           <div>
-            <label class="block text-[#9ca3af] mb-1 font-medium">URL Gambar</label>
-            <input type="url" v-model="productForm.Gambar_URL" placeholder="https://..." class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
+            <label class="block text-slate-700 mb-1 font-bold">URL Gambar</label>
+            <input type="url" v-model="productForm.Gambar_URL" placeholder="https://..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
           </div>
 
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">RAM / ROM Bawaan</label>
-              <input type="text" v-model="productForm.RAM_ROM" placeholder="8/256GB" class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
+              <label class="block text-slate-700 mb-1 font-bold">RAM / ROM Bawaan</label>
+              <input type="text" v-model="productForm.RAM_ROM" placeholder="8/256GB" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
             </div>
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">Chipset</label>
-              <input type="text" v-model="productForm.Chipset" placeholder="Snapdragon 7s Gen 2" class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
+              <label class="block text-slate-700 mb-1 font-bold">Chipset</label>
+              <input type="text" v-model="productForm.Chipset" placeholder="Snapdragon 7s Gen 2" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
             </div>
           </div>
 
           <div class="grid grid-cols-3 gap-3">
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">Baterai</label>
-              <input type="text" v-model="productForm.Baterai" placeholder="5000 mAh" class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
+              <label class="block text-slate-700 mb-1 font-bold">Baterai</label>
+              <input type="text" v-model="productForm.Baterai" placeholder="5000 mAh" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
             </div>
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">Layar</label>
-              <input type="text" v-model="productForm.Layar" placeholder="6.67 AMOLED" class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
+              <label class="block text-slate-700 mb-1 font-bold">Layar</label>
+              <input type="text" v-model="productForm.Layar" placeholder="6.67 AMOLED" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
             </div>
             <div>
-              <label class="block text-[#9ca3af] mb-1 font-medium">Kamera</label>
-              <input type="text" v-model="productForm.Kamera" placeholder="50 MP OIS" class="w-full px-3 py-2 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
+              <label class="block text-slate-700 mb-1 font-bold">Kamera</label>
+              <input type="text" v-model="productForm.Kamera" placeholder="50 MP OIS" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none">
             </div>
           </div>
 
           <!-- Variants List -->
-          <div class="pt-2 border-t border-[#1f232b]">
+          <div class="pt-2 border-t border-slate-200">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[#9ca3af] font-medium">Varian Tambahan (Opsional)</span>
-              <button type="button" @click="addVariant" class="text-telering-500 text-xs font-bold">+ Tambah Varian</button>
+              <span class="text-slate-700 font-bold">Varian Tambahan (Opsional)</span>
+              <button type="button" @click="addVariant" class="text-telering-600 hover:text-telering-700 text-xs font-bold">+ Tambah Varian</button>
             </div>
             <div v-for="(v, vI) in productForm.variants" :key="vI" class="flex gap-2 items-center mb-2">
-              <input type="text" v-model="v.ram_rom" placeholder="RAM/ROM (cth: 12/512GB)" class="flex-1 px-3 py-1.5 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6]">
-              <input type="number" v-model.number="v.price" placeholder="Harga (Rp)" class="flex-1 px-3 py-1.5 bg-[#0a0b0e] border border-[#1f232b] rounded-lg text-[#f3f4f6] font-mono">
-              <button type="button" @click="removeVariant(vI)" class="text-rose-400 p-1">✕</button>
+              <input type="text" v-model="v.ram_rom" placeholder="RAM/ROM (cth: 12/512GB)" class="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+              <input type="number" v-model.number="v.price" placeholder="Harga (Rp)" class="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono">
+              <button type="button" @click="removeVariant(vI)" class="text-rose-500 p-1 font-bold">✕</button>
             </div>
           </div>
 
-          <div class="pt-3 border-t border-[#1f232b] flex items-center justify-between">
+          <div class="pt-3 border-t border-slate-200 flex items-center justify-between">
             <button 
               v-if="isEditingExisting" 
               type="button" 
               @click="deleteProduct(productForm.id)"
-              class="text-rose-400 hover:text-rose-300 font-semibold"
+              class="text-rose-500 hover:text-rose-600 font-bold"
             >
               Hapus HP
             </button>
             <div class="flex gap-2 ml-auto">
-              <button type="button" @click="editProductModalOpen = false" class="px-3 py-2 rounded-lg bg-[#181b21] text-[#9ca3af]">Batal</button>
-              <button type="submit" class="px-4 py-2 rounded-lg bg-white text-black font-bold">Simpan</button>
+              <button type="button" @click="editProductModalOpen = false" class="px-3 py-2 rounded-lg bg-slate-100 text-slate-600 font-bold hover:bg-slate-200">Batal</button>
+              <button type="submit" class="px-4 py-2 rounded-lg bg-slate-900 text-white font-bold hover:bg-black shadow-xs">Simpan</button>
             </div>
           </div>
 
@@ -1294,19 +1292,19 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- 12. FOOTER (EDITORIAL, MINIMALIST, CREDIBLE)              -->
+    <!-- 12. FOOTER (CLEAN BRIGHT FOOTER)                         -->
     <!-- ======================================================== -->
-    <footer class="border-t border-[#1f232b] bg-[#0a0b0e] mt-auto">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6b7280]">
+    <footer class="border-t border-slate-200 bg-white mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
         <div class="flex items-center gap-2">
-          <span class="font-bold text-[#f3f4f6]">TELERING</span>
+          <span class="font-bold text-slate-900">TELERING</span>
           <span>—</span>
           <span>Katalog & Cheat Sheet Host Live Spesifikasi Smartphone</span>
         </div>
-        <div class="flex items-center gap-4 text-[11px]">
+        <div class="flex items-center gap-4 text-[11px] font-medium">
           <span>Realtime Cloud Sync</span>
           <span>·</span>
-          <span>146 Model Database</span>
+          <span>120 Model Database</span>
           <span>·</span>
           <span>Host Live Assistant</span>
         </div>
@@ -1321,7 +1319,7 @@
   <script>
     const { createApp, ref, computed, onMounted, nextTick } = Vue;
 
-    // DEFAULT DATASET (146 Smartphone Resmi TELERING)
+    // DEFAULT DATASET (120 Smartphone Resmi TELERING termasuk Z Fold8 Ultra)
     const DEFAULT_PRODUCTS = [
   {
     "id": "p-1794824798319",
@@ -3743,8 +3741,8 @@
                 text: shareUrl.value,
                 width: 160,
                 height: 160,
-                colorDark: '#0a0b0e',
-                colorLight: '#ffffff',
+                colorDark: '#0f172a',
+                colorLight: '#f8fafc',
                 correctLevel: QRCode.CorrectLevel.M
               });
             }
@@ -3858,18 +3856,18 @@
               parsedData.value = json.map((row, i) => {
                 const brand = row['Brand'] || row['Merk'] || 'Lainnya';
                 const nama = row['Nama_Produk'] || row['Nama Produk'] || row['Tipe'] || 'HP ' + i;
-                const h = Number(row['Harga'] || row['Harga Promo'] || 1999000);
+                const h = Number(row['Harga'] || row['Harga Promo (Rp)'] || row['Harga Promo'] || 1999000);
                 return {
                   id: 'p-xl-' + Date.now() + '-' + i,
                   Brand: String(brand).trim(),
                   Nama_Produk: String(nama).trim(),
-                  Gambar_URL: String(row['Gambar_URL'] || '').trim(),
+                  Gambar_URL: String(row['Gambar_URL'] || row['URL Gambar'] || '').trim(),
                   Harga: h,
-                  Harga_Normal: h,
-                  RAM_ROM: String(row['RAM_ROM'] || row['RAM'] || '8/128GB').trim(),
+                  Harga_Normal: Number(row['Harga Normal (Rp)'] || row['Harga Normal'] || h),
+                  RAM_ROM: String(row['RAM_ROM'] || row['RAM / Storage Bawaan'] || row['RAM'] || '8/128GB').trim(),
                   variants: [],
-                  Chipset: String(row['Chipset'] || '-').trim(),
-                  Baterai: String(row['Baterai'] || '-').trim(),
+                  Chipset: String(row['Chipset'] || row['Chipset / Processor'] || '-').trim(),
+                  Baterai: String(row['Baterai'] || row['Baterai & Charging'] || '-').trim(),
                   Kamera: String(row['Kamera'] || '-').trim(),
                   Layar: String(row['Layar'] || '-').trim(),
                   _selectedVariantIndex: -1
@@ -3903,16 +3901,18 @@
         };
 
         const downloadTemplate = () => {
-          const exportData = products.value.map(p => ({
-            Brand: p.Brand,
-            Nama_Produk: p.Nama_Produk,
-            Gambar_URL: p.Gambar_URL || '',
-            Harga: p.Harga || p.Harga_Normal,
-            RAM_ROM: p.RAM_ROM,
-            Chipset: p.Chipset,
-            Baterai: p.Baterai,
-            Kamera: p.Kamera,
-            Layar: p.Layar
+          const exportData = products.value.map((p, idx) => ({
+            'No': idx + 1,
+            'Brand': p.Brand,
+            'Nama Produk': p.Nama_Produk,
+            'Harga Promo (Rp)': p.Harga || p.Harga_Normal,
+            'Harga Normal (Rp)': p.Harga_Normal || p.Harga,
+            'RAM / Storage Bawaan': p.RAM_ROM,
+            'Chipset / Processor': p.Chipset,
+            'Baterai & Charging': p.Baterai,
+            'Kamera': p.Kamera,
+            'Layar': p.Layar,
+            'URL Gambar': p.Gambar_URL || ''
           }));
           const ws = XLSX.utils.json_to_sheet(exportData);
           const wb = XLSX.utils.book_new();
@@ -3922,10 +3922,10 @@
         };
 
         const resetToDefault = () => {
-          if (confirm('Kembalikan ke data bawaan 146 HP katalog resmi?')) {
+          if (confirm('Kembalikan ke data bawaan 120 HP katalog resmi?')) {
             products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
             localStorage.setItem('telering_live_products', JSON.stringify(DEFAULT_PRODUCTS));
-            showToast('Katalog di-reset ke 146 HP bawaan.');
+            showToast('Katalog di-reset ke 120 HP bawaan.');
             openExcelModal.value = false;
             broadcastToCloud();
           }
@@ -3934,7 +3934,6 @@
         // Realtime MQTT Sync
         const initMqtt = () => {
           try {
-            // Public HiveMQ WebSocket broker
             const brokerUrl = 'wss://broker.hivemq.com:8884/mqtt';
             const clientId = 'telering_' + Math.random().toString(16).substr(2, 8);
             mqttClient = mqtt.connect(brokerUrl, {
@@ -3962,12 +3961,8 @@
               } catch (e) {}
             });
 
-            mqttClient.on('error', () => {
-              cloudConnected.value = false;
-            });
-            mqttClient.on('close', () => {
-              cloudConnected.value = false;
-            });
+            mqttClient.on('error', () => { cloudConnected.value = false; });
+            mqttClient.on('close', () => { cloudConnected.value = false; });
           } catch (e) {
             console.warn('MQTT init skipped', e);
           }
@@ -4002,7 +3997,6 @@
             products.value = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
           }
 
-          // Initial MQTT connection
           initMqtt();
 
           // Keyboard shortcut '/' to search
