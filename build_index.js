@@ -470,7 +470,6 @@ const template = `<!DOCTYPE html>
           v-for="item in filteredProducts" 
           :key="item.id"
           class="card-lift bg-white border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between group relative overflow-hidden shadow-card"
-          :class="{'ring-2 ring-telering-500 border-telering-500': isCompared(item.id)}"
         >
 
           <!-- Top Section: Visual Frame + Badge + Compare Checkbox -->
@@ -654,7 +653,6 @@ const template = `<!DOCTYPE html>
                 v-for="item in filteredProducts" 
                 :key="item.id"
                 class="hover:bg-slate-50 transition-colors group"
-                :class="{'bg-telering-50/40': isCompared(item.id)}"
               >
                 <!-- Model & Brand -->
                 <td class="py-3 px-4">
