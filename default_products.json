@@ -1,39 +1,309 @@
 [
   {
-    "id": "p-canva-1",
-    "Brand": "Oppo",
-    "Nama_Produk": "OPPO A5X",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/05/OPPO-A5x_.webp",
-    "RAM_ROM": "6/128GB",
-    "Harga": 1999000,
-    "Harga_Normal": 1999000,
-    "Harga_Promo": 1999000,
+    "id": "p-1794824798319",
+    "Brand": "Samsung",
+    "Nama_Produk": "Samsung Galaxy Z Fold8 Ultra",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/s/a/samsung_galaxy_z_fold8_ultra_violet_shadow_1__1_3.webp",
+    "Harga": 30999000,
+    "Harga_Normal": 30999000,
+    "Harga_Promo": 30999000,
+    "RAM_ROM": "12/256GB",
+    "variants": [
+      {
+        "ram_rom": "12/512GB",
+        "price": 34999000
+      },
+      {
+        "ram_rom": "16/1000GB",
+        "price": 42999000
+      }
+    ],
+    "Chipset": "Snapdragon®� 8 Elite Gen 5 for Galaxy (3nm)",
+    "Baterai": "5000 mAh",
+    "Kamera": "200MP + 50MP + 10MP",
+    "Layar": "Dynamic Amoled 2X, 8 Inch"
+  },
+  {
+    "id": "p-1794824620927",
+    "Brand": "Samsung",
+    "Nama_Produk": "Samsung Galaxy Z Fold8",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/s/a/samsung_galaxy_z_fold8_lavender_1__2_2.webp",
+    "Harga": 27499000,
+    "Harga_Normal": 27499000,
+    "Harga_Promo": 27499000,
+    "RAM_ROM": "12/256GB",
+    "variants": [
+      {
+        "ram_rom": "12/512GB",
+        "price": 31499000
+      }
+    ],
+    "Chipset": "Snapdragon®� 8 Elite Gen 5 for Galaxy (3nm)",
+    "Baterai": "4800 mAh",
+    "Kamera": "50MP + 50MP | 10MP",
+    "Layar": "Dynamic Amoled 2X, 7.6 Inch"
+  },
+  {
+    "id": "p-1794824310659",
+    "Brand": "Samsung",
+    "Nama_Produk": "Samsung Galaxy Z Flip8",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/s/a/samsung_galaxy_z_flip8_graphite_1__2.webp",
+    "Harga": 19499000,
+    "Harga_Normal": 19499000,
+    "Harga_Promo": 19499000,
+    "RAM_ROM": "12/256GB",
+    "variants": [
+      {
+        "ram_rom": "12/512GB",
+        "price": 23499000
+      }
+    ],
+    "Chipset": "Samsung Exynos (2nm)",
+    "Baterai": "4300 mAh",
+    "Kamera": "50MP + 12MP",
+    "Layar": "FHD+, Dynamic Amoled 2X, 120Hz Infinity Flex Display,  6.9 inch"
+  },
+  {
+    "id": "p-1794823744003",
+    "Brand": "Samsung",
+    "Nama_Produk": "Samsung Galaxy A07s",
+    "Gambar_URL": "https://images.samsung.com/is/image/samsung/p6pim/id/sm-a077flvdxid/gallery/id-galaxy-a07s-sm-a077-sm-a077flvdxid-thumb-554824385",
+    "Harga": 2599000,
+    "Harga_Normal": 2599000,
+    "Harga_Promo": 2599000,
+    "RAM_ROM": "4/64GB",
     "variants": [],
-    "Chipset": "Snapdragon 6s 4G Gen1",
-    "Baterai": "6000 mAh (45W)",
-    "Kamera": "32 MP | Selfie 5 MP",
-    "Layar": "6.67\" IPS LCD 90Hz"
+    "Chipset": "Mediatek Helio G99+",
+    "Baterai": "5000 mAh (25W)",
+    "Kamera": "50MP + 2MP + 8MP",
+    "Layar": "6.7\" PLS LCD"
+  },
+  {
+    "id": "p-1794823591644",
+    "Brand": "Advan",
+    "Nama_Produk": "Advan Macha 5G",
+    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/12/advan-macha_.webp",
+    "Harga": 2899000,
+    "Harga_Normal": 2899000,
+    "Harga_Promo": 2899000,
+    "RAM_ROM": "6/128GB",
+    "variants": [],
+    "Chipset": "Dimensity 7060",
+    "Baterai": "5000 mAh (33W)",
+    "Kamera": "50MP + 8MP",
+    "Layar": "6.67\" AMOLED"
+  },
+  {
+    "id": "p-1794823391010",
+    "Brand": "X1",
+    "Nama_Produk": "X1 Neo",
+    "Gambar_URL": "https://advandigital.com/wp-content/uploads/2026/07/Orange-ADVAN-X1-Neo-dual-view-cutout.png",
+    "Harga": 1899000,
+    "Harga_Normal": 1899000,
+    "Harga_Promo": 1899000,
+    "RAM_ROM": "4/64GB",
+    "variants": [],
+    "Chipset": "MediaTek Helio G85",
+    "Baterai": "5000 mAh",
+    "Kamera": "5MP / 13MP",
+    "Layar": "6.78\" IPS HD Display"
+  },
+  {
+    "id": "p-1794823238478",
+    "Brand": "Advan",
+    "Nama_Produk": "ADVAN VANDROID NASA ONE",
+    "Gambar_URL": "https://advandigital.com/wp-content/uploads/2026/11/NASA-ONE-13-958x1024.webp",
+    "Harga": 1499000,
+    "Harga_Normal": 1499000,
+    "Harga_Promo": 1499000,
+    "RAM_ROM": "3/32GB",
+    "variants": [],
+    "Chipset": "UNISOC SC9863A1",
+    "Baterai": "5000 mAh",
+    "Kamera": "5MP | Selfie 2MP",
+    "Layar": "51\" IPS"
+  },
+  {
+    "id": "p-1794822952305",
+    "Brand": "Xiaomi",
+    "Nama_Produk": "REDMI Pad 2 9.7 WiFi",
+    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/05/redmi-pad-2-9.7_.webp",
+    "Harga": 2849000,
+    "Harga_Normal": 2849000,
+    "Harga_Promo": 2849000,
+    "RAM_ROM": "4/64GB",
+    "variants": [],
+    "Chipset": "Snapdragon® 6s 4G Gen 2",
+    "Baterai": "7600 mAh (18W)",
+    "Kamera": "8MP + 5MP",
+    "Layar": "9.7\" IPS LCD"
+  },
+  {
+    "id": "p-1794822608784",
+    "Brand": "Xiaomi",
+    "Nama_Produk": "Redmi 17 5G",
+    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/08/Redmi-17-5G_.webp",
+    "Harga": 3999000,
+    "Harga_Normal": 3999000,
+    "Harga_Promo": 3999000,
+    "RAM_ROM": "6/128GB",
+    "variants": [
+      {
+        "ram_rom": "6/256GB",
+        "price": 4499000
+      }
+    ],
+    "Chipset": "Snapdragon® 4 Gen 5",
+    "Baterai": "7500 mAh (45W)",
+    "Kamera": "50MP + 8MP",
+    "Layar": "6.9\" IPS LCD"
+  },
+  {
+    "id": "p-1794822429383",
+    "Brand": "Xiaomi",
+    "Nama_Produk": "Xiaomi Redmi Note 17 Pro Max 5G",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_note_17_pro_max_5g_black_1__2.webp",
+    "Harga": 7499000,
+    "Harga_Normal": 7499000,
+    "Harga_Promo": 7499000,
+    "RAM_ROM": "8/256GB",
+    "variants": [
+      {
+        "ram_rom": "8/512GB",
+        "price": 8499000
+      }
+    ],
+    "Chipset": "Qualcomm SM6850 Snapdragon® 6 Gen 5",
+    "Baterai": "10000 mAh (100W)",
+    "Kamera": "50MP + 8MP | 32MP",
+    "Layar": "CrystalRes AMOLED, 6,83 Inch"
+  },
+  {
+    "id": "p-1794820974098",
+    "Brand": "Itel",
+    "Nama_Produk": "itel A300+",
+    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/10/itel-A300_.webp",
+    "Harga": 2549000,
+    "Harga_Normal": 2549000,
+    "Harga_Promo": 2549000,
+    "RAM_ROM": "6/128GB",
+    "variants": [],
+    "Chipset": "Helio G81 Ultimate",
+    "Baterai": "7000 mAh",
+    "Kamera": "13MP + 8MP",
+    "Layar": "6.78\" IPS LCD"
+  },
+  {
+    "id": "p-1794820774226",
+    "Brand": "Apple",
+    "Nama_Produk": "Apple iPhone 18 Pro Max",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/i/p/iphone_18_pro_burgundy_1__3_1.webp",
+    "Harga": 29999000,
+    "Harga_Normal": 29999000,
+    "Harga_Promo": 29999000,
+    "RAM_ROM": "256GB",
+    "variants": [
+      {
+        "ram_rom": "512GB",
+        "price": 34999000
+      }
+    ],
+    "Chipset": "Chip A20 Pro, CPU 6-core",
+    "Baterai": "-",
+    "Kamera": "-",
+    "Layar": "Layar Super Retina XDR 6.3 Inch"
+  },
+  {
+    "id": "p-1794820610666",
+    "Brand": "Apple",
+    "Nama_Produk": "Apple iPhone 18 Pro",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/i/p/iphone_18_pro_glacier_1__3_1.webp",
+    "Harga": 27499000,
+    "Harga_Normal": 27499000,
+    "Harga_Promo": 27499000,
+    "RAM_ROM": "256GB",
+    "variants": [
+      {
+        "ram_rom": "512GB",
+        "price": 32998999
+      }
+    ],
+    "Chipset": "Chip A20 Pro, CPU 6-core",
+    "Baterai": "-",
+    "Kamera": "-",
+    "Layar": "Super Retina XDR  6.3 inch"
+  },
+  {
+    "id": "p-1794820104081",
+    "Brand": "Vivo",
+    "Nama_Produk": "vivo V80 Lite 5G",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/v/i/vivo_v80_lite_5g_afterglow_pink_1__2.webp",
+    "Harga": 7299000,
+    "Harga_Normal": 7299000,
+    "Harga_Promo": 7299000,
+    "RAM_ROM": "6/128GB",
+    "variants": [
+      {
+        "ram_rom": "6/256GB",
+        "price": 7999000
+      }
+    ],
+    "Chipset": "Mediatek Dimensity 7300e",
+    "Baterai": "10000mAh",
+    "Kamera": "50MP + 32MP | Selfie 32MP",
+    "Layar": "6.83 inci, AMOLED"
+  },
+  {
+    "id": "p-1794819095179",
+    "Brand": "Oppo",
+    "Nama_Produk": "OPPO Reno16 5G",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/o/p/oppo_reno16_5g_twilight_violet_1__2.webp",
+    "Harga": 11999000,
+    "Harga_Normal": 11999000,
+    "Harga_Promo": 11999000,
+    "RAM_ROM": "8/256GB",
+    "variants": [],
+    "Chipset": "Snapdragon® 7 Gen 4",
+    "Baterai": "6700 mAh",
+    "Kamera": "50MP OIS",
+    "Layar": "6.32\" AMOLED 120Hz"
+  },
+  {
+    "id": "p-1794818933288",
+    "Brand": "Oppo",
+    "Nama_Produk": "OPPO Reno16 F 5G",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/o/p/oppo_reno16_f_5g_dream_purple_1__1_1.webp",
+    "Harga": 7999000,
+    "Harga_Normal": 7999000,
+    "Harga_Promo": 7999000,
+    "RAM_ROM": "8/128GB",
+    "variants": [
+      {
+        "ram_rom": "8/256GB",
+        "price": 8699000
+      }
+    ],
+    "Chipset": "MediaTek Dimensity 7300",
+    "Baterai": "7000 mAh (80W)",
+    "Kamera": "50MP",
+    "Layar": "120Hz"
   },
   {
     "id": "p-canva-2",
     "Brand": "Oppo",
     "Nama_Produk": "OPPO A6X",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/11/689de9f8-b769-4278-a203-6c069da6820b_.webp",
-    "RAM_ROM": "4/128GB",
-    "Harga": 2899000,
-    "Harga_Normal": 2899000,
-    "Harga_Promo": 2899000,
+    "Harga": 3299000,
+    "Harga_Normal": 3299000,
+    "Harga_Promo": 3299000,
+    "RAM_ROM": "6/128GB",
     "variants": [
-      {
-        "ram_rom": "6/128GB",
-        "price": 3299000
-      },
       {
         "ram_rom": "6/256GB",
         "price": 3799000
       }
     ],
-    "Chipset": "Snapdragon 685",
+    "Chipset": "Snapdragon® 685",
     "Baterai": "6500 mAh",
     "Kamera": "13MP | Selfie 5MP",
     "Layar": "6.75\" LCD 120Hz"
@@ -43,17 +313,17 @@
     "Brand": "Oppo",
     "Nama_Produk": "OPPO A6",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/12/oppo-a6_.webp",
+    "Harga": 4299000,
+    "Harga_Normal": 4299000,
+    "Harga_Promo": 4299000,
     "RAM_ROM": "6/128GB",
-    "Harga": 3999000,
-    "Harga_Normal": 3999000,
-    "Harga_Promo": 3999000,
     "variants": [
       {
         "ram_rom": "6/256GB",
-        "price": 4299000
+        "price": 4799000
       }
     ],
-    "Chipset": "Snapdragon 685",
+    "Chipset": "Snapdragon® 685",
     "Baterai": "7000 mAh (45W)",
     "Kamera": "50MP + 2MP | 8MP",
     "Layar": "6.75\""
@@ -63,14 +333,14 @@
     "Brand": "Oppo",
     "Nama_Produk": "OPPO A6C",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/01/oppo-a6c__1.webp",
-    "RAM_ROM": "6/64GB",
-    "Harga": 2599000,
-    "Harga_Normal": 2599000,
-    "Harga_Promo": 2599000,
+    "Harga": 2799000,
+    "Harga_Normal": 2799000,
+    "Harga_Promo": 2799000,
+    "RAM_ROM": "4/64GB",
     "variants": [
       {
         "ram_rom": "4/128GB",
-        "price": 2999000
+        "price": 3199000
       }
     ],
     "Chipset": "UNISOC T7250",
@@ -81,69 +351,34 @@
   {
     "id": "p-canva-5",
     "Brand": "Oppo",
-    "Nama_Produk": "OPPO A6 PRO 4G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/09/1539ff9b-1cb9-4b44-973d-2093d8e56a9e_.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 4199000,
-    "Harga_Normal": 4199000,
-    "Harga_Promo": 4199000,
+    "Nama_Produk": "OPPO A7 Pro 5G",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/o/p/oppo_a7_pro_5g_surfing_blue_01.webp",
+    "Harga": 7999000,
+    "Harga_Normal": 7999000,
+    "Harga_Promo": 7999000,
+    "RAM_ROM": "6/256GB",
     "variants": [],
-    "Chipset": "Helio G100",
-    "Baterai": "7000 mAh (80W)",
-    "Kamera": "50MP + 2MP | 16MP",
-    "Layar": "6.57\" AMOLED"
-  },
-  {
-    "id": "p-canva-6",
-    "Brand": "Oppo",
-    "Nama_Produk": "OPPO A6S",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/Screenshot_7_.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 4799000,
-    "Harga_Normal": 4799000,
-    "Harga_Promo": 4799000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 5299000
-      }
-    ],
-    "Chipset": "Snapdragon 685",
-    "Baterai": "7000 mAh (80W)",
-    "Kamera": "50MP | Selfie 16MP",
-    "Layar": "6.75\" IPS LCD 120Hz"
-  },
-  {
-    "id": "p-canva-7",
-    "Brand": "Oppo",
-    "Nama_Produk": "OPPO RENO14 F 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/07/Untitleddas_.webp",
-    "RAM_ROM": "12/512GB",
-    "Harga": 5999000,
-    "Harga_Normal": 5999000,
-    "Harga_Promo": 5999000,
-    "variants": [],
-    "Chipset": "Snapdragon® 6 Gen 1",
-    "Baterai": "6000 mAh",
-    "Kamera": "50MP + 8MP + 2MP | Selfie 32MP",
-    "Layar": "6.57\""
+    "Chipset": "Dimensity 6360 MAX",
+    "Baterai": "8000 mAh (45W)",
+    "Kamera": "50MP",
+    "Layar": "AMOLED 120Hz"
   },
   {
     "id": "p-canva-8",
     "Brand": "Oppo",
     "Nama_Produk": "OPPO RENO15 F 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/01/oppo-reno15-f_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 6999000,
     "Harga_Normal": 6999000,
     "Harga_Promo": 6999000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "12/256GB",
         "price": 7499000
       }
     ],
-    "Chipset": "Snapdragon 6 Gen 1",
+    "Chipset": "Snapdragon® 6 Gen 1",
     "Baterai": "7000 mAh",
     "Kamera": "50MP + 8MP + 2MP | Selfie 50MP",
     "Layar": "6.57\" AMOLED"
@@ -153,17 +388,17 @@
     "Brand": "Oppo",
     "Nama_Produk": "OPPO RENO15 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/11/oppo-reno15_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 8999000,
     "Harga_Normal": 8999000,
     "Harga_Promo": 8999000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "12/256GB",
         "price": 9499000
       }
     ],
-    "Chipset": "Snapdragon 7 Gen 4",
+    "Chipset": "Snapdragon® 7 Gen 4",
     "Baterai": "6500",
     "Kamera": "8MP + 50MP + 50MP | Selfie 50MP",
     "Layar": "6.59\" AMOLED"
@@ -171,16 +406,16 @@
   {
     "id": "p-canva-10",
     "Brand": "Infinix",
-    "Nama_Produk": "INFINIX SMART 20 (FREE QOALA & HANDSFREE)",
-    "Gambar_URL": "https://portofolio-kaisya.my.canva.site/_framed/eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwia2lkIjoia2lkLTE3Nzg0NzAzNjEzOTQifQ..GFCQLsSuyihPMMFO.3I3F54XtuZpq2ZRe3cQshyOD_Ejn1m0WdLWzxQCvqYhy5GJA6iKoi-hIa9NqGI1HESYFq6fHPg.JSA2pGsJjvKKCdmkUiBcTw/spesifikasi-harga-new/_assets/media/628a17f84de9d3e8cd1f92ab325bda8b.png",
+    "Nama_Produk": "INFINIX SMART 20",
+    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/i/n/infinix_smart_20_orange_01.webp",
+    "Harga": 2099000,
+    "Harga_Normal": 2099000,
+    "Harga_Promo": 2099000,
     "RAM_ROM": "4/64GB",
-    "Harga": 1999000,
-    "Harga_Normal": 1999000,
-    "Harga_Promo": 1999000,
     "variants": [
       {
         "ram_rom": "4/128GB",
-        "price": 2199000
+        "price": 2399000
       }
     ],
     "Chipset": "Helio G81 Ultimate",
@@ -193,10 +428,10 @@
     "Brand": "Infinix",
     "Nama_Produk": "INFINIX HOT 70",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/05/infinix-hot-70_.webp",
+    "Harga": 3099000,
+    "Harga_Normal": 3099000,
+    "Harga_Promo": 3099000,
     "RAM_ROM": "4/128GB",
-    "Harga": 2799000,
-    "Harga_Normal": 2799000,
-    "Harga_Promo": 2799000,
     "variants": [],
     "Chipset": "Helio G100 Ultimate",
     "Baterai": "6000 mAh",
@@ -204,49 +439,14 @@
     "Layar": "6.78\""
   },
   {
-    "id": "p-canva-12",
-    "Brand": "Infinix",
-    "Nama_Produk": "INFINIX NOTE 60 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/infinix-note-60-2.jpg",
-    "RAM_ROM": "8/256GB",
-    "Harga": 4399000,
-    "Harga_Normal": 4399000,
-    "Harga_Promo": 4399000,
-    "variants": [],
-    "Chipset": "Dimensity 7400 Ultimate",
-    "Baterai": "6500 mAh",
-    "Kamera": "50MP + 8MP | Selfie 13MP",
-    "Layar": "6.78\" AMOLED"
-  },
-  {
-    "id": "p-canva-13",
-    "Brand": "Infinix",
-    "Nama_Produk": "INFINIX NOTE 60 PRO 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/infinix-note-60-pro.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 5299000,
-    "Harga_Normal": 5299000,
-    "Harga_Promo": 5299000,
-    "variants": [
-      {
-        "ram_rom": "12/256GB",
-        "price": 5999000
-      }
-    ],
-    "Chipset": "Snapdragon 7s Gen 4 5G",
-    "Baterai": "6500 mAh",
-    "Kamera": "50MP + 8MP | Selfie 13MP",
-    "Layar": "6.78\" AMOLED"
-  },
-  {
     "id": "p-canva-14",
     "Brand": "Infinix",
     "Nama_Produk": "INFINIX NOTE 11 PRO",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2021/11/Infinix-Note-11-Pro_-e1637636992955.webp",
-    "RAM_ROM": "8/128GB",
     "Harga": 2499000,
     "Harga_Normal": 2499000,
     "Harga_Promo": 2499000,
+    "RAM_ROM": "8/128GB",
     "variants": [],
     "Chipset": "Helio G96",
     "Baterai": "5000 mAh",
@@ -254,109 +454,14 @@
     "Layar": "6.95\" IPS LCD"
   },
   {
-    "id": "p-canva-15",
-    "Brand": "Infinix",
-    "Nama_Produk": "INFINIX NOTE EDGE 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/01/infinix-note-edge-5g-_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 3999000,
-    "Harga_Normal": 3999000,
-    "Harga_Promo": 3999000,
-    "variants": [],
-    "Chipset": "Dimensity 7100",
-    "Baterai": "6500 mAh",
-    "Kamera": "50 MP | Selfie: 13 MP",
-    "Layar": "6.78\" AMOLED"
-  },
-  {
-    "id": "p-canva-16",
-    "Brand": "Infinix",
-    "Nama_Produk": "INFINIX GT 50 PRO 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/04/infinix-GT-50-pro_.webp",
-    "RAM_ROM": "12/256GB",
-    "Harga": 6499000,
-    "Harga_Normal": 6499000,
-    "Harga_Promo": 6499000,
-    "variants": [
-      {
-        "ram_rom": "12/512GB",
-        "price": 7499000
-      }
-    ],
-    "Chipset": "Dimensity 8400 Ultimate",
-    "Baterai": "6500 mAh (45W)",
-    "Kamera": "Dual 50 MP, f/1.59 + 8MP, f/2.2 ; Selfie 13MP, f/2.2",
-    "Layar": "6.78\" AMOLED"
-  },
-  {
-    "id": "p-canva-17",
-    "Brand": "Infinix",
-    "Nama_Produk": "INFINIX XPAD 30E",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/infinix-xpad-30e-2_.webp",
-    "RAM_ROM": "4/128GB",
-    "Harga": 2399000,
-    "Harga_Normal": 2399000,
-    "Harga_Promo": 2399000,
-    "variants": [],
-    "Chipset": "G80",
-    "Baterai": "7200 mAh",
-    "Kamera": "8MP | Selfie: 5MP",
-    "Layar": "11\" IPS LCD"
-  },
-  {
-    "id": "p-canva-18",
-    "Brand": "Infinix",
-    "Nama_Produk": "INFINIX XPAD 20 PRO",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/09/infinix-xpad-20-pro_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 3999000,
-    "Harga_Normal": 3999000,
-    "Harga_Promo": 3999000,
-    "variants": [],
-    "Chipset": "Helio G100 Ultimate",
-    "Baterai": "8000 mAh (18W)",
-    "Kamera": "Rear 8MP, f/2.0, FOV 76.5°, AF ; Front 5MP, f/2.0, FOV 89.7°, FF",
-    "Layar": "12.0\" IPS LCD"
-  },
-  {
-    "id": "p-canva-19",
-    "Brand": "Infinix",
-    "Nama_Produk": "INFINIX XPAD EDGE",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/01/infinix-xpad-edge_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 4399000,
-    "Harga_Normal": 4399000,
-    "Harga_Promo": 4399000,
-    "variants": [],
-    "Chipset": "Snapdragon 685",
-    "Baterai": "8000 mAh (18W)",
-    "Kamera": "Kamera belakang: 8MP, f/2.0, FOV 76.5°, AF Kamera depan: 8MP, f/2.2, FOV 73°",
-    "Layar": "13.2\" IPS LCD"
-  },
-  {
-    "id": "p-canva-20",
-    "Brand": "Infinix",
-    "Nama_Produk": "INFINIX XPAD GT",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/05/Infinix-Xpad-GT_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 6499000,
-    "Harga_Normal": 6499000,
-    "Harga_Promo": 6499000,
-    "variants": [],
-    "Chipset": "Snapdragon 888",
-    "Baterai": "10000 mAh (33W)",
-    "Kamera": "Single 13 MP, f/2.0, FOV 81.3°, AF, Selfie 9 MP, f/2.2, FOV 80°, FF",
-    "Layar": "13\" IPS"
-  },
-  {
     "id": "p-canva-21",
     "Brand": "Infinix",
     "Nama_Produk": "INFINIX ZERO X PRO",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2021/09/Infinix-Zero-X-Pro_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 2999000,
     "Harga_Normal": 2999000,
     "Harga_Promo": 2999000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Helio G95",
     "Baterai": "4500 mAh",
@@ -368,16 +473,11 @@
     "Brand": "Apple",
     "Nama_Produk": "Apple IPHONE 15",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/a/p/apple_iphone_15_pink_1_3.jpg",
-    "RAM_ROM": "6/128GB",
-    "Harga": 14999000,
-    "Harga_Normal": 14999000,
-    "Harga_Promo": 14999000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 16999000
-      }
-    ],
+    "Harga": 15499000,
+    "Harga_Normal": 15499000,
+    "Harga_Promo": 15499000,
+    "RAM_ROM": "128GB",
+    "variants": [],
     "Chipset": "Chip A16 Bionic",
     "Baterai": "-",
     "Kamera": "-",
@@ -388,10 +488,10 @@
     "Brand": "Apple",
     "Nama_Produk": "Apple IPHONE 16",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/09/iPhone-16_.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 17999000,
     "Harga_Normal": 17999000,
     "Harga_Promo": 17999000,
+    "RAM_ROM": "6/128GB",
     "variants": [],
     "Chipset": "Chip A18",
     "Baterai": "-",
@@ -403,10 +503,10 @@
     "Brand": "Apple",
     "Nama_Produk": "Apple IPHONE 16 PRO",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/09/Iphone-16-Pro_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 19999000,
     "Harga_Normal": 19999000,
     "Harga_Promo": 19999000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Chip A18 Pro",
     "Baterai": "-",
@@ -414,29 +514,14 @@
     "Layar": "6.3\""
   },
   {
-    "id": "p-canva-25",
-    "Brand": "Apple",
-    "Nama_Produk": "Apple IPHONE 16 PRO MAX",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/09/Iphone-16-Pro-Max_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 20499000,
-    "Harga_Normal": 20499000,
-    "Harga_Promo": 20499000,
-    "variants": [],
-    "Chipset": "Chip A18 Pro",
-    "Baterai": "-",
-    "Kamera": "Kamera Fusion 48 MP Kamera Telefoto 5x Kamera Ultra Wide 48 MP",
-    "Layar": "6.9\""
-  },
-  {
     "id": "p-canva-26",
     "Brand": "Apple",
     "Nama_Produk": "Apple IPHONE 17",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/09/Screenshot_509sa_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 20499000,
     "Harga_Normal": 20499000,
     "Harga_Promo": 20499000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Chip A19 GPU 5-core",
     "Baterai": "-",
@@ -448,10 +533,10 @@
     "Brand": "Apple",
     "Nama_Produk": "Apple IPHONE 17 PRO",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/09/Screenshot_510as_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 22999000,
     "Harga_Normal": 22999000,
     "Harga_Promo": 22999000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
@@ -468,10 +553,10 @@
     "Brand": "Apple",
     "Nama_Produk": "Apple IPHONE 17 PRO MAX",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/08/Screenshot_510aa_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 24999000,
     "Harga_Normal": 24999000,
     "Harga_Promo": 24999000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
@@ -488,10 +573,10 @@
     "Brand": "Apple",
     "Nama_Produk": "Apple IPHONE AIR",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/09/iphone-air_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 16999000,
     "Harga_Normal": 16999000,
     "Harga_Promo": 16999000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Chip A19 Pro GPU 5-core",
     "Baterai": "-",
@@ -503,10 +588,10 @@
     "Brand": "Motorola",
     "Nama_Produk": "MOTOROLA LAGOS G06 POWER",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/09/Screenshot_509-Photoroom_.webp",
-    "RAM_ROM": "4/128GB",
     "Harga": 1899000,
     "Harga_Normal": 1899000,
     "Harga_Promo": 1899000,
+    "RAM_ROM": "4/128GB",
     "variants": [],
     "Chipset": "Helio G81 Extreme",
     "Baterai": "7000 mAh",
@@ -514,33 +599,18 @@
     "Layar": "6.88\" IPS LCD"
   },
   {
-    "id": "p-canva-31",
-    "Brand": "Motorola",
-    "Nama_Produk": "MOTOROLA MOTO PAD 60 LITE",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/09/Screenshot_596-Photoroom_.webp",
-    "RAM_ROM": "4/128GB",
-    "Harga": 1999000,
-    "Harga_Normal": 1999000,
-    "Harga_Promo": 1999000,
-    "variants": [],
-    "Chipset": "Helio G85",
-    "Baterai": "5100 mAh",
-    "Kamera": "Kamera Utama  8 MP",
-    "Layar": "10.1\" IPS LCD"
-  },
-  {
     "id": "p-canva-32",
     "Brand": "Vivo",
     "Nama_Produk": "VIVO Y05",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/y/0/y05_black_1_1.webp",
+    "Harga": 2649000,
+    "Harga_Normal": 2649000,
+    "Harga_Promo": 2649000,
     "RAM_ROM": "4/64GB",
-    "Harga": 2299000,
-    "Harga_Normal": 2299000,
-    "Harga_Promo": 2299000,
     "variants": [
       {
         "ram_rom": "4/128GB",
-        "price": 2599000
+        "price": 2999000
       }
     ],
     "Chipset": "UNISOC T7225",
@@ -553,18 +623,14 @@
     "Brand": "Vivo",
     "Nama_Produk": "VIVO Y11D",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/ccd7c9ca-02d4-422d-8742-e838b45c20ce_.webp",
-    "RAM_ROM": "4/64GB",
     "Harga": 2799000,
     "Harga_Normal": 2799000,
     "Harga_Promo": 2799000,
+    "RAM_ROM": "4/64GB",
     "variants": [
       {
         "ram_rom": "4/128GB",
         "price": 3299000
-      },
-      {
-        "ram_rom": "6/128GB",
-        "price": 3799000
       }
     ],
     "Chipset": "UNISOC T7225",
@@ -573,36 +639,16 @@
     "Layar": "6.74\" IPS LCD"
   },
   {
-    "id": "p-canva-34",
-    "Brand": "Vivo",
-    "Nama_Produk": "VIVO Y21D",
-    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/v/i/vivo_y21d_black_01.webp",
-    "RAM_ROM": "4/128GB",
-    "Harga": 2399000,
-    "Harga_Normal": 2399000,
-    "Harga_Promo": 2399000,
-    "variants": [
-      {
-        "ram_rom": "6/128GB",
-        "price": 2799000
-      }
-    ],
-    "Chipset": "UNISOC T7225",
-    "Baterai": "6500 mAh",
-    "Kamera": "50 MP | Selfie 5 MP",
-    "Layar": "6.68\" IPS LCD"
-  },
-  {
     "id": "p-canva-35",
     "Brand": "Vivo",
     "Nama_Produk": "VIVO Y31D",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/v/i/vivo_y31d_pro_white_1_1_1_1.webp",
-    "RAM_ROM": "4/128GB",
     "Harga": 3599000,
     "Harga_Normal": 3599000,
     "Harga_Promo": 3599000,
+    "RAM_ROM": "4/128GB",
     "variants": [],
-    "Chipset": "Snapdragon 6s 4G Gen 2",
+    "Chipset": "Snapdragon® 6s 4G Gen 2",
     "Baterai": "7200 mAh",
     "Kamera": "50 MP | Selfie 8MP",
     "Layar": "6.75\" IPS LCD"
@@ -612,25 +658,25 @@
     "Brand": "Vivo",
     "Nama_Produk": "VIVO Y31D PRO",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/v/i/vivo_y31d_pro_white_1_1.webp",
+    "Harga": 4199000,
+    "Harga_Normal": 4199000,
+    "Harga_Promo": 4199000,
     "RAM_ROM": "4/128GB",
-    "Harga": 3899000,
-    "Harga_Normal": 3899000,
-    "Harga_Promo": 3899000,
     "variants": [
       {
         "ram_rom": "6/128GB",
-        "price": 4099000
-      },
-      {
-        "ram_rom": "8/128GB",
         "price": 4699000
       },
       {
-        "ram_rom": "8/256GB",
+        "ram_rom": "8/128GB",
         "price": 5299000
+      },
+      {
+        "ram_rom": "8/256GB",
+        "price": 5499000
       }
     ],
-    "Chipset": "Snapdragon 685",
+    "Chipset": "Snapdragon® 685",
     "Baterai": "7000 mAh",
     "Kamera": "50 MP + 2MP | Selfie 8MP",
     "Layar": "6.75\" IPS LCD"
@@ -640,12 +686,12 @@
     "Brand": "Vivo",
     "Nama_Produk": "VIVO V60 LITE 4G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/v/i/vivo_v60_lite_blue_1a_1.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 5799000,
     "Harga_Normal": 5799000,
     "Harga_Promo": 5799000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
-    "Chipset": "Snapdragon 685",
+    "Chipset": "Snapdragon® 685",
     "Baterai": "6500 mAh",
     "Kamera": "Dual 50 MP f/1.8 (wide) PDAF, 8 MP f/2.2 (ultrawide); Selfie 32 MP f/2.5 (wide)",
     "Layar": "6.77\" AMOLED"
@@ -655,10 +701,10 @@
     "Brand": "Vivo",
     "Nama_Produk": "VIVO V70 FE 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/v/i/vivo_v70fe_blu_1_2_1.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 6999000,
     "Harga_Normal": 6999000,
     "Harga_Promo": 6999000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "12/256GB",
@@ -675,17 +721,12 @@
     "Brand": "Vivo",
     "Nama_Produk": "VIVO V70 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/v/i/vivo_v70_5g_brown_01_1.webp",
-    "RAM_ROM": "12/256GB",
-    "Harga": 8999000,
-    "Harga_Normal": 8999000,
-    "Harga_Promo": 8999000,
-    "variants": [
-      {
-        "ram_rom": "12/512GB",
-        "price": 10999000
-      }
-    ],
-    "Chipset": "Snapdragon 7 Gen 4",
+    "Harga": 9999000,
+    "Harga_Normal": 9999000,
+    "Harga_Promo": 9999000,
+    "RAM_ROM": "8/256GB",
+    "variants": [],
+    "Chipset": "Snapdragon® 7 Gen 4",
     "Baterai": "6500 mAh",
     "Kamera": "50MP + 50MP + 8MP | Selfie 50MP",
     "Layar": "6.59\" AMOLED"
@@ -695,14 +736,14 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI REDMI A7 PRO",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_a7_pro_black_1_1.webp",
+    "Harga": 2099000,
+    "Harga_Normal": 2099000,
+    "Harga_Promo": 2099000,
     "RAM_ROM": "4/64GB",
-    "Harga": 1999000,
-    "Harga_Normal": 1999000,
-    "Harga_Promo": 1999000,
     "variants": [
       {
         "ram_rom": "4/128GB",
-        "price": 2199000
+        "price": 2399000
       }
     ],
     "Chipset": "UNISOC T7250",
@@ -711,190 +752,41 @@
     "Layar": "6.9\" IPS LCD"
   },
   {
-    "id": "p-canva-41",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI 15C",
-    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_15c_twilight_orange_01.jpg",
-    "RAM_ROM": "6/128GB",
-    "Harga": 2399000,
-    "Harga_Normal": 2399000,
-    "Harga_Promo": 2399000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 2599000
-      }
-    ],
-    "Chipset": "Helio G81 Ultra",
-    "Baterai": "6000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.9\" IPS LCD"
-  },
-  {
-    "id": "p-canva-42",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI 15",
-    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_15_midnight_black_01.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 2699000,
-    "Harga_Normal": 2699000,
-    "Harga_Promo": 2699000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 2899000
-      }
-    ],
-    "Chipset": "Snapdragon 685",
-    "Baterai": "7000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.9\" IPS LCD"
-  },
-  {
-    "id": "p-canva-43",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI NOTE 10 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2021/09/Redmi-note-10_.webp",
-    "RAM_ROM": "4/128GB",
-    "Harga": 1899000,
-    "Harga_Normal": 1899000,
-    "Harga_Promo": 1899000,
-    "variants": [],
-    "Chipset": "Dimensity 700",
-    "Baterai": "5000 mAh",
-    "Kamera": "48 MP",
-    "Layar": "6.5\" IPS LCD"
-  },
-  {
-    "id": "p-canva-44",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI NOTE 12",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/03/Redmi-Note-12-4G_.webp",
-    "RAM_ROM": "6/128GB",
-    "Harga": 2099000,
-    "Harga_Normal": 2099000,
-    "Harga_Promo": 2099000,
-    "variants": [],
-    "Chipset": "Snapdragon 685",
-    "Baterai": "5000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.67\" AMOLED"
-  },
-  {
     "id": "p-canva-45",
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI REDMI NOTE 12 PRO 4G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/04/Redmi-Note-12-Pro_-1.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 2899000,
     "Harga_Normal": 2899000,
     "Harga_Promo": 2899000,
+    "RAM_ROM": "6/128GB",
     "variants": [
       {
         "ram_rom": "8/256GB",
         "price": 3199000
       }
     ],
-    "Chipset": "Snapdragon 732G",
+    "Chipset": "Snapdragon® 732G",
     "Baterai": "5000 mAh",
     "Kamera": "108 MP",
     "Layar": "6.67\" AMOLED"
-  },
-  {
-    "id": "p-canva-46",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI NOTE 12 PRO 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/01/Redmi-Note-12-Pro-5G_-1.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 3299000,
-    "Harga_Normal": 3299000,
-    "Harga_Promo": 3299000,
-    "variants": [],
-    "Chipset": "Dimensity 1080",
-    "Baterai": "5000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.67\" OLED"
-  },
-  {
-    "id": "p-canva-47",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI NOTE 15 4G",
-    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_note_15_black_01_1.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 3199000,
-    "Harga_Normal": 3199000,
-    "Harga_Promo": 3199000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 3399000
-      }
-    ],
-    "Chipset": "Helio G100 Ultra",
-    "Baterai": "6000 mAh",
-    "Kamera": "108 MP",
-    "Layar": "6.77\" AMOLED"
-  },
-  {
-    "id": "p-canva-48",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI NOTE 15 5G",
-    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_note_15_5g_purple_01.webp",
-    "RAM_ROM": "6/128GB",
-    "Harga": 3499000,
-    "Harga_Normal": 3499000,
-    "Harga_Promo": 3499000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 4199000
-      },
-      {
-        "ram_rom": "12/512GB",
-        "price": 4799000
-      }
-    ],
-    "Chipset": "Snapdragon 6 Gen 3",
-    "Baterai": "5520 mAh",
-    "Kamera": "108 MP",
-    "Layar": "6.77\" AMOLED"
-  },
-  {
-    "id": "p-canva-49",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI NOTE 15 PRO 5G",
-    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xia_redmi_note_15_pro_5g_titn_1.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 5099000,
-    "Harga_Normal": 5099000,
-    "Harga_Promo": 5099000,
-    "variants": [
-      {
-        "ram_rom": "12/512GB",
-        "price": 5999000
-      }
-    ],
-    "Chipset": "Dimensity 7400 Ultra",
-    "Baterai": "6580 mAh",
-    "Kamera": "200 MP",
-    "Layar": "6.83\" AMOLED"
   },
   {
     "id": "p-canva-50",
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI REDMI NOTE 15 PRO+ 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xia_red_15_pro_plus_5g_brw_1_1.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 6399000,
     "Harga_Normal": 6399000,
     "Harga_Promo": 6399000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
         "price": 7199000
       }
     ],
-    "Chipset": "Snapdragon 7s Gen 4",
+    "Chipset": "Snapdragon® 7s Gen 4",
     "Baterai": "6500 mAh",
     "Kamera": "200 MP",
     "Layar": "6.83\" AMOLED"
@@ -904,12 +796,12 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI MI 10T",
     "Gambar_URL": "https://i01.appmifile.com/webfile/globalimg/id/cms/EFC5B1B3-B20F-6938-349F-7D7D6F882CAF!800x800!85.jpg",
-    "RAM_ROM": "8/128GB",
     "Harga": 4699000,
     "Harga_Normal": 4699000,
     "Harga_Promo": 4699000,
+    "RAM_ROM": "8/128GB",
     "variants": [],
-    "Chipset": "Snapdragon 865",
+    "Chipset": "Snapdragon® 865",
     "Baterai": "5000 mAh",
     "Kamera": "64 MP",
     "Layar": "6.67\" IPS LCD"
@@ -919,45 +811,30 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI MI 10T PRO",
     "Gambar_URL": "https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1611738905.77968775!600x600!85.png",
-    "RAM_ROM": "8/128GB",
     "Harga": 4999000,
     "Harga_Normal": 4999000,
     "Harga_Promo": 4999000,
+    "RAM_ROM": "8/128GB",
     "variants": [
       {
         "ram_rom": "8/256GB",
         "price": 5999000
       }
     ],
-    "Chipset": "Snapdragon 865",
+    "Chipset": "Snapdragon® 865",
     "Baterai": "5000 mAh",
     "Kamera": "108 MP",
     "Layar": "6.67\" IPS LCD"
-  },
-  {
-    "id": "p-canva-53",
-    "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI MI 12",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2022/01/Xiaomi-12_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 6499000,
-    "Harga_Normal": 6499000,
-    "Harga_Promo": 6499000,
-    "variants": [],
-    "Chipset": "Snapdragon® 8 Gen 1",
-    "Baterai": "4500 mAh",
-    "Kamera": "50MP",
-    "Layar": "6.28\" Super AMOLED"
   },
   {
     "id": "p-canva-54",
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI MI 12T",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2022/10/Xiaomi-12T-Pro_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 5999000,
     "Harga_Normal": 5999000,
     "Harga_Promo": 5999000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Dimensity 8100-Ultra",
     "Baterai": "5000 mAh",
@@ -969,10 +846,10 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI 17T",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/05/xiaomi-17t_.webp",
-    "RAM_ROM": "12/512GB",
     "Harga": 9999000,
     "Harga_Normal": 9999000,
     "Harga_Promo": 9999000,
+    "RAM_ROM": "12/512GB",
     "variants": [],
     "Chipset": "Dimensity 8500 Ultra",
     "Baterai": "6500 mAh",
@@ -984,12 +861,12 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI 17",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_17_grn_1_2.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 15999000,
     "Harga_Normal": 15999000,
     "Harga_Promo": 15999000,
+    "RAM_ROM": "12/256GB",
     "variants": [],
-    "Chipset": "Snapdragon 8 Elite Gen 5",
+    "Chipset": "Snapdragon® 8 Elite Gen 5",
     "Baterai": "6330 mAh",
     "Kamera": "50 MP",
     "Layar": "6.3\" AMOLED"
@@ -997,19 +874,19 @@
   {
     "id": "p-canva-57",
     "Brand": "Xiaomi",
-    "Nama_Produk": "XIAOMI REDMI PAD 2 9.7\"",
+    "Nama_Produk": "XIAOMI REDMI PAD 2 9.7\" 4G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_pad_2_9.7_gray_01.webp",
-    "RAM_ROM": "4/64GB",
     "Harga": 3099000,
     "Harga_Normal": 3099000,
     "Harga_Promo": 3099000,
+    "RAM_ROM": "4/64GB",
     "variants": [
       {
         "ram_rom": "4/128GB",
         "price": 3299000
       }
     ],
-    "Chipset": "Snapdragon 6s 4G Gen 2",
+    "Chipset": "Snapdragon® 6s 4G Gen 2",
     "Baterai": "7600 mAh",
     "Kamera": "8 MP",
     "Layar": "9.7\" IPS LCD"
@@ -1019,10 +896,10 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI REDMI PAD 2",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_pad_2_graphite_gray_01.jpg",
-    "RAM_ROM": "4/128GB",
     "Harga": 3299000,
     "Harga_Normal": 3299000,
     "Harga_Promo": 3299000,
+    "RAM_ROM": "4/128GB",
     "variants": [
       {
         "ram_rom": "4/256GB",
@@ -1039,12 +916,12 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI REDMI PAD 2 PRO",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_pad_2_pro_graphite_gray_01.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 5299000,
     "Harga_Normal": 5299000,
     "Harga_Promo": 5299000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
-    "Chipset": "Snapdragon 7s Gen 4",
+    "Chipset": "Snapdragon® 7s Gen 4",
     "Baterai": "12000 mAh",
     "Kamera": "8 MP",
     "Layar": "12.1\" IPS LCD"
@@ -1054,12 +931,12 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI PAD 8 PRO",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_pad_8_pro_green_01_1_1.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 9499000,
     "Harga_Normal": 9499000,
     "Harga_Promo": 9499000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
-    "Chipset": "Snapdragon 8 Elite",
+    "Chipset": "Snapdragon® 8 Elite",
     "Baterai": "9200 mAh",
     "Kamera": "50 MP",
     "Layar": "11.2\" IPS LCD"
@@ -1069,10 +946,10 @@
     "Brand": "Realme",
     "Nama_Produk": "REALME NOTE 80",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/r/e/realme_note_80_storm_black_01new_1.webp",
+    "Harga": 2299000,
+    "Harga_Normal": 2299000,
+    "Harga_Promo": 2299000,
     "RAM_ROM": "4/64GB",
-    "Harga": 2099000,
-    "Harga_Normal": 2099000,
-    "Harga_Promo": 2099000,
     "variants": [
       {
         "ram_rom": "4/128GB",
@@ -1085,115 +962,16 @@
     "Layar": "6.74\" IPS LCD"
   },
   {
-    "id": "p-canva-62",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME C35",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2022/02/realme-c35_.webp",
-    "RAM_ROM": "4/64GB",
-    "Harga": 1499000,
-    "Harga_Normal": 1499000,
-    "Harga_Promo": 1499000,
-    "variants": [],
-    "Chipset": "UNISOC T616",
-    "Baterai": "5000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.6\" IPS LCD"
-  },
-  {
-    "id": "p-canva-63",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME C67",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/12/realme-c67_-1.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 2249000,
-    "Harga_Normal": 2249000,
-    "Harga_Promo": 2249000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 2549000
-      }
-    ],
-    "Chipset": "Snapdragon 685",
-    "Baterai": "5000 mAh",
-    "Kamera": "108 MP",
-    "Layar": "6.5\" IPS LCD"
-  },
-  {
-    "id": "p-canva-64",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME C71",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/06/realme-c71_.webp",
-    "RAM_ROM": "4/128GB",
-    "Harga": 1899000,
-    "Harga_Normal": 1899000,
-    "Harga_Promo": 1899000,
-    "variants": [
-      {
-        "ram_rom": "8/128GB",
-        "price": 2399000
-      }
-    ],
-    "Chipset": "UNISOC T7250",
-    "Baterai": "6300 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.67\" IPS LCD"
-  },
-  {
     "id": "p-canva-65",
     "Brand": "Realme",
     "Nama_Produk": "REALME C85",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/11/EFRG_.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 3299000,
     "Harga_Normal": 3299000,
     "Harga_Promo": 3299000,
-    "variants": [
-      {
-        "ram_rom": "8/128GB",
-        "price": 3499000
-      },
-      {
-        "ram_rom": "8/256GB",
-        "price": 3899000
-      }
-    ],
-    "Chipset": "Snapdragon 685",
-    "Baterai": "7000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.8\" IPS LCD"
-  },
-  {
-    "id": "p-canva-66",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME C85 PRO",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/11/aaaaaag_.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 3999000,
-    "Harga_Normal": 3999000,
-    "Harga_Promo": 3999000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 4399000
-      }
-    ],
-    "Chipset": "Snapdragon 685",
-    "Baterai": "7000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.8\" AMOLED"
-  },
-  {
-    "id": "p-canva-67",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME C85 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/11/Screenshot_405_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 3699000,
-    "Harga_Normal": 3699000,
-    "Harga_Promo": 3699000,
+    "RAM_ROM": "6/128GB",
     "variants": [],
-    "Chipset": "Dimensity 6300",
+    "Chipset": "Snapdragon® 685",
     "Baterai": "7000 mAh",
     "Kamera": "50 MP",
     "Layar": "6.8\" IPS LCD"
@@ -1203,18 +981,18 @@
     "Brand": "Realme",
     "Nama_Produk": "REALME C100I",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/05/realme-c100i_.webp",
+    "Harga": 2899000,
+    "Harga_Normal": 2899000,
+    "Harga_Promo": 2899000,
     "RAM_ROM": "4/128GB",
-    "Harga": 2699000,
-    "Harga_Normal": 2699000,
-    "Harga_Promo": 2699000,
     "variants": [
       {
         "ram_rom": "4/256GB",
-        "price": 2899000
+        "price": 3199000
       },
       {
         "ram_rom": "6/128GB",
-        "price": 2999000
+        "price": 3299000
       }
     ],
     "Chipset": "UNISOC T7250",
@@ -1227,10 +1005,10 @@
     "Brand": "Realme",
     "Nama_Produk": "REALME C100X",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/04/realme-c100x_.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 3399000,
     "Harga_Normal": 3399000,
     "Harga_Promo": 3399000,
+    "RAM_ROM": "6/128GB",
     "variants": [
       {
         "ram_rom": "6/256GB",
@@ -1247,14 +1025,14 @@
     "Brand": "Realme",
     "Nama_Produk": "REALME C100",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/04/realme-c100_.webp",
+    "Harga": 3999000,
+    "Harga_Normal": 3999000,
+    "Harga_Promo": 3999000,
     "RAM_ROM": "6/128GB",
-    "Harga": 3799000,
-    "Harga_Normal": 3799000,
-    "Harga_Promo": 3799000,
     "variants": [
       {
         "ram_rom": "8/256GB",
-        "price": 4399000
+        "price": 4599000
       }
     ],
     "Chipset": "Helio G92 Max",
@@ -1263,126 +1041,16 @@
     "Layar": "6.8\" IPS LCD"
   },
   {
-    "id": "p-canva-71",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME 10 PRO 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2022/11/realme-10-Pro_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 3299000,
-    "Harga_Normal": 3299000,
-    "Harga_Promo": 3299000,
-    "variants": [],
-    "Chipset": "Snapdragon 695",
-    "Baterai": "5000 mAh",
-    "Kamera": "108 MP",
-    "Layar": "6.72\" IPS LCD"
-  },
-  {
-    "id": "p-canva-72",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME 11 PRO 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/05/realme-11-Pro_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 3499000,
-    "Harga_Normal": 3499000,
-    "Harga_Promo": 3499000,
-    "variants": [],
-    "Chipset": "Dimensity 7050",
-    "Baterai": "5000 mAh",
-    "Kamera": "100 MP",
-    "Layar": "6.7\" AMOLED"
-  },
-  {
-    "id": "p-canva-73",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME 13 4G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/08/realme-13_.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 2499000,
-    "Harga_Normal": 2499000,
-    "Harga_Promo": 2499000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 2699000
-      }
-    ],
-    "Chipset": "Snapdragon 685",
-    "Baterai": "5000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.67\" AMOLED"
-  },
-  {
-    "id": "p-canva-74",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME 13 PRO 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/07/realme-13-pro_.webp",
-    "RAM_ROM": "12/256GB",
-    "Harga": 3699000,
-    "Harga_Normal": 3699000,
-    "Harga_Promo": 3699000,
-    "variants": [],
-    "Chipset": "Snapdragon 7s Gen 2",
-    "Baterai": "5050 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.7\" AMOLED"
-  },
-  {
-    "id": "p-canva-75",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME 14T 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/03/realme-14T_-1.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 3099000,
-    "Harga_Normal": 3099000,
-    "Harga_Promo": 3099000,
-    "variants": [],
-    "Chipset": "Dimensity 6300",
-    "Baterai": "6000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.67\" AMOLED"
-  },
-  {
-    "id": "p-canva-76",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME 15 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/07/e5b5c124-e5dc-45ec-ac8e-630faa151bdc_.webp",
-    "RAM_ROM": "12/256GB",
-    "Harga": 5299000,
-    "Harga_Normal": 5299000,
-    "Harga_Promo": 5299000,
-    "variants": [],
-    "Chipset": "Dimensity 7300+",
-    "Baterai": "7000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.77\" OLED"
-  },
-  {
-    "id": "p-canva-77",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME 16 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/realme-16_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 5999000,
-    "Harga_Normal": 5999000,
-    "Harga_Promo": 5999000,
-    "variants": [],
-    "Chipset": "Dimensity 6400 Turbo",
-    "Baterai": "7000 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.57\" AMOLED"
-  },
-  {
     "id": "p-canva-78",
     "Brand": "Realme",
     "Nama_Produk": "REALME GT 6 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/06/realme-GT-6_.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 7999000,
     "Harga_Normal": 7999000,
     "Harga_Promo": 7999000,
+    "RAM_ROM": "12/256GB",
     "variants": [],
-    "Chipset": "Snapdragon 8s Gen 3",
+    "Chipset": "Snapdragon® 8s Gen 3",
     "Baterai": "5500 mAh",
     "Kamera": "50 MP",
     "Layar": "6.78\" AMOLED"
@@ -1392,40 +1060,25 @@
     "Brand": "Realme",
     "Nama_Produk": "REALME GT MASTER EDITION",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2021/08/Realme-GT-Master__1.webp",
-    "RAM_ROM": "8/128GB",
     "Harga": 2999000,
     "Harga_Normal": 2999000,
     "Harga_Promo": 2999000,
+    "RAM_ROM": "8/128GB",
     "variants": [],
-    "Chipset": "Snapdragon 778G",
+    "Chipset": "Snapdragon® 778G",
     "Baterai": "4300 mAh",
     "Kamera": "64 MP",
     "Layar": "6.43\" Super AMOLED"
-  },
-  {
-    "id": "p-canva-80",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME GT NEO 3",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2022/05/realme-gt-neo3-neo-3_.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 3499000,
-    "Harga_Normal": 3499000,
-    "Harga_Promo": 3499000,
-    "variants": [],
-    "Chipset": "Dimensity 8100",
-    "Baterai": "4500 mAh",
-    "Kamera": "50 MP",
-    "Layar": "6.7\" Super AMOLED"
   },
   {
     "id": "p-canva-81",
     "Brand": "Tecno",
     "Nama_Produk": "TECNO SPARK GO 3",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/01/cff6c633-7815-43f1-bae6-1aaebb3038ef_.webp",
-    "RAM_ROM": "4/64GB",
     "Harga": 2099000,
     "Harga_Normal": 2099000,
     "Harga_Promo": 2099000,
+    "RAM_ROM": "4/64GB",
     "variants": [
       {
         "ram_rom": "4/128GB",
@@ -1440,20 +1093,20 @@
   {
     "id": "p-canva-82",
     "Brand": "Tecno",
-    "Nama_Produk": "TECNO SPARK 50 + TWS OLIKE T206",
+    "Nama_Produk": "TECNO SPARK 50",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/04/tecno-spark-50_.webp",
+    "Harga": 2999000,
+    "Harga_Normal": 2999000,
+    "Harga_Promo": 2999000,
     "RAM_ROM": "4/128GB",
-    "Harga": 2799000,
-    "Harga_Normal": 2799000,
-    "Harga_Promo": 2799000,
     "variants": [
       {
         "ram_rom": "6/128GB",
-        "price": 3199000
+        "price": 3499000
       },
       {
         "ram_rom": "8/128GB",
-        "price": 3399000
+        "price": 3599000
       }
     ],
     "Chipset": "Helio G81",
@@ -1466,10 +1119,10 @@
     "Brand": "Tecno",
     "Nama_Produk": "TECNO CAMON 50",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/tecno-camon-50_.webp",
-    "RAM_ROM": "8/128GB",
     "Harga": 3999000,
     "Harga_Normal": 3999000,
     "Harga_Promo": 3999000,
+    "RAM_ROM": "8/128GB",
     "variants": [
       {
         "ram_rom": "8/256GB",
@@ -1490,10 +1143,10 @@
     "Brand": "Tecno",
     "Nama_Produk": "TECNO CAMON 50 PRO",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/tecno-camon-50-pro-4g_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 5999000,
     "Harga_Normal": 5999000,
     "Harga_Promo": 5999000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "12/256GB",
@@ -1510,31 +1163,16 @@
     "Layar": "6.77\" AMOLED"
   },
   {
-    "id": "p-canva-85",
-    "Brand": "Tecno",
-    "Nama_Produk": "TECNO MEGAPAD 11",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/12/Tecno-MegaPad-11_.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 2699000,
-    "Harga_Normal": 2699000,
-    "Harga_Promo": 2699000,
-    "variants": [],
-    "Chipset": "Helio G99",
-    "Baterai": "8000 mAh",
-    "Kamera": "13 MP",
-    "Layar": "11\" IPS LCD"
-  },
-  {
     "id": "p-canva-86",
     "Brand": "Tecno",
     "Nama_Produk": "TECNO MEGAPAD SE SET",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/11/Screenshot_74_.webp",
-    "RAM_ROM": "4/128GB",
     "Harga": 2999000,
     "Harga_Normal": 2999000,
     "Harga_Promo": 2999000,
+    "RAM_ROM": "4/128GB",
     "variants": [],
-    "Chipset": "Snapdragon 685",
+    "Chipset": "Snapdragon® 685",
     "Baterai": "8000 mAh",
     "Kamera": "8 MP",
     "Layar": "11\" IPS LCD"
@@ -1544,10 +1182,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A07 LTE",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/08/galaxy-a07_.webp",
+    "Harga": 2189000,
+    "Harga_Normal": 2189000,
+    "Harga_Promo": 2189000,
     "RAM_ROM": "4/64GB",
-    "Harga": 1989000,
-    "Harga_Normal": 1989000,
-    "Harga_Promo": 1989000,
     "variants": [
       {
         "ram_rom": "4/128GB",
@@ -1572,10 +1210,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A07 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/01/galaxy-a07-5g-2_.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 3199000,
     "Harga_Normal": 3199000,
     "Harga_Promo": 3199000,
+    "RAM_ROM": "6/128GB",
     "variants": [],
     "Chipset": "Dimensity 6300",
     "Baterai": "6000 mAh",
@@ -1587,10 +1225,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A17 LTE",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/09/galaxy-a17_.webp",
-    "RAM_ROM": "4/128GB",
     "Harga": 3399000,
     "Harga_Normal": 3399000,
     "Harga_Promo": 3399000,
+    "RAM_ROM": "4/128GB",
     "variants": [
       {
         "ram_rom": "8/128GB",
@@ -1611,10 +1249,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A17 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/08/samsung-galaxy-a17-5g-12s_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 4999000,
     "Harga_Normal": 4999000,
     "Harga_Promo": 4999000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Exynos 1330",
     "Baterai": "5000 mAh",
@@ -1626,10 +1264,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A25 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/12/Samsung-Galaxy-A25_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 4099000,
     "Harga_Normal": 4099000,
     "Harga_Promo": 4099000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Exynos 1280",
     "Baterai": "5000 mAh",
@@ -1641,10 +1279,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A26 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/02/Samsung-Galaxy-A26_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 4999000,
     "Harga_Normal": 4999000,
     "Harga_Promo": 4999000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Exynos 1380",
     "Baterai": "5000 mAh",
@@ -1656,10 +1294,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A34 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/03/Samsung-Galaxy-A34_.webp",
-    "RAM_ROM": "8/128GB",
     "Harga": 3828000,
     "Harga_Normal": 3828000,
     "Harga_Promo": 3828000,
+    "RAM_ROM": "8/128GB",
     "variants": [],
     "Chipset": "Dimensity 1080",
     "Baterai": "5000 mAh",
@@ -1671,12 +1309,12 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A36 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/02/Samsung-Galaxy-A36_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 5299000,
     "Harga_Normal": 5299000,
     "Harga_Promo": 5299000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
-    "Chipset": "Snapdragon 6 Gen 3",
+    "Chipset": "Snapdragon® 6 Gen 3",
     "Baterai": "5000 mAh",
     "Kamera": "Kamera Utama  50 MP",
     "Layar": "6.7\" Super AMOLED"
@@ -1686,10 +1324,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A37 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/03/galaxy-a37_.webp",
-    "RAM_ROM": "8/128GB",
     "Harga": 6299000,
     "Harga_Normal": 6299000,
     "Harga_Promo": 6299000,
+    "RAM_ROM": "8/128GB",
     "variants": [
       {
         "ram_rom": "8/256GB",
@@ -1706,10 +1344,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A56 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/02/Samsung-Galaxy-A56_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 6299000,
     "Harga_Normal": 6299000,
     "Harga_Promo": 6299000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "12/256GB",
@@ -1726,18 +1364,18 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A57 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/03/Galaxy-A57_.webp",
+    "Harga": 7099000,
+    "Harga_Normal": 7099000,
+    "Harga_Promo": 7099000,
     "RAM_ROM": "8/128GB",
-    "Harga": 7299000,
-    "Harga_Normal": 7299000,
-    "Harga_Promo": 7299000,
     "variants": [
       {
         "ram_rom": "8/256GB",
-        "price": 7799000
+        "price": 8299000
       },
       {
         "ram_rom": "12/256GB",
-        "price": 8299000
+        "price": 8999000
       }
     ],
     "Chipset": "Exynos 1680",
@@ -1750,10 +1388,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY M54 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/03/Samsung-Galaxy-M54_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 4450000,
     "Harga_Normal": 4450000,
     "Harga_Promo": 4450000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "Exynos 1380",
     "Baterai": "6000 mAh",
@@ -1765,12 +1403,12 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A73 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2022/03/samsung-galaxy-a73-5g_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 7399000,
     "Harga_Normal": 7399000,
     "Harga_Promo": 7399000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
-    "Chipset": "Snapdragon 778G",
+    "Chipset": "Snapdragon® 778G",
     "Baterai": "5000 mAh",
     "Kamera": "Kamera Utama  108 MP",
     "Layar": "6.7\" Super AMOLED"
@@ -1780,12 +1418,12 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY Z FLIP4 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2022/08/galaxy-z-flip4-5g_.webp",
-    "RAM_ROM": "8/512GB",
     "Harga": 8475000,
     "Harga_Normal": 8475000,
     "Harga_Promo": 8475000,
+    "RAM_ROM": "8/512GB",
     "variants": [],
-    "Chipset": "Snapdragon 8+ Gen 1",
+    "Chipset": "Snapdragon® 8+ Gen 1",
     "Baterai": "3700 mAh",
     "Kamera": "Kamera Utama  12 MP",
     "Layar": "6.7\" Dynamic AMOLED 2X"
@@ -1795,12 +1433,12 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY Z FLIP5 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/07/Z-flip5-5G_.webp",
-    "RAM_ROM": "8/512GB",
     "Harga": 13399000,
     "Harga_Normal": 13399000,
     "Harga_Promo": 13399000,
+    "RAM_ROM": "8/512GB",
     "variants": [],
-    "Chipset": "Snapdragon 8 Gen 2",
+    "Chipset": "Snapdragon® 8 Gen 2",
     "Baterai": "3700 mAh",
     "Kamera": "Kamera Utama  12 MP",
     "Layar": "6.7\" Dynamic AMOLED 2X"
@@ -1810,17 +1448,17 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY Z FLIP6 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/07/efyzs1yd__1-e1720623892194.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 13499000,
     "Harga_Normal": 13499000,
     "Harga_Promo": 13499000,
+    "RAM_ROM": "12/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
         "price": 15499000
       }
     ],
-    "Chipset": "Snapdragon 8 Gen 3",
+    "Chipset": "Snapdragon® 8 Gen 3",
     "Baterai": "4000 mAh",
     "Kamera": "Kamera Utama  50 MP",
     "Layar": "6.7\" Dynamic AMOLED 2X"
@@ -1830,10 +1468,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY Z FLIP7",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/07/Untitleddeq_.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 14999000,
     "Harga_Normal": 14999000,
     "Harga_Promo": 14999000,
+    "RAM_ROM": "12/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
@@ -1850,12 +1488,12 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY Z FOLD5 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/07/Galaxy-Z-Fold5-5G_.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 18699000,
     "Harga_Normal": 18699000,
     "Harga_Promo": 18699000,
+    "RAM_ROM": "12/256GB",
     "variants": [],
-    "Chipset": "Snapdragon 8 Gen 2",
+    "Chipset": "Snapdragon® 8 Gen 2",
     "Baterai": "4400 mAh",
     "Kamera": "Kamera Utama  50 MP",
     "Layar": "7.6\" Dynamic AMOLED 2X"
@@ -1865,12 +1503,12 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY Z FOLD6 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/07/galaxy-z-fold6-5g_.webp",
-    "RAM_ROM": "12/512GB",
     "Harga": 22999000,
     "Harga_Normal": 22999000,
     "Harga_Promo": 22999000,
+    "RAM_ROM": "12/512GB",
     "variants": [],
-    "Chipset": "Snapdragon 8 Gen 3",
+    "Chipset": "Snapdragon® 8 Gen 3",
     "Baterai": "4400 mAh",
     "Kamera": "Kamera Utama  50 MP",
     "Layar": "7.6\" Dynamic AMOLED 2X"
@@ -1880,17 +1518,17 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY Z FOLD7",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/05/galaxy-z-fold7_.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 25499000,
     "Harga_Normal": 25499000,
     "Harga_Promo": 25499000,
+    "RAM_ROM": "12/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
         "price": 26499000
       }
     ],
-    "Chipset": "Snapdragon 8 Elite",
+    "Chipset": "Snapdragon® 8 Elite",
     "Baterai": "4400 mAh",
     "Kamera": "Kamera Utama  200 MP",
     "Layar": "8.0\" AMOLED"
@@ -1900,17 +1538,17 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S23+ 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/02/Samsung-Galaxy-S23-Plus_.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 12475000,
     "Harga_Normal": 12475000,
     "Harga_Promo": 12475000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "8/512GB",
         "price": 12699000
       }
     ],
-    "Chipset": "Snapdragon 8 Gen 2",
+    "Chipset": "Snapdragon® 8 Gen 2",
     "Baterai": "Kamera Utama  50 MP",
     "Kamera": "4700 mAh",
     "Layar": "6.6\" Dynamic AMOLED 2X"
@@ -1920,17 +1558,17 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S23 ULTRA 5G",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/02/Samsung-Galaxy-S23-Ultra_.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 15600000,
     "Harga_Normal": 15600000,
     "Harga_Promo": 15600000,
+    "RAM_ROM": "12/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
         "price": 17399000
       }
     ],
-    "Chipset": "Snapdragon 8 Gen 2",
+    "Chipset": "Snapdragon® 8 Gen 2",
     "Baterai": "5000 mAh",
     "Kamera": "Kamera Utama  200 MP",
     "Layar": "6.8\" Dynamic AMOLED 2X"
@@ -1940,10 +1578,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S24+",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/01/Samsung-Galaxy-S24-Plus_.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 13489000,
     "Harga_Normal": 13489000,
     "Harga_Promo": 13489000,
+    "RAM_ROM": "12/256GB",
     "variants": [],
     "Chipset": "Exynos 2400",
     "Baterai": "4900 mAh",
@@ -1955,14 +1593,14 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S25 FE",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/s/a/samsung_galaxy_s25fe_navy_1.webp",
+    "Harga": 11999000,
+    "Harga_Normal": 11999000,
+    "Harga_Promo": 11999000,
     "RAM_ROM": "8/256GB",
-    "Harga": 10999000,
-    "Harga_Normal": 10999000,
-    "Harga_Promo": 10999000,
     "variants": [
       {
         "ram_rom": "8/512GB",
-        "price": 12499000
+        "price": 134999000
       }
     ],
     "Chipset": "Exynos 2400",
@@ -1975,17 +1613,17 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S25 EDGE",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/01/Samsung-Galaxy-S25-Edge_.webp",
+    "Harga": 15499000,
+    "Harga_Normal": 15499000,
+    "Harga_Promo": 15499000,
     "RAM_ROM": "12/256GB",
-    "Harga": 14999000,
-    "Harga_Normal": 14999000,
-    "Harga_Promo": 14999000,
     "variants": [
       {
         "ram_rom": "12/512GB",
-        "price": 16899000
+        "price": 17499000
       }
     ],
-    "Chipset": "Snapdragon 8 Elite",
+    "Chipset": "Snapdragon® 8 Elite",
     "Baterai": "3900 mAh",
     "Kamera": "Kamera Utama  200 MP",
     "Layar": "6.7\" AMOLED"
@@ -1995,17 +1633,17 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S25",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/01/Galaxy-S25-Ice-Blue_.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 12499000,
     "Harga_Normal": 12499000,
     "Harga_Promo": 12499000,
+    "RAM_ROM": "12/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
         "price": 14499000
       }
     ],
-    "Chipset": "Snapdragon 8 Elite",
+    "Chipset": "Snapdragon® 8 Elite",
     "Baterai": "4000 mAh",
     "Kamera": "Kamera Utama  50 MP",
     "Layar": "6.2\" Dynamic AMOLED 2X"
@@ -2015,17 +1653,17 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S25 ULTRA",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2025/01/Galaxy-S25-Ultra-titanium-silver-blue_.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 18499000,
     "Harga_Normal": 18499000,
     "Harga_Promo": 18499000,
+    "RAM_ROM": "12/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
         "price": 20499000
       }
     ],
-    "Chipset": "Snapdragon 8 Elite",
+    "Chipset": "Snapdragon® 8 Elite",
     "Baterai": "5000 mAh",
     "Kamera": "Kamera Utama  200 MP",
     "Layar": "6.9\" AMOLED"
@@ -2035,14 +1673,14 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S26",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/Galaxy-S26_.webp",
+    "Harga": 15499000,
+    "Harga_Normal": 15499000,
+    "Harga_Promo": 15499000,
     "RAM_ROM": "12/256GB",
-    "Harga": 14999000,
-    "Harga_Normal": 14999000,
-    "Harga_Promo": 14999000,
     "variants": [
       {
         "ram_rom": "12/512GB",
-        "price": 17999000
+        "price": 18499000
       }
     ],
     "Chipset": "Exynos 2600",
@@ -2055,10 +1693,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S26+",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/Galaxy-S26_-1.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 17999000,
     "Harga_Normal": 17999000,
     "Harga_Promo": 17999000,
+    "RAM_ROM": "12/256GB",
     "variants": [
       {
         "ram_rom": "12/512GB",
@@ -2075,86 +1713,31 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY S26 ULTRA",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/02/Galaxy-S26-Ultra_.webp",
+    "Harga": 22499000,
+    "Harga_Normal": 22499000,
+    "Harga_Promo": 22499000,
     "RAM_ROM": "12/256GB",
-    "Harga": 22999000,
-    "Harga_Normal": 22999000,
-    "Harga_Promo": 22999000,
     "variants": [
       {
         "ram_rom": "12/512GB",
-        "price": 25999000
+        "price": 25499000
       }
     ],
-    "Chipset": "Snapdragon 8 Elite Gen 5",
+    "Chipset": "Snapdragon® 8 Elite Gen 5",
     "Baterai": "5000 mAh",
     "Kamera": "Kamera Utama  200 MP",
     "Layar": "6.9\" AMOLED"
-  },
-  {
-    "id": "p-canva-117",
-    "Brand": "Oppo",
-    "Nama_Produk": "OPPO RENO16 F 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/06/OPPO-Reno16-F-5G_.webp",
-    "RAM_ROM": "8/128GB",
-    "Harga": 7999000,
-    "Harga_Normal": 7999000,
-    "Harga_Promo": 7999000,
-    "variants": [
-      {
-        "ram_rom": "8/256GB",
-        "price": 8699000
-      }
-    ],
-    "Chipset": "Dimensity 7300 Energy",
-    "Baterai": "7000 mAh",
-    "Kamera": "Kamera Utama  50 MP",
-    "Layar": "6.57\" AMOLED"
-  },
-  {
-    "id": "p-canva-118",
-    "Brand": "Oppo",
-    "Nama_Produk": "OPPO RENO16 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/05/OPPO-Reno16-5G_-1.webp",
-    "RAM_ROM": "8/256GB",
-    "Harga": 11999000,
-    "Harga_Normal": 11999000,
-    "Harga_Promo": 11999000,
-    "variants": [],
-    "Chipset": "Snapdragon 7 Gen 4",
-    "Baterai": "6700 mAh",
-    "Kamera": "Kamera Utama  50 MP",
-    "Layar": "6.32\" AMOLED"
-  },
-  {
-    "id": "p-canva-119",
-    "Brand": "Oppo",
-    "Nama_Produk": "OPPO RENO16 PRO 5G",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/05/OPPO-Reno16-Pro-5G_.webp",
-    "RAM_ROM": "12/256GB",
-    "Harga": 14999000,
-    "Harga_Normal": 14999000,
-    "Harga_Promo": 14999000,
-    "variants": [],
-    "Chipset": "Dimensity 8550 Super",
-    "Baterai": "6700 mAh",
-    "Kamera": "Kamera Utama  200 MP",
-    "Layar": "6.32\" AMOLED"
   },
   {
     "id": "p-canva-120",
     "Brand": "Oppo",
     "Nama_Produk": "OPPO Find X9s",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/o/p/oppo_find_x9s_midnight_grey_1.webp",
-    "RAM_ROM": "12/256GB",
     "Harga": 15499000,
     "Harga_Normal": 15499000,
     "Harga_Promo": 15499000,
-    "variants": [
-      {
-        "ram_rom": "12/512GB",
-        "price": 17499000
-      }
-    ],
+    "RAM_ROM": "12/256GB",
+    "variants": [],
     "Chipset": "Dimensity 9500s",
     "Baterai": "7025 mAh",
     "Kamera": "Triple 50MP + 50MP + 50MP | Selfie 32MP",
@@ -2165,10 +1748,10 @@
     "Brand": "Vivo",
     "Nama_Produk": "VIVO Y05E",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/v/i/vivo_y05e_grand_black_001.webp",
-    "RAM_ROM": "4/64GB",
     "Harga": 2299000,
     "Harga_Normal": 2299000,
     "Harga_Promo": 2299000,
+    "RAM_ROM": "4/64GB",
     "variants": [],
     "Chipset": "Unisoc T7225",
     "Baterai": "5150 mAh (15W)",
@@ -2180,10 +1763,10 @@
     "Brand": "Vivo",
     "Nama_Produk": "VIVO Y500",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/y/5/y500_blu_1_1.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 5499000,
     "Harga_Normal": 5499000,
     "Harga_Promo": 5499000,
+    "RAM_ROM": "6/128GB",
     "variants": [],
     "Chipset": "Unisoc T7300",
     "Baterai": "8100 mAh (44W)",
@@ -2191,37 +1774,18 @@
     "Layar": "6.83\" AMOLED 120Hz"
   },
   {
-    "id": "p-canva-123",
-    "Brand": "Realme",
-    "Nama_Produk": "REALME 16 PRO+ 5G",
-    "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/r/e/realme_16_pro_plus_master_gold_1_1.webp",
-    "RAM_ROM": "12/512GB",
-    "Harga": 8999000,
-    "Harga_Normal": 8999000,
-    "Harga_Promo": 8999000,
-    "variants": [],
-    "Chipset": "Snapdragon 7 Gen 4 (4 nm)",
-    "Baterai": "7000 mAh",
-    "Kamera": "Triple 200 MP (wide), 50 MP (periscope telephoto), 8 MP (ultrawide) | Selfie 50 MP",
-    "Layar": "6.8\" AMOLED 144Hz"
-  },
-  {
     "id": "p-canva-124",
     "Brand": "Xiaomi",
-    "Nama_Produk": "Xiaomi REDMI 17",
+    "Nama_Produk": "Xiaomi REDMI 17 4G",
     "Gambar_URL": "https://i02.appmifile.com/293_operatorx_operatorx_xm/04/08/2026/aada77fd83ee749a01a423260ba3ad8d.png?thumb=1&amp;f=webp&amp;q=85",
-    "RAM_ROM": "4/128GB",
     "Harga": 2899000,
     "Harga_Normal": 2899000,
     "Harga_Promo": 2899000,
+    "RAM_ROM": "4/128GB",
     "variants": [
       {
         "ram_rom": "6/128GB",
         "price": 3299000
-      },
-      {
-        "ram_rom": "6/256GB",
-        "price": 3849000
       }
     ],
     "Chipset": "Helio G91-Ultra",
@@ -2232,12 +1796,12 @@
   {
     "id": "p-canva-125",
     "Brand": "Tecno",
-    "Nama_Produk": "TECNO POVA 8",
+    "Nama_Produk": "TECNO POVA 8 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/t/e/tecno_pova_8_5g_graphite_black_1__2.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 4299000,
     "Harga_Normal": 4299000,
     "Harga_Promo": 4299000,
+    "RAM_ROM": "6/128GB",
     "variants": [
       {
         "ram_rom": "8/128GB",
@@ -2256,17 +1820,13 @@
   {
     "id": "p-canva-126",
     "Brand": "Itel",
-    "Nama_Produk": "ITEL A100C + QOALA + HANDSFREE",
+    "Nama_Produk": "ITEL A100C",
     "Gambar_URL": "https://www.itel-life.com/fileadmin/user_upload/Blue.png",
-    "RAM_ROM": "3/32GB",
-    "Harga": 1399000,
-    "Harga_Normal": 1399000,
-    "Harga_Promo": 1399000,
+    "Harga": 1599000,
+    "Harga_Normal": 1599000,
+    "Harga_Promo": 1599000,
+    "RAM_ROM": "3/64GB",
     "variants": [
-      {
-        "ram_rom": "3/64GB",
-        "price": 1599000
-      },
       {
         "ram_rom": "4/64GB",
         "price": 1699000
@@ -2282,10 +1842,10 @@
     "Brand": "Itel",
     "Nama_Produk": "ITEL A200",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/03/itel-a200_.webp",
-    "RAM_ROM": "3/128GB",
-    "Harga": 1699000,
-    "Harga_Normal": 1699000,
-    "Harga_Promo": 1699000,
+    "Harga": 1999000,
+    "Harga_Normal": 1999000,
+    "Harga_Promo": 1999000,
+    "RAM_ROM": "4/128GB",
     "variants": [],
     "Chipset": "UNISOC T7250",
     "Baterai": "5000 mAh",
@@ -2293,29 +1853,14 @@
     "Layar": "6.75\" IPS LCD"
   },
   {
-    "id": "p-canva-128",
-    "Brand": "Advan",
-    "Nama_Produk": "ADVAN NASA PRO 2",
-    "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2022/04/Advan-NASA-Pro_.webp",
-    "RAM_ROM": "2/32GB",
-    "Harga": 499000,
-    "Harga_Normal": 499000,
-    "Harga_Promo": 499000,
-    "variants": [],
-    "Chipset": "UNISOC SC9832E",
-    "Baterai": "3000 mAh",
-    "Kamera": "Kamera Utama 13MP",
-    "Layar": "6.1\" IPS LCD"
-  },
-  {
     "id": "p-canva-129",
     "Brand": "Advan",
     "Nama_Produk": "ADVAN TAB A10 WIFI",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/10/Advan-Tab-A10_.webp",
+    "Harga": 1699000,
+    "Harga_Normal": 1699000,
+    "Harga_Promo": 1699000,
     "RAM_ROM": "4/64GB",
-    "Harga": 1499000,
-    "Harga_Normal": 1499000,
-    "Harga_Promo": 1499000,
     "variants": [],
     "Chipset": "IPS LCD 10.1 inci",
     "Baterai": "5000 mAh",
@@ -2327,10 +1872,10 @@
     "Brand": "Advan",
     "Nama_Produk": "ADVAN X1",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/a/d/advan_x1_wht_1.webp",
+    "Harga": 2199000,
+    "Harga_Normal": 2199000,
+    "Harga_Promo": 2199000,
     "RAM_ROM": "8/128GB",
-    "Harga": 2099000,
-    "Harga_Normal": 2099000,
-    "Harga_Promo": 2099000,
     "variants": [],
     "Chipset": "Helio G100",
     "Baterai": "5000 mAh",
@@ -2342,10 +1887,10 @@
     "Brand": "Advan",
     "Nama_Produk": "ADVAN TAB VX NEO 10.1\"",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2024/07/pixelcut-export-4_.webp",
+    "Harga": 2099000,
+    "Harga_Normal": 2099000,
+    "Harga_Promo": 2099000,
     "RAM_ROM": "4/128GB",
-    "Harga": 1999000,
-    "Harga_Normal": 1999000,
-    "Harga_Promo": 1999000,
     "variants": [],
     "Chipset": "UNISOC T606",
     "Baterai": "6200 mAh",
@@ -2357,10 +1902,10 @@
     "Brand": "Advan",
     "Nama_Produk": "ADVAN TAB V11",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/08/Advan-Tab-V11_.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 2799000,
     "Harga_Normal": 2799000,
     "Harga_Promo": 2799000,
+    "RAM_ROM": "6/128GB",
     "variants": [],
     "Chipset": "Unisoc T7200",
     "Baterai": "7200 mAh",
@@ -2372,10 +1917,10 @@
     "Brand": "Advan",
     "Nama_Produk": "ADVAN TAB SKETSA 3 10.1\"",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2023/11/Advan-Sketsa-3_.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 2399000,
     "Harga_Normal": 2399000,
     "Harga_Promo": 2399000,
+    "RAM_ROM": "6/128GB",
     "variants": [],
     "Chipset": "UNISOC T606",
     "Baterai": "6000 mAh",
@@ -2387,10 +1932,10 @@
     "Brand": "Advan",
     "Nama_Produk": "ADVAN TAB SKETSA 5 12\" FULL SET",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/04/advan-tab-sketsa-5_.webp",
+    "Harga": 3799000,
+    "Harga_Normal": 3799000,
+    "Harga_Promo": 3799000,
     "RAM_ROM": "8/128GB",
-    "Harga": 3699000,
-    "Harga_Normal": 3699000,
-    "Harga_Promo": 3699000,
     "variants": [],
     "Chipset": "Helio G99",
     "Baterai": "8000 mAh",
@@ -2402,10 +1947,10 @@
     "Brand": "Advan",
     "Nama_Produk": "ADVAN SOULMATE X2",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/a/d/advan_soulmate_x2_white_1.webp",
-    "RAM_ROM": "8/128GB",
     "Harga": 4799000,
     "Harga_Normal": 4799000,
     "Harga_Promo": 4799000,
+    "RAM_ROM": "8/128GB",
     "variants": [],
     "Chipset": "AMD Athlon Silver 3020e (2 Core, 2 Thread, hingga 2.6GHz)",
     "Baterai": "5000 mAh",
@@ -2417,10 +1962,10 @@
     "Brand": "Advan",
     "Nama_Produk": "ADVAN WORKMATE R5",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/a/d/advan_workmater_r5_ble_1.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 6699000,
     "Harga_Normal": 6699000,
     "Harga_Promo": 6699000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
     "Chipset": "AMD Ryzen 5 3500U (4 core / 8 thread, hingga 3.8 GHz)",
     "Baterai": "6000 mAh",
@@ -2432,17 +1977,17 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A27 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/s/a/samsung_galaxy_a27_5g_blue_1__1.webp",
+    "Harga": 5599000,
+    "Harga_Normal": 5599000,
+    "Harga_Promo": 5599000,
     "RAM_ROM": "6/128GB",
-    "Harga": 4799000,
-    "Harga_Normal": 4799000,
-    "Harga_Promo": 4799000,
     "variants": [
       {
         "ram_rom": "8/256GB",
-        "price": 5599000
+        "price": 6998997
       }
     ],
-    "Chipset": "Snapdragon 6 gen 3",
+    "Chipset": "Snapdragon® 6 gen 3",
     "Baterai": "5000 mAh",
     "Kamera": "50MP, 5MP, 2MP | Selfie 12MP",
     "Layar": "6.7\" Super AMOLED 120Hz"
@@ -2452,17 +1997,17 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI REDMI NOTE 17 4G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_note_17_4g_sky_teal_1__1.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 3999000,
     "Harga_Normal": 3999000,
     "Harga_Promo": 3999000,
+    "RAM_ROM": "6/128GB",
     "variants": [
       {
         "ram_rom": "6/256GB",
         "price": 4299000
       }
     ],
-    "Chipset": "Snapdragon 6s 4G Gen 2 (6 nm)",
+    "Chipset": "Snapdragon® 6s 4G Gen 2 (6 nm)",
     "Baterai": "7700 mAh",
     "Kamera": "50 MP | Selfie 16 MP",
     "Layar": "6.99\" AMOLED 120Hz"
@@ -2472,17 +2017,17 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI REDMI NOTE 17 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_note_17_5g_purple_1_.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 4599000,
     "Harga_Normal": 4599000,
     "Harga_Promo": 4599000,
+    "RAM_ROM": "6/128GB",
     "variants": [
       {
         "ram_rom": "8/256GB",
         "price": 5199000
       }
     ],
-    "Chipset": "SM4450-AF Snapdragon 4 Gen 4 (4 nm)",
+    "Chipset": "SM4450-AF Snapdragon® 4 Gen 4 (4 nm)",
     "Baterai": "7700 mAh",
     "Kamera": "50 MP | Selfie 16 MP",
     "Layar": "6.99\" AMOLED 120Hz"
@@ -2492,17 +2037,17 @@
     "Brand": "Xiaomi",
     "Nama_Produk": "XIAOMI REDMI NOTE 17 PRO 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/x/i/xiaomi_redmi_note_17_pro_5g_black_1__1.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 5999000,
     "Harga_Normal": 5999000,
     "Harga_Promo": 5999000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "8/512GB",
         "price": 6999000
       }
     ],
-    "Chipset": "Snapdragon 6s Gen 4 (4 nm)",
+    "Chipset": "Snapdragon® 6s Gen 4 (4 nm)",
     "Baterai": "8300 mAh",
     "Kamera": "50 MP, 8 MP (ultrawide) | Selfie 16 MP",
     "Layar": "6.83\" AMOLED 120Hz"
@@ -2512,14 +2057,14 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A08",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/s/a/samsung_galaxy_a08_dark_blue_1_.webp",
+    "Harga": 2899000,
+    "Harga_Normal": 2899000,
+    "Harga_Promo": 2899000,
     "RAM_ROM": "4/64GB",
-    "Harga": 2999000,
-    "Harga_Normal": 2999000,
-    "Harga_Promo": 2999000,
     "variants": [
       {
         "ram_rom": "4/128GB",
-        "price": 3599000
+        "price": 3499000
       }
     ],
     "Chipset": "Helio G99+",
@@ -2532,10 +2077,10 @@
     "Brand": "Tecno",
     "Nama_Produk": "TECNO POVA 8 PRO 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/t/e/tecno_pova_8_5g_pro_tonio_lamborgini_01_1.webp",
-    "RAM_ROM": "8/256GB",
     "Harga": 5999000,
     "Harga_Normal": 5999000,
     "Harga_Promo": 5999000,
+    "RAM_ROM": "8/256GB",
     "variants": [
       {
         "ram_rom": "8/256GB",
@@ -2552,10 +2097,10 @@
     "Brand": "Samsung",
     "Nama_Produk": "SAMSUNG GALAXY A18",
     "Gambar_URL": "https://carisinyal.com/wp-content/uploads/2026/09/Samsung-Galaxy-A18_.webp",
-    "RAM_ROM": "4/128GB",
     "Harga": 4299000,
     "Harga_Normal": 4299000,
     "Harga_Promo": 4299000,
+    "RAM_ROM": "4/128GB",
     "variants": [
       {
         "ram_rom": "8/128GB",
@@ -2572,10 +2117,10 @@
     "Brand": "Oppo",
     "Nama_Produk": "OPPO A7 PRO 5G",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/o/p/oppo_a7_pro_5g_surfing_blue_01.webp",
-    "RAM_ROM": "6/256GB",
     "Harga": 7999000,
     "Harga_Normal": 7999000,
     "Harga_Promo": 7999000,
+    "RAM_ROM": "6/256GB",
     "variants": [],
     "Chipset": "Dimensity 6360 Max",
     "Baterai": "8000 mAh",
@@ -2587,12 +2132,12 @@
     "Brand": "Oppo",
     "Nama_Produk": "OPPO A7 PRO MAX 5G",
     "Gambar_URL": "https://opsg-imgcdn-sg.heytapimg.com/epb/202609/24/YMTCk9WdybKXrMZV.png",
-    "RAM_ROM": "8/256GB",
     "Harga": 9999000,
     "Harga_Normal": 9999000,
     "Harga_Promo": 9999000,
+    "RAM_ROM": "8/256GB",
     "variants": [],
-    "Chipset": "Snapdragon®4 Gen 5",
+    "Chipset": "Snapdragon®�4 Gen 5",
     "Baterai": "10000 mAh",
     "Kamera": "50MP + 2MP | Selfie 50MP",
     "Layar": "6.78\" AMOLED"
@@ -2602,10 +2147,10 @@
     "Brand": "Tecno",
     "Nama_Produk": "TECNO MEGAPAD 2 4G SET",
     "Gambar_URL": "https://cdnpro.eraspace.com/media/catalog/product/t/e/tecno_megapad_se_2_sndy_1.webp",
-    "RAM_ROM": "6/128GB",
     "Harga": 4399000,
     "Harga_Normal": 4399000,
     "Harga_Promo": 4399000,
+    "RAM_ROM": "6/128GB",
     "variants": [
       {
         "ram_rom": "8/256GB",
