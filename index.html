@@ -327,7 +327,7 @@
         <!-- Search & Quick Sort Row -->
         <div class="flex items-center gap-2 sm:gap-3">
           
-          <!-- Precision Search Field with Keyboard Shortcut & Micro-animations -->
+          <!-- Precision Search Field -->
           <div class="relative flex-1 group">
             <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-slate-900 transition-colors">
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -339,15 +339,8 @@
               type="text" 
               v-model="searchQuery"
               placeholder="Cari tipe HP, brand, chipset, kamera, atau varian..."
-              class="w-full pl-9 pr-14 sm:pr-16 py-2 bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 focus:border-slate-400 rounded-lg text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-900/5 transition-all shadow-2xs"
+              class="w-full pl-9 pr-9 py-2 bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 focus:border-slate-400 rounded-lg text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-slate-900/5 transition-all shadow-2xs"
             >
-            <!-- Keyboard shortcut hint when empty -->
-            <div 
-              v-if="!searchQuery" 
-              class="absolute inset-y-0 right-0 pr-3 hidden sm:flex items-center pointer-events-none"
-            >
-              <kbd class="px-1.5 py-0.5 text-[10px] font-mono font-semibold text-slate-400 bg-white border border-slate-200 rounded shadow-2xs">/</kbd>
-            </div>
             <!-- Clear button with micro-animation when has query -->
             <button 
               v-if="searchQuery" 
@@ -4340,12 +4333,9 @@
             showBackToTop.value = window.scrollY > 300;
           }, { passive: true });
 
-          // Keyboard shortcut '/' to search
+          // Keyboard shortcut Escape to close modals
           window.addEventListener('keydown', (e) => {
-            if (e.key === '/' && document.activeElement !== searchInput.value) {
-              e.preventDefault();
-              searchInput.value?.focus();
-            } else if (e.key === 'Escape') {
+            if (e.key === 'Escape') {
               if (activeProduct.value) activeProduct.value = null;
               if (shareModalOpen.value) shareModalOpen.value = false;
               if (adminLoginModalOpen.value) adminLoginModalOpen.value = false;
